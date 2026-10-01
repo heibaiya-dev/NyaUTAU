@@ -1,4 +1,4 @@
-<!--DO NOT modify this file. It is managed autometically.-->
+﻿<!--DO NOT modify this file. It is managed autometically.-->
 <!--To contribute to OpenUtau's localization, visit https://crowdin.com/project/oxygen-dioxideopenutau -->
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -101,11 +101,11 @@
   <system:String x:Key="debug.copylog">Copier le rapport</system:String>
   <system:String x:Key="debug.reverselogorder">Inverser l'ordre du rapport</system:String>
 
-  <system:String x:Key="dialogs.about.caption">À propos de OpenUTAU
+  <system:String x:Key="dialogs.about.caption">À propos de NyaUTAU
 </system:String>
   <system:String x:Key="dialogs.about.message">
-OpenUtau est un logiciel libre de synthétiseur vocal pour la communauté UTAU, avec une interface moderne et un support phonétique intelligent. Plus d'informations sur notre GitHub.</system:String>
-  <system:String x:Key="dialogs.exitsave.caption">Quitter OpenUtau</system:String>
+NyaUTAU est un logiciel libre de synthétiseur vocal pour la communauté UTAU, avec une interface moderne et un support phonétique intelligent. Plus d'informations sur notre GitHub.</system:String>
+  <system:String x:Key="dialogs.exitsave.caption">Quitter NyaUTAU</system:String>
   <system:String x:Key="dialogs.exitsave.message">Le projet actuel contient des changements non enregistrés. Souhaitez-vous les enregistrer ?</system:String>
   <system:String x:Key="dialogs.export.caption">Exporter</system:String>
   <system:String x:Key="dialogs.export.savefirst">Enregistrez le fichier avant d'exporter</system:String>
@@ -125,7 +125,7 @@ OpenUtau est un logiciel libre de synthétiseur vocal pour la communauté UTAU, 
   <!--<system:String x:Key="dialogs.merge.multitracks">Parts on different tracks cannot be merged.</system:String>-->
   <system:String x:Key="dialogs.messagebox.copy">Copier l'erreur dans le presse-papier</system:String>
   <system:String x:Key="dialogs.noresampler.caption">Aucun resampler</system:String>
-  <system:String x:Key="dialogs.noresampler.message">Aucun resampler ! Ajoutez le fichier .exe ou .dll du resampler dans le dossier "Resamplers" de OpenUTAU, puis choisissez-le dans Préférences.</system:String>
+  <system:String x:Key="dialogs.noresampler.message">Aucun resampler ! Ajoutez le fichier .exe ou .dll du resampler dans le dossier "Resamplers" de NyaUTAU, puis choisissez-le dans Préférences.</system:String>
   <!--<system:String x:Key="dialogs.recovery">Previously, OpenUtau terminated abnormally. Click here to recover.</system:String>-->
   <system:String x:Key="dialogs.recovery.caption">Projet récupéré</system:String>
   <system:String x:Key="dialogs.remaptimeaxis.message">Cet outil permet de changer le tempo du projet sans changer la position et la durée (en secondes) des notes.
@@ -315,7 +315,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="menu.file.saveas">Enregistrer sous...</system:String>
   <system:String x:Key="menu.file.savetemplate">Enregistrer le modèle...</system:String>
   <system:String x:Key="menu.help">Aide</system:String>
-  <system:String x:Key="menu.help.about">À propos de OpenUTAU</system:String>
+  <system:String x:Key="menu.help.about">À propos de NyaUTAU</system:String>
   <system:String x:Key="menu.help.checkupdate">Mettre à jour</system:String>
   <system:String x:Key="menu.help.logslocation">Ouvrir l'emplacement des rapports</system:String>
   <system:String x:Key="menu.help.reportissue">Signaler un problème</system:String>
@@ -626,7 +626,7 @@ Attention : cela va effacer les préréglages.</system:String>
   <!--<system:String x:Key="prefs.diffsinger">DiffSinger</system:String>-->
   <system:String x:Key="prefs.editing">Édition</system:String>
   <!--<system:String x:Key="prefs.general">General</system:String>-->
-  <system:String x:Key="prefs.note.restart">Note: veuillez redémarrer OpenUtau après avoir changé cette option.</system:String>
+  <system:String x:Key="prefs.note.restart">Note: veuillez redémarrer NyaUTAU après avoir changé cette option.</system:String>
   <system:String x:Key="prefs.otoeditor">Editeur d'Oto</system:String>
   <system:String x:Key="prefs.otoeditor.select">Editeur d'Oto par défaut</system:String>
   <system:String x:Key="prefs.otoeditor.setparampath">Chemin d'accès de setParam</system:String>
@@ -672,9 +672,9 @@ Attention : cela va effacer les préréglages.</system:String>
   1. Set "resampler-compatibility" to "on" in moreconfig.txt.
   2. Set "auto-update-llsm-mrq" to "off" in moreconfig.txt.
   3. Patiently wait for moresampler to generate missing llsm files.</system:String>-->
-  <system:String x:Key="prefs.rendering.resampler.note">Note: pour utiliser des resamplers externes, ajoutez le fichier .exe ou .dll du resampler dans le dossier "Resamplers" de OpenUTAU, puis choisissez-le dans Préférences.</system:String>
+  <system:String x:Key="prefs.rendering.resampler.note">Note: pour utiliser des resamplers externes, ajoutez le fichier .exe ou .dll du resampler dans le dossier "Resamplers" de NyaUTAU, puis choisissez-le dans Préférences.</system:String>
   <system:String x:Key="prefs.rendering.skipmuted">Sauter les pistes muettes</system:String>
-  <system:String x:Key="prefs.rendering.threads.cpuwarn">Attention : l'utilisation de trop de threads pourrait ralentir OpenUTAU.</system:String>
+  <system:String x:Key="prefs.rendering.threads.cpuwarn">Attention : l'utilisation de trop de threads pourrait ralentir NyaUTAU.</system:String>
   <system:String x:Key="prefs.rendering.threads.numthreads">Threads maximum pour le rendu</system:String>
   <!--<system:String x:Key="prefs.rendering.wavtool">Wavtool</system:String>-->
   <!--<system:String x:Key="prefs.utau">UTAU</system:String>-->
@@ -858,7 +858,7 @@ Général
   <system:String x:Key="updater.update">Mettre à jour</system:String>
 
   <system:String x:Key="warning">Attention</system:String>
-  <system:String x:Key="warning.asciipath">Le dossier d'installation d'OpenUTAU "{0}" contient des lettres non-ASCII, les resamplers en .exe peuvent ne pas marcher.</system:String>
+  <system:String x:Key="warning.asciipath">Le dossier d'installation d'NyaUTAU "{0}" contient des lettres non-ASCII, les resamplers en .exe peuvent ne pas marcher.</system:String>
   <system:String x:Key="warning.renderer">Pas de paramètres pour ce système de rendu.</system:String>
 
   <!--<system:String x:Key="welcome.new">New</system:String>-->

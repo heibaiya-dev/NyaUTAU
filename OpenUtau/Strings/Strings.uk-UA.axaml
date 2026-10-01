@@ -1,4 +1,4 @@
-<!--DO NOT modify this file. It is managed autometically.-->
+﻿<!--DO NOT modify this file. It is managed autometically.-->
 <!--To contribute to OpenUtau's localization, visit https://crowdin.com/project/oxygen-dioxideopenutau -->
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -101,10 +101,10 @@
   <system:String x:Key="debug.copylog">Скопіювати звіт</system:String>
   <system:String x:Key="debug.reverselogorder">Обернути Порядок Звітів</system:String>
 
-  <system:String x:Key="dialogs.about.caption">Про OpenUtau</system:String>
+  <system:String x:Key="dialogs.about.caption">Про NyaUTAU</system:String>
   <system:String x:Key="dialogs.about.message">
-Мета OpenUtau – бути середовищем редагування з відкритим кодом для спільноти UTAU, із сучасним користувацьким інтерфейсом та розумною фонологічною підтримкою. Відвідайте нас на Github.</system:String>
-  <system:String x:Key="dialogs.exitsave.caption">Вийти з OpenUtau</system:String>
+Мета NyaUTAU – бути середовищем редагування з відкритим кодом для спільноти UTAU, із сучасним користувацьким інтерфейсом та розумною фонологічною підтримкою. Відвідайте нас на Github.</system:String>
+  <system:String x:Key="dialogs.exitsave.caption">Вийти з NyaUTAU</system:String>
   <system:String x:Key="dialogs.exitsave.message">В цьому проєкті є незбережені зміни. Зберегти?</system:String>
   <system:String x:Key="dialogs.export.caption">Експортувати</system:String>
   <system:String x:Key="dialogs.export.savefirst">Спочатку збережіть проєкт</system:String>
@@ -125,7 +125,7 @@
   <system:String x:Key="dialogs.messagebox.copy">Скопіювати помилку в буфер обміну</system:String>
   <system:String x:Key="dialogs.noresampler.caption">Ресемплер відсутній</system:String>
   <system:String x:Key="dialogs.noresampler.message">Ресемплер відсутній! Перемістіть exe або dll свого улюбленого ресемплера в теку "Resampler" та оберіть його в Налаштуваннях!</system:String>
-  <system:String x:Key="dialogs.recovery">Попередньо, OpenUtau зупинив свою роботу неправильно. Натисніть тут, щоб відновити.</system:String>
+  <system:String x:Key="dialogs.recovery">Попередньо, NyaUTAU зупинив свою роботу неправильно. Натисніть тут, щоб відновити.</system:String>
   <system:String x:Key="dialogs.recovery.caption">Відновлення проєкту</system:String>
   <system:String x:Key="dialogs.remaptimeaxis.message">Цей інструмент змінить темп проєкту без редагування дійсних позицій та тривалостей нот (у секундах).
   Новий BPM:</system:String>
@@ -187,7 +187,7 @@
   <system:String x:Key="errors.failed.loadprefs">Не вдалося завантажити налаштування. Ініціалізуйте їх.</system:String>
   <system:String x:Key="errors.failed.openfile">Не вдалося відкрити</system:String>
   <system:String x:Key="errors.failed.openlocation">Не вдалося відкрити розташування</system:String>
-  <system:String x:Key="errors.failed.opennewerproject">Файл проєкту новіший ніж ПЗ! Оновіть OpenUtau!</system:String>
+  <system:String x:Key="errors.failed.opennewerproject">Файл проєкту новіший ніж ПЗ! Оновіть NyaUTAU!</system:String>
   <!--<system:String x:Key="errors.failed.prerender">Failed to render in the background.</system:String>-->
   <system:String x:Key="errors.failed.render">Не вдалося відрендерити.</system:String>
   <system:String x:Key="errors.failed.runeditingmacro">Не вдалося запустити макроредагування</system:String>
@@ -314,7 +314,7 @@
   <system:String x:Key="menu.file.saveas">Зберегти як...</system:String>
   <system:String x:Key="menu.file.savetemplate">Зберегти Шаблон...</system:String>
   <system:String x:Key="menu.help">Довідка</system:String>
-  <system:String x:Key="menu.help.about">Про OpenUtau</system:String>
+  <system:String x:Key="menu.help.about">Про NyaUTAU</system:String>
   <system:String x:Key="menu.help.checkupdate">Перевірити Оновлення</system:String>
   <system:String x:Key="menu.help.logslocation">Відкрити Розташування Звітів</system:String>
   <system:String x:Key="menu.help.reportissue">Повідомити про Помилку</system:String>
@@ -625,7 +625,7 @@
   <!--<system:String x:Key="prefs.diffsinger">DiffSinger</system:String>-->
   <system:String x:Key="prefs.editing">Редагування</system:String>
   <system:String x:Key="prefs.general">Загальні</system:String>
-  <system:String x:Key="prefs.note.restart">Примітка: після зміни цього налаштування, будь ласка, перезапустіть OpenUtau.</system:String>
+  <system:String x:Key="prefs.note.restart">Примітка: після зміни цього налаштування, будь ласка, перезапустіть NyaUTAU.</system:String>
   <system:String x:Key="prefs.otoeditor">Редактор Ото</system:String>
   <system:String x:Key="prefs.otoeditor.select">Стандартний Редактор Ото</system:String>
   <system:String x:Key="prefs.otoeditor.setparampath">Шлях setParam</system:String>
@@ -671,9 +671,9 @@
   1. Змініть "resampler-compatibility" на "on" в moreconfig.txt.
   2. Змініть "auto-update-llsm-mrq" на "off" в moreconfig.txt.
   3. Зачекайте щоб moresampler згенерував відсутні LLMS-файли.</system:String>
-  <system:String x:Key="prefs.rendering.resampler.note">Примітка: щоб використовувати сторонні ресемплери, додайте DLL або EXE-файл ресемплера до теки Resamplers у шляху інсталяції OpenUtau та оберіть його в Налаштуваннях.</system:String>
+  <system:String x:Key="prefs.rendering.resampler.note">Примітка: щоб використовувати сторонні ресемплери, додайте DLL або EXE-файл ресемплера до теки Resamplers у шляху інсталяції NyaUTAU та оберіть його в Налаштуваннях.</system:String>
   <system:String x:Key="prefs.rendering.skipmuted">Пропустити стишені доріжки</system:String>
-  <system:String x:Key="prefs.rendering.threads.cpuwarn">Попередження: надто багато потоків рендеру можуть сповільнити роботу OpenUtau.</system:String>
+  <system:String x:Key="prefs.rendering.threads.cpuwarn">Попередження: надто багато потоків рендеру можуть сповільнити роботу NyaUTAU.</system:String>
   <system:String x:Key="prefs.rendering.threads.numthreads">Максимальна к-сть потоків рендеру</system:String>
   <system:String x:Key="prefs.rendering.wavtool">Вавтул</system:String>
   <!--<system:String x:Key="prefs.utau">UTAU</system:String>-->
@@ -856,7 +856,7 @@
   <system:String x:Key="updater.update">Оновити</system:String>
 
   <system:String x:Key="warning">Попередження</system:String>
-  <system:String x:Key="warning.asciipath">Шлях до домашньої теки OpenUTAU "{0}" містить не-ASCII символи. Exe ресемплери можливо не працюватимуть.</system:String>
+  <system:String x:Key="warning.asciipath">Шлях до домашньої теки NyaUTAU "{0}" містить не-ASCII символи. Exe ресемплери можливо не працюватимуть.</system:String>
   <system:String x:Key="warning.renderer">Немає налаштувань для цього рендереру.</system:String>
 
   <system:String x:Key="welcome.new">Новий</system:String>

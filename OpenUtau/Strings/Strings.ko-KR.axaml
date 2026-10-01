@@ -1,4 +1,4 @@
-<!--DO NOT modify this file. It is managed autometically.-->
+﻿<!--DO NOT modify this file. It is managed autometically.-->
 <!--To contribute to OpenUtau's localization, visit https://crowdin.com/project/oxygen-dioxideopenutau -->
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -101,9 +101,9 @@
   <system:String x:Key="debug.copylog">로그 복사</system:String>
   <system:String x:Key="debug.reverselogorder">로그를 역순으로</system:String>
 
-  <system:String x:Key="dialogs.about.caption">OpenUTAU란?</system:String>
+  <system:String x:Key="dialogs.about.caption">NyaUTAU란?</system:String>
   <system:String x:Key="dialogs.about.message">
-OpenUtau(오픈우타우)는 세련된 사용자 경험과 유연한 음운 지원을 통해, UTAU 커뮤니티를 위한 오픈 소스 편집 환경이 되고자 합니다. 지금 GitHub의 OpenUtau 레포지토리를 방문해 보세요.</system:String>
+NyaUTAU는 세련된 사용자 경험과 유연한 음운 지원을 통해, UTAU 커뮤니티를 위한 오픈 소스 편집 환경이 되고자 합니다. 지금 GitHub의 NyaUTAU 레포지토리를 방문해 보세요.</system:String>
   <system:String x:Key="dialogs.exitsave.caption">프로젝트 닫기</system:String>
   <system:String x:Key="dialogs.exitsave.message">프로젝트가 저장되지 않았습니다. 저장할까요?</system:String>
   <system:String x:Key="dialogs.export.caption">내보내기</system:String>
@@ -125,7 +125,7 @@ OpenUtau(오픈우타우)는 세련된 사용자 경험과 유연한 음운 지�
   <system:String x:Key="dialogs.messagebox.copy">오류 메시지 복사</system:String>
   <system:String x:Key="dialogs.noresampler.caption">리샘플러가 없어요</system:String>
   <system:String x:Key="dialogs.noresampler.message">리샘플러가 없어요! 'Resamplers' 폴더에 좋아하는 리샘플러의 exe나 dll을 넣고, 환경 설정에서 원하는 리샘플러를 골라 보세요!</system:String>
-  <system:String x:Key="dialogs.recovery">이전에 OpenUtau가 비정상적으로 종료되었어요. 프로젝트를 복구할까요?</system:String>
+  <system:String x:Key="dialogs.recovery">이전에 NyaUTAU가 비정상적으로 종료되었어요. 프로젝트를 복구할까요?</system:String>
   <system:String x:Key="dialogs.recovery.caption">프로젝트 복구</system:String>
   <system:String x:Key="dialogs.remaptimeaxis.message">노트들의 위치와 길이를 그대로 유지하면서, 프로젝트 전체의 템포를 변경해요 (초 단위 기준).
   새 BPM 입력:</system:String>
@@ -187,7 +187,7 @@ OpenUtau(오픈우타우)는 세련된 사용자 경험과 유연한 음운 지�
   <system:String x:Key="errors.failed.loadprefs">환경설정 불러오기에 실패했어요. 초기화 중이에요.</system:String>
   <system:String x:Key="errors.failed.openfile">열기에 실패했어요</system:String>
   <system:String x:Key="errors.failed.openlocation">위치 열기에 실패했어요</system:String>
-  <system:String x:Key="errors.failed.opennewerproject">프로그램의 버전이 프로젝트보다 낮아 파일을 열지 못했어요. OpenUtau를 업데이트해 주세요!</system:String>
+  <system:String x:Key="errors.failed.opennewerproject">프로그램의 버전이 프로젝트보다 낮아 파일을 열지 못했어요. NyaUTAU를 업데이트해 주세요!</system:String>
   <!--<system:String x:Key="errors.failed.prerender">Failed to render in the background.</system:String>-->
   <system:String x:Key="errors.failed.render">렌더링에 실패했어요</system:String>
   <system:String x:Key="errors.failed.runeditingmacro">매크로 실행에 실패했어요</system:String>
@@ -314,7 +314,7 @@ OpenUtau(오픈우타우)는 세련된 사용자 경험과 유연한 음운 지�
   <system:String x:Key="menu.file.saveas">다른 이름으로 저장...</system:String>
   <system:String x:Key="menu.file.savetemplate">템플릿 파일 저장...</system:String>
   <system:String x:Key="menu.help">도움말</system:String>
-  <system:String x:Key="menu.help.about">OpenUtau란?</system:String>
+  <system:String x:Key="menu.help.about">NyaUTAU란?</system:String>
   <system:String x:Key="menu.help.checkupdate">업데이트 체크</system:String>
   <system:String x:Key="menu.help.logslocation">로그 파일 위치 열기</system:String>
   <system:String x:Key="menu.help.reportissue">이슈 보고</system:String>
@@ -625,7 +625,7 @@ OpenUtau(오픈우타우)는 세련된 사용자 경험과 유연한 음운 지�
   <!--<system:String x:Key="prefs.diffsinger">DiffSinger</system:String>-->
   <system:String x:Key="prefs.editing">편집</system:String>
   <system:String x:Key="prefs.general">일반</system:String>
-  <system:String x:Key="prefs.note.restart">참고: 설정을 반영하려면 OpenUtau를 재시작하세요.</system:String>
+  <system:String x:Key="prefs.note.restart">참고: 설정을 반영하려면 NyaUTAU를 재시작하세요.</system:String>
   <system:String x:Key="prefs.otoeditor">원음설정 에디터</system:String>
   <system:String x:Key="prefs.otoeditor.select">기본 원음설정 에디터</system:String>
   <system:String x:Key="prefs.otoeditor.setparampath">setParam 설치 경로</system:String>
@@ -671,9 +671,9 @@ OpenUtau(오픈우타우)는 세련된 사용자 경험과 유연한 음운 지�
     1. moreconfig.txt를 열고, "resampler-compatibility"를 "on"으로 설정해 주세요.
     2. 같은 파일에서, "auto-update-llsm-mrq"을 "off"로 변경합니다.
     3. moresampler가 누락된 llsm 파일을 생성할 때까지 기다려 주세요.</system:String>
-  <system:String x:Key="prefs.rendering.resampler.note">참고: 외부 리샘플러를 사용하려면, OpenUtau 설치 경로 속 Resamplers 폴더에 리샘플러의 DLL 또는 EXE 파일을 넣어 주세요. 그리고 환경 설정에서 리샘플러를 선택합시다.</system:String>
+  <system:String x:Key="prefs.rendering.resampler.note">참고: 외부 리샘플러를 사용하려면, NyaUTAU 설치 경로 속 Resamplers 폴더에 리샘플러의 DLL 또는 EXE 파일을 넣어 주세요. 그리고 환경 설정에서 리샘플러를 선택합시다.</system:String>
   <system:String x:Key="prefs.rendering.skipmuted">뮤트된 트랙 건너뛰기</system:String>
-  <system:String x:Key="prefs.rendering.threads.cpuwarn">경고: 렌더링 스레드가 너무 많아요. OpenUtau가 느려질 수 있습니다.</system:String>
+  <system:String x:Key="prefs.rendering.threads.cpuwarn">경고: 렌더링 스레드가 너무 많아요. NyaUTAU가 느려질 수 있습니다.</system:String>
   <system:String x:Key="prefs.rendering.threads.numthreads">최대 스레드 수</system:String>
   <system:String x:Key="prefs.rendering.wavtool">웨이브툴</system:String>
   <!--<system:String x:Key="prefs.utau">UTAU</system:String>-->
@@ -857,7 +857,7 @@ OpenUtau(오픈우타우)는 세련된 사용자 경험과 유연한 음운 지�
   <system:String x:Key="updater.update">업데이트</system:String>
 
   <system:String x:Key="warning">경고</system:String>
-  <system:String x:Key="warning.asciipath">OpenUtau 설치 경로 "{0}"에 비 ASCII 문자가 있어요. Exe 리샘플러가 작동하지 않을 수 있습니다.</system:String>
+  <system:String x:Key="warning.asciipath">NyaUTAU 설치 경로 "{0}"에 비 ASCII 문자가 있어요. Exe 리샘플러가 작동하지 않을 수 있습니다.</system:String>
   <system:String x:Key="warning.renderer">이 렌더러에 대한 설정이 없습니다.</system:String>
 
   <system:String x:Key="welcome.new">새 프로젝트...</system:String>

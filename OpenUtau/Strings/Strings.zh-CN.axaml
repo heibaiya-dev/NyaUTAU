@@ -1,4 +1,4 @@
-<!--DO NOT modify this file. It is managed autometically.-->
+﻿<!--DO NOT modify this file. It is managed autometically.-->
 <!--To contribute to OpenUtau's localization, visit https://crowdin.com/project/oxygen-dioxideopenutau -->
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -109,7 +109,7 @@
   <system:String x:Key="dawintegration.connecting">正在连接…</system:String>
   <system:String x:Key="dawintegration.disconnect">断开连接</system:String>
   <system:String x:Key="dawintegration.disconnected">未连接。</system:String>
-  <system:String x:Key="dawintegration.hint">连接到本机 DAW 插件。编辑仍在 OpenUtau 中进行；插件接收工程与渲染好的音频。</system:String>
+  <system:String x:Key="dawintegration.hint">连接到本机 DAW 插件。编辑仍在 NyaUTAU 中进行；插件接收工程与渲染好的音频。</system:String>
   <system:String x:Key="dawintegration.incompatible">API 版本不受支持</system:String>
   <system:String x:Key="dawintegration.lost">连接丢失：{0}</system:String>
   <system:String x:Key="dawintegration.none">未发现 DAW 插件。请先在 DAW 中把 OpenUtau Bridge 插件加载到乐器轨上，再点击刷新。初次使用？请点右上角“如何使用”展开说明。</system:String>
@@ -124,20 +124,20 @@
   <system:String x:Key="dawintegration.state.free">未连接</system:String>
   <system:String x:Key="dawintegration.connected.count">已连接 {0} 个插件。</system:String>
   <system:String x:Key="dawintegration.guide.caption">如何使用</system:String>
-  <system:String x:Key="dawintegration.guide.what">OpenUtau Bridge 是一个免费的 DAW 插件（VST3/CLAP）。它接收 OpenUtau 的工程与渲染好的音频，并把它们摆到 DAW 的时间轴上：写歌与调音在 OpenUtau 中完成，混音交给你的 DAW。它本身不发声，OpenUtau 这边也无需任何额外设置。</system:String>
+  <system:String x:Key="dawintegration.guide.what">OpenUtau Bridge 是一个免费的 DAW 插件（VST3/CLAP）。它接收 NyaUTAU 的工程与渲染好的音频，并把它们摆到 DAW 的时间轴上：写歌与调音在 NyaUTAU 中完成，混音交给你的 DAW。它本身不发声，NyaUTAU 这边也无需任何额外设置。</system:String>
   <system:String x:Key="dawintegration.guide.caps.header">它能做什么</system:String>
   <system:String x:Key="dawintegration.guide.caps.1">自动跟随每一次编辑——工程和每个渲染完成的片段都会实时发送给插件。</system:String>
-  <system:String x:Key="dawintegration.guide.caps.2">每个 DAW 轨道放一个插件实例，在插件窗口或 DAW 的自动化面板中选择该实例播放哪条 OpenUtau 轨道。</system:String>
-  <system:String x:Key="dawintegration.guide.caps.3">播放指针同步——OpenUtau 的播放指针会跟随 DAW 的走带。</system:String>
+  <system:String x:Key="dawintegration.guide.caps.2">每个 DAW 轨道放一个插件实例，在插件窗口或 DAW 的自动化面板中选择该实例播放哪条 NyaUTAU 轨道。</system:String>
+  <system:String x:Key="dawintegration.guide.caps.3">播放指针同步——NyaUTAU 的播放指针会跟随 DAW 的走带。</system:String>
   <system:String x:Key="dawintegration.guide.caps.4">导出友好——DAW 渲染（bounce）时会等待尚未渲染完成的片段，导出结果与实时试听一致。</system:String>
   <system:String x:Key="dawintegration.guide.scope.header">适用边界</system:String>
   <system:String x:Key="dawintegration.guide.scope.1">桥接仅限同一台电脑；DAW 需能加载 VST3 或 CLAP 乐器（REAPER、Cubase、FL Studio、Studio One、Ableton Live、Bitwig 等）。</system:String>
   <system:String x:Key="dawintegration.guide.scope.2">两条时间轴按绝对时间对齐——两边工程使用相同 BPM，小节才能对齐。</system:String>
-  <system:String x:Key="dawintegration.guide.scope.3">OpenUtau 只负责歌声：音量、声像、静音与效果都由 DAW 调音台负责。</system:String>
+  <system:String x:Key="dawintegration.guide.scope.3">NyaUTAU 只负责歌声：音量、声像、静音与效果都由 DAW 调音台负责。</system:String>
   <system:String x:Key="dawintegration.guide.steps.header">设置（三步）</system:String>
   <system:String x:Key="dawintegration.guide.step1">1. 安装插件：点击上方按钮一键安装（如弹出管理员授权请确认），或手动下载并把整个“OpenUtau Bridge.vst3”文件夹复制到 DAW 的插件目录：</system:String>
-  <system:String x:Key="dawintegration.guide.step2">2. 在 DAW 中新建一条乐器轨，并加载“OpenUtau Bridge”（厂商 OpenUTAU）。请在打开 OpenUtau 之前完成——顺序必须是 DAW 在前。</system:String>
-  <system:String x:Key="dawintegration.guide.step3">3. 打开 OpenUtau 并保存工程，然后回到本窗口：刷新 → 选中插件 → 连接。</system:String>
+  <system:String x:Key="dawintegration.guide.step2">2. 在 DAW 中新建一条乐器轨，并加载“OpenUtau Bridge”（厂商 OpenUTAU）。请在打开 NyaUTAU 之前完成——顺序必须是 DAW 在前。</system:String>
+  <system:String x:Key="dawintegration.guide.step3">3. 打开 NyaUTAU 并保存工程，然后回到本窗口：刷新 → 选中插件 → 连接。</system:String>
   <system:String x:Key="dawintegration.guide.paths.win">VST3：C:\Program Files\Common Files\VST3&#10;CLAP：C:\Program Files\Common Files\CLAP&#10;没有管理员权限？改用 %LOCALAPPDATA%\Programs\Common\VST3（或 ...\CLAP）。</system:String>
   <system:String x:Key="dawintegration.guide.paths.mac">VST3：~/Library/Audio/Plug-Ins/VST3&#10;CLAP：~/Library/Audio/Plug-Ins/CLAP</system:String>
   <system:String x:Key="dawintegration.guide.paths.linux">VST3：~/.vst3&#10;CLAP：~/.clap</system:String>
@@ -164,10 +164,10 @@
   <system:String x:Key="debug.copylog">复制日志</system:String>
   <system:String x:Key="debug.reverselogorder">反序</system:String>
 
-  <system:String x:Key="dialogs.about.caption">关于 OpenUTAU</system:String>
+  <system:String x:Key="dialogs.about.caption">关于 NyaUTAU</system:String>
   <system:String x:Key="dialogs.about.message">
-OpenUtau 是一个开源项目, 旨在为 UTAU 用户社区提供现代的用户体验和智能的拆音支持。 请到 Github 访问我们。</system:String>
-  <system:String x:Key="dialogs.exitsave.caption">退出 OpenUtau</system:String>
+NyaUTAU 是一个开源项目, 旨在为 UTAU 用户社区提供现代的用户体验和智能的拆音支持。 请到 Github 访问我们。</system:String>
+  <system:String x:Key="dialogs.exitsave.caption">退出 NyaUTAU</system:String>
   <system:String x:Key="dialogs.exitsave.message">当前工程有未保存改动。是否保存？</system:String>
   <system:String x:Key="dialogs.export.caption">导出</system:String>
   <system:String x:Key="dialogs.export.savefirst">请先保存工程文件</system:String>
@@ -188,7 +188,7 @@ OpenUtau 是一个开源项目, 旨在为 UTAU 用户社区提供现代的用户
   <system:String x:Key="dialogs.messagebox.copy">将错误信息复制到剪贴板</system:String>
   <system:String x:Key="dialogs.noresampler.caption">无Resampler</system:String>
   <system:String x:Key="dialogs.noresampler.message">无Resampler! 将你选择的resampler exe 或者 dll 文件放入 Resamplers 文件夹中并在使用偏好中选择它!</system:String>
-  <system:String x:Key="dialogs.recovery">上一次 OpenUtau 异常退出。点击以恢复。</system:String>
+  <system:String x:Key="dialogs.recovery">上一次 NyaUTAU 异常退出。点击以恢复。</system:String>
   <system:String x:Key="dialogs.recovery.caption">恢复项目</system:String>
   <system:String x:Key="dialogs.remaptimeaxis.message">此工具会改变工程的曲速及各音符的tick时值，而不改变各音符的位置与时长(以秒为单位)
   新曲速：</system:String>
@@ -249,7 +249,7 @@ OpenUtau 是一个开源项目, 旨在为 UTAU 用户社区提供现代的用户
   <system:String x:Key="errors.failed.loadprefs">导入使用偏好失败。请初始化。</system:String>
   <system:String x:Key="errors.failed.openfile">打开失败</system:String>
   <system:String x:Key="errors.failed.openlocation">打开位置失败</system:String>
-  <system:String x:Key="errors.failed.opennewerproject">项目文件版本高于软件！请升级 OpenUtau！</system:String>
+  <system:String x:Key="errors.failed.opennewerproject">项目文件版本高于软件！请升级 NyaUTAU！</system:String>
   <!--<system:String x:Key="errors.failed.prerender">Failed to render in the background.</system:String>-->
   <system:String x:Key="errors.failed.render">渲染失败</system:String>
   <system:String x:Key="errors.failed.runeditingmacro">编辑宏失败</system:String>
@@ -376,7 +376,7 @@ OpenUtau 是一个开源项目, 旨在为 UTAU 用户社区提供现代的用户
   <system:String x:Key="menu.file.saveas">另存为...</system:String>
   <system:String x:Key="menu.file.savetemplate">保存模板...</system:String>
   <system:String x:Key="menu.help">帮助</system:String>
-  <system:String x:Key="menu.help.about">关于 OpenUTAU</system:String>
+  <system:String x:Key="menu.help.about">关于 NyaUTAU</system:String>
   <system:String x:Key="menu.help.checkupdate">检查更新</system:String>
   <system:String x:Key="menu.help.logslocation">打开日志位置</system:String>
   <system:String x:Key="menu.help.reportissue">报告问题</system:String>
@@ -689,7 +689,7 @@ OpenUtau 是一个开源项目, 旨在为 UTAU 用户社区提供现代的用户
   <!--<system:String x:Key="prefs.diffsinger">DiffSinger</system:String>-->
   <system:String x:Key="prefs.editing">编辑</system:String>
   <system:String x:Key="prefs.general">通用</system:String>
-  <system:String x:Key="prefs.note.restart">注意: 修改本项后请重启OpenUtau</system:String>
+  <system:String x:Key="prefs.note.restart">注意: 修改本项后请重启NyaUTAU</system:String>
   <system:String x:Key="prefs.otoeditor">oto设定编辑器</system:String>
   <system:String x:Key="prefs.otoeditor.select">默认oto设定编辑器</system:String>
   <system:String x:Key="prefs.otoeditor.setparampath">setParam 路径</system:String>
@@ -737,7 +737,7 @@ OpenUtau 是一个开源项目, 旨在为 UTAU 用户社区提供现代的用户
 3. 耐心等待 moresampler 生成缺失的 llsm 文件。</system:String>
   <system:String x:Key="prefs.rendering.resampler.note">注意: 将你选择的resampler exe 或者 dll 文件放入 Resamplers 文件夹中并在使用偏好中选择它.</system:String>
   <system:String x:Key="prefs.rendering.skipmuted">跳过静音音轨</system:String>
-  <system:String x:Key="prefs.rendering.threads.cpuwarn">警告: 渲染线程过多可能会导致OpenUtau运行缓慢。</system:String>
+  <system:String x:Key="prefs.rendering.threads.cpuwarn">警告: 渲染线程过多可能会导致NyaUTAU运行缓慢。</system:String>
   <system:String x:Key="prefs.rendering.threads.numthreads">最大渲染线程数</system:String>
   <!--<system:String x:Key="prefs.rendering.wavtool">Wavtool</system:String>-->
   <!--<system:String x:Key="prefs.utau">UTAU</system:String>-->
@@ -921,7 +921,7 @@ OpenUtau 是一个开源项目, 旨在为 UTAU 用户社区提供现代的用户
   <system:String x:Key="updater.update">更新</system:String>
 
   <system:String x:Key="warning">警告</system:String>
-  <system:String x:Key="warning.asciipath">OpenUtau路径"{0}"包含非ASCII字符. Exe格式resampler可能无法正常工作.</system:String>
+  <system:String x:Key="warning.asciipath">NyaUTAU路径"{0}"包含非ASCII字符. Exe格式resampler可能无法正常工作.</system:String>
   <system:String x:Key="warning.renderer">此渲染器没有设置项</system:String>
 
   <system:String x:Key="welcome.new">新建</system:String>
@@ -931,4 +931,66 @@ OpenUtau 是一个开源项目, 旨在为 UTAU 用户社区提供现代的用户
   <system:String x:Key="welcome.recent">最近</system:String>
   <system:String x:Key="welcome.start">开始</system:String>
   <system:String x:Key="welcome.template">模板</system:String>
+  <system:String x:Key="tip.playback.start">回到开头</system:String>
+  <system:String x:Key="tip.playback.playpause">播放 / 暂停</system:String>
+  <system:String x:Key="tip.playback.pause">暂停</system:String>
+  <system:String x:Key="tip.playback.end">跳到结尾</system:String>
+  <system:String x:Key="tracks.add">添加音轨</system:String>
+  <system:String x:Key="welcome.recent.empty">打开过的项目会显示在这里。</system:String>
+  <system:String x:Key="welcome.template.empty">将项目保存为模板，即可在这里重复使用。</system:String>
+  <system:String x:Key="pianoroll.menu.notes.smartpitch">智能音高线</system:String>
+  <system:String x:Key="pianoroll.smartpitch.tip">为选中的音符生成自然音高曲线；未选择时处理当前声部的全部音符。替换原有音高控制点，可撤销。</system:String>
+  <system:String x:Key="autotuning.title">自动调教</system:String>
+  <system:String x:Key="pianoroll.menu.notes.autovocaltuning">自动调教</system:String>
+  <system:String x:Key="autotuning.tip">使用适配歌手的控制项调整音高、颤音、力度、气声和发音。</system:String>
+  <system:String x:Key="autotuning.description">处理选中的音符或整个声部，完整操作可用一次撤销。</system:String>
+  <system:String x:Key="autotuning.singer">歌手：{0}</system:String>
+  <system:String x:Key="autotuning.singer.none">未选择</system:String>
+  <system:String x:Key="autotuning.renderer">渲染器：{0}</system:String>
+  <system:String x:Key="autotuning.renderer.none">未选择</system:String>
+  <system:String x:Key="autotuning.scope">应用范围</system:String>
+  <system:String x:Key="autotuning.scope.selection">选中的音符（{0}）</system:String>
+  <system:String x:Key="autotuning.scope.part">整个声部（{0} 个音符）</system:String>
+  <system:String x:Key="autotuning.preset">预设</system:String>
+  <system:String x:Key="autotuning.preset.natural">自然</system:String>
+  <system:String x:Key="autotuning.preset.gentle">柔和</system:String>
+  <system:String x:Key="autotuning.preset.powerful">强力</system:String>
+  <system:String x:Key="autotuning.strength">力度</system:String>
+  <system:String x:Key="autotuning.parameters">处理参数</system:String>
+  <system:String x:Key="autotuning.pitch">音高</system:String>
+  <system:String x:Key="autotuning.pitch.description">调整音符之间的自然过渡和音准。</system:String>
+  <system:String x:Key="autotuning.vibrato">颤音</system:String>
+  <system:String x:Key="autotuning.vibrato.description">调整长音符上的颤音。</system:String>
+  <system:String x:Key="autotuning.dynamics">力度</system:String>
+  <system:String x:Key="autotuning.dynamics.description">调整表达曲线，塑造乐句。</system:String>
+  <system:String x:Key="autotuning.breathiness">气声</system:String>
+  <system:String x:Key="autotuning.breathiness.description">在支持时添加自然的气声变化。</system:String>
+  <system:String x:Key="autotuning.articulation">发音</system:String>
+  <system:String x:Key="autotuning.articulation.description">调整起音和收音的表达。</system:String>
+  <system:String x:Key="autotuning.unsupported">此歌手或渲染器不支持。</system:String>
+  <system:String x:Key="autotuning.supported">此歌手和渲染器支持。</system:String>
+  <system:String x:Key="autotuning.replacehint">启用参数中已有的生成值可能会被替换。整个操作可用一次撤销。</system:String>
+  <system:String x:Key="autotuning.result.completed">自动调教完成，处理了 {0} 个音符（{1}）。</system:String>
+  <system:String x:Key="autotuning.result.channel">{0}：{1}</system:String>
+  <system:String x:Key="autotuning.result.skipped">已跳过：{0}</system:String>
+  <system:String x:Key="autotuning.result.skippedchannel">{0}（{1}）</system:String>
+  <system:String x:Key="autotuning.result.unsupported">不支持</system:String>
+  <system:String x:Key="autotuning.result.nosustained">没有长音符</system:String>
+  <system:String x:Key="autotuning.result.noeligible">没有找到符合条件的有音高音符。</system:String>
+  <system:String x:Key="autotuning.result.nochange">没有修改任何值。</system:String>
+  <system:String x:Key="autotuning.result.scopechanged">活动声部在调教前发生变化，未执行操作。</system:String>
+  <system:String x:Key="dialogs.ustxversion.caption">不支持的 USTX 版本</system:String>
+  <system:String x:Key="dialogs.ustxversion.message">项目版本为 {0}，当前支持的最高版本为 {1}。&#10;&#10;{2}&#10;&#10;是否将可识别的内容转换为当前格式的副本，并尝试打开？原文件不会修改，新版特有内容可能无法保留。</system:String>
+  <system:String x:Key="dialogs.ustxversion.convert">转换格式并尝试强制打开</system:String>
+  <system:String x:Key="dialogs.ustxversion.failed">无法转换或打开此 USTX 文件，原文件未修改。&#10;&#10;{0}&#10;&#10;{1}</system:String>
+  <system:String x:Key="quickstart.title">欢迎使用 NyaUTAU</system:String>
+  <system:String x:Key="quickstart.subtitle">用几个简单步骤开始创作第一段歌声。你也可以跳过引导，直接进入编辑器。</system:String>
+  <system:String x:Key="quickstart.singer.title">准备一个歌手</system:String>
+  <system:String x:Key="quickstart.singer.description">安装兼容的歌手声库，再为音轨选择歌手。也可以将声库压缩包直接拖入窗口安装。</system:String>
+  <system:String x:Key="quickstart.audio.title">确认声音从哪里播放</system:String>
+  <system:String x:Key="quickstart.audio.description">在偏好设置中选择音频输出设备。如果播放时没有声音，先检查设备选择与音轨音量。</system:String>
+  <system:String x:Key="quickstart.notes.title">写下旋律，试听歌声</system:String>
+  <system:String x:Key="quickstart.notes.description">新建或打开项目，选择歌手，在钢琴窗编辑音符和歌词。按空格试听，也可以用“智能音高线”为音符生成初始音高曲线。</system:String>
+  <system:String x:Key="quickstart.continue">开始使用</system:String>
+  <system:String x:Key="quickstart.skip">暂时跳过</system:String>
 </ResourceDictionary>

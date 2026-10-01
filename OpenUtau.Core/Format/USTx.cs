@@ -9,7 +9,7 @@ using OpenUtau.Core.Util;
 using Serilog;
 
 namespace OpenUtau.Core.Format {
-    public class Ustx {
+    public partial class Ustx {
         public static readonly Version kUstxVersion = new Version(0, 10);
 
         public const string DYN = "dyn";
@@ -136,15 +136,26 @@ namespace OpenUtau.Core.Format {
 
         public static UProject Load(string filePath) {
             string text = File.ReadAllText(filePath, Encoding.UTF8);
+            return LoadCore(filePath, text, false);
+        }
+
+        static UProject LoadCore(string filePath, string text, bool allowNewerVersion) {
+            var fileVersion = ReadVersion(ReadDocument(text));
+            if (!allowNewerVersion && fileVersion > kUstxVersion) {
+                throw new UstxVersionException(filePath, fileVersion, kUstxVersion);
+            }
             UProject project = Yaml.DefaultDeserializer.Deserialize<UProject>(text);
+            if (project == null) {
+                throw new FileFormatException("The USTX document does not contain a project.");
+            }
+            if (fileVersion != null) {
+                project.ustxVersion = fileVersion;
+            }
             AddDefaultExpressions(project);
             project.FilePath = filePath;
             project.Saved = true;
             project.AfterLoad();
             project.ValidateFull();
-            if (project.ustxVersion > kUstxVersion) {
-                throw new MessageCustomizableException($"Project file is newer than software: {filePath}", $"<translate:errors.failed.opennewerproject>:\n{filePath}", new FileFormatException("Project file is newer than software."));
-            }
             if (project.ustxVersion < kUstxVersion) {
                 Log.Information($"Upgrading project from {project.ustxVersion} to {kUstxVersion}");
             }

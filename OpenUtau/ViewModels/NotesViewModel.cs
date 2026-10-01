@@ -222,6 +222,14 @@ namespace OpenUtau.App.ViewModels {
                 });
 
             ShowTips = Preferences.Default.ShowTips;
+            this.WhenAnyValue(x => x.ShowTips)
+                .Subscribe(showTips => {
+                    if (Preferences.Default.ShowTips == showTips) {
+                        return;
+                    }
+                    Preferences.Default.ShowTips = showTips;
+                    Preferences.Save();
+                });
             IsSnapOn = true;
             SnapDivText = string.Empty;
             KeyText = string.Empty;
@@ -323,10 +331,6 @@ namespace OpenUtau.App.ViewModels {
             TickWidth = ViewConstants.PianoRollTickWidthDefault;
             TrackHeight = ViewConstants.NoteHeightDefault;
             TrackOffset = 4 * 12 + 6;
-            if (Preferences.Default.ShowTips) {
-                Preferences.Default.ShowTips = false;
-                Preferences.Save();
-            }
             PrimaryKey = Core.Format.Ustx.VEL;
             SecondaryKey = Core.Format.Ustx.VOL;
 

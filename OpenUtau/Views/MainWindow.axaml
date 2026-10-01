@@ -9,20 +9,41 @@
         x:Class="OpenUtau.App.Views.MainWindow"
         x:CompileBindings="True"
         Icon="/Assets/open-utau.ico"
-        Title="{Binding Title}" MinWidth="300" MinHeight="200" Width="{Binding Width}" Height="{Binding Height}"
+        Title="{Binding Title}" MinWidth="640" MinHeight="420" Width="{Binding Width}" Height="{Binding Height}"
         Focusable="True" KeyDown="OnKeyDown" PointerPressed="OnPointerPressed" Closing="WindowClosing"
         DragDrop.AllowDrop="True" TransparencyLevelHint="None">
   <Window.Styles>
     <Style Selector="Button,ToggleButton">
       <Setter Property="Focusable" Value="False"/>
     </Style>
+    <Style Selector="Border.material-transport TextBlock">
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="ListBox.welcome-files">
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="Padding" Value="0"/>
+    </Style>
+    <Style Selector="ListBox.welcome-files ListBoxItem">
+      <Setter Property="Height" Value="NaN"/>
+      <Setter Property="MinHeight" Value="60"/>
+      <Setter Property="Margin" Value="0,2"/>
+      <Setter Property="Padding" Value="16,8"/>
+      <Setter Property="CornerRadius" Value="16"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
   </Window.Styles>
   <Grid>
-    <Grid Name="MainGrid" Margin="{Binding $parent[Window].WindowDecorationMargin}">
-      <Menu Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="24"
+    <Grid Name="MainGrid" RowDefinitions="56,*" Margin="{Binding $parent[Window].WindowDecorationMargin}">
+      <Grid Grid.Row="0" ColumnDefinitions="44,*,40" Margin="16,0">
+        <Image Grid.Column="0" Source="/Assets/OpenUtau.png" Width="28" Height="28"
+               HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Menu Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Height="36"
                 Opened="OnMainMenuOpened" Closed="OnMainMenuClosed" PointerExited="OnMainMenuPointerLeave"
                 ZIndex="1">
-          <MenuItem Header="{DynamicResource menu.file}" IsEnabled="{Binding Page}">
+          <MenuItem Header="{DynamicResource menu.file}" IsEnabled="{Binding IsProjectPage}">
             <MenuItem Header="{DynamicResource menu.file.new}" InputGesture="Ctrl+N" Click="OnMenuNew"/>
             <MenuItem Header="{DynamicResource menu.file.newfromtemplate}" ItemsSource="{Binding OpenTemplatesMenuItems}" Classes="MenuItemWithSubMenu"/>
             <MenuItem Header="{DynamicResource menu.file.savetemplate}" Click="OnMenuSaveTemplate"/>
@@ -50,11 +71,11 @@
             </MenuItem>
             <MenuItem Header="{DynamicResource menu.file.openexportlocation}" Click="OnMenuOpenProjectLocation"/>
           </MenuItem>
-          <MenuItem Header="{DynamicResource menu.edit}" IsEnabled="{Binding Page}">
+          <MenuItem Header="{DynamicResource menu.edit}" IsEnabled="{Binding IsProjectPage}">
             <MenuItem Header="{Binding UndoText}" InputGesture="Ctrl+Z" Command="{Binding Undo}" IsEnabled="{Binding CanUndo}"/>
             <MenuItem Header="{Binding RedoText}" InputGesture="Ctrl+Y" Command="{Binding Redo}" IsEnabled="{Binding CanRedo}"/>
           </MenuItem>
-          <MenuItem Header="{DynamicResource menu.project}" IsEnabled="{Binding Page}">
+          <MenuItem Header="{DynamicResource menu.project}" IsEnabled="{Binding IsProjectPage}">
             <MenuItem Header="{DynamicResource menu.project.expressions}" Click="OnMenuExpressionss"/>
             <MenuItem Header="{DynamicResource menu.project.remaptimeaxis}" Click="OnMenuRemapTimeaxis"/>
           </MenuItem>
@@ -86,133 +107,95 @@
             <MenuItem Header="{DynamicResource menu.help.logslocation}" Click="OnMenuLogsLocation"/>
           </MenuItem>
         </Menu>
-      <Carousel SelectedIndex="{Binding Page}" >
+        <Button Grid.Column="2" Classes="material-icon" Width="36" Height="36"
+                Click="OnMenuPreferences" ToolTip.Tip="{DynamicResource menu.tools.prefs}">
+          <Path Width="20" Height="20" Stretch="Uniform" Fill="{DynamicResource MaterialOnSurfaceVariantBrush}"
+                Data="M19.14 12.94a7.49 7.49 0 0 0 0-1.88l2.03-1.58-1.92-3.32-2.39.96a7.14 7.14 0 0 0-1.63-.94L14.87 3h-3.84l-.36 3.18c-.59.23-1.13.54-1.63.94l-2.39-.96-1.92 3.32 2.03 1.58a7.49 7.49 0 0 0 0 1.88l-2.03 1.58 1.92 3.32 2.39-.96c.5.4 1.04.71 1.63.94l.36 3.18h3.84l.36-3.18c.59-.23 1.13-.54 1.63-.94l2.39.96 1.92-3.32-2.03-1.58ZM12.95 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/>
+        </Button>
+      </Grid>
+      <Carousel Grid.Row="1" SelectedIndex="{Binding Page}">
         <!--Welcome page-->
-        <Grid Margin="60,50,60,40" RowDefinitions="Auto,Auto,Auto,*" ColumnDefinitions="*,*" KeyDown="OnCarouselPageKeyDown">
-          <!--Startup warnings-->
-          <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
-            <Button Click="OnWelcomeRecovery" Height="40" Content="{Binding RecoveryString}"
-                    IsVisible="{Binding HasRecovery}" Background="{DynamicResource WarningBrush}">
-            </Button>
-          </StackPanel>
-          <!--Create new project or open existing project-->
-          <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Spacing="8">
-            <TextBlock Text="{DynamicResource welcome.start}" FontSize="20"/>
-            <WrapPanel Margin="-4" Orientation="Horizontal">
-              <Button Margin="4" Click="OnMenuNew" Height="60" Padding="12">
-                <Grid ColumnDefinitions="Auto,*">
-                  <Viewbox
-                    Grid.RowSpan="2"
-                    Width="24"
-                    Height="24"
-                    Margin="8,4,12,4">
-                    <!--From https://github.com/microsoft/vscode-icons/blob/main/icons/light/new-file.svg-->
-                    <Path Classes="clear" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"
-                      Data="M4.00024 7H3.00024V4H0.000244141V3H3.00024V0H4.00024V3H7.00024V4H4.00024V7ZM10.5002 1.09998L13.9003 4.59998L14.0002 5V13.5L13.5002 14H3.50024L3.00024 13.5V8H4.00024V13H13.0002V6H9.00024V2H5.00024V1H10.2002L10.5002 1.09998ZM10.0002 2V5H12.9003L10.0002 2Z"
-                      Fill="{StaticResource NeutralAccentBrush}"/>
-                  </Viewbox>
-
-                  <StackPanel Grid.Column="1"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Center"
-                    Margin="0,0,8,0">
-
-                    <TextBlock HorizontalAlignment="Stretch"
-                      Text="{DynamicResource welcome.new}"
-                      FontSize="14"
-                      FontWeight="Normal"
-                      TextWrapping="Wrap" />
-
-                    <TextBlock HorizontalAlignment="Stretch"
-                      Text="{DynamicResource welcome.new.description}"
-                      FontSize="12"
-                      FontWeight="Normal"
-                      TextWrapping="Wrap" />
+        <Grid Margin="32,12,32,28" RowDefinitions="Auto,Auto,Auto,*" ColumnDefinitions="3*,2*" KeyDown="OnCarouselPageKeyDown">
+          <Button Grid.Row="0" Grid.ColumnSpan="2" Click="OnWelcomeRecovery" Height="44" Margin="0,0,0,16"
+                  CornerRadius="16" HorizontalAlignment="Stretch" Content="{Binding RecoveryString}"
+                  IsVisible="{Binding HasRecovery}" Background="{DynamicResource WarningBrush}"/>
+          <Border Grid.Row="1" Grid.ColumnSpan="2" CornerRadius="28" Padding="28,24"
+                  Background="{DynamicResource MaterialPrimaryContainerBrush}">
+            <StackPanel Spacing="20">
+              <TextBlock Text="{DynamicResource welcome.start}" FontSize="32" FontWeight="Medium"
+                         Foreground="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+              <WrapPanel Margin="-4" Orientation="Horizontal">
+                <Button Classes="material-primary" Margin="4" Click="OnMenuNew" MinHeight="64" Padding="20,12" CornerRadius="20">
+                  <StackPanel Orientation="Horizontal" Spacing="14">
+                    <Path Width="24" Height="24" VerticalAlignment="Center"
+                          Data="M11 3H13V11H21V13H13V21H11V13H3V11H11Z"
+                          Fill="{DynamicResource MaterialOnPrimaryBrush}"/>
+                    <StackPanel Spacing="3" VerticalAlignment="Center">
+                      <TextBlock Text="{DynamicResource welcome.new}" FontSize="15" FontWeight="Medium"
+                                 Foreground="{DynamicResource MaterialOnPrimaryBrush}"/>
+                      <TextBlock Text="{DynamicResource welcome.new.description}" FontSize="12"
+                                 Foreground="{DynamicResource MaterialOnPrimaryBrush}"/>
+                    </StackPanel>
                   </StackPanel>
-                </Grid>
-              </Button>
-
-              <Button Margin="4" Click="OnMenuOpen" Height="60" Padding="12">
-                <Grid ColumnDefinitions="Auto,*">
-                  <Viewbox
-                    Grid.RowSpan="2"
-                    Width="24"
-                    Height="24"
-                    Margin="8,4,12,4">
-                    <!--From https://github.com/microsoft/vscode-icons/blob/main/icons/dark/go-to-file.svg-->
-                    <Path Classes="clear" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"
-                      Data="M6 5.9142L8.06065 3.85356L8.06065 3.14645L5.91421 1L5.2071 1.70711L5.25 1.75L5.24998 1.75002L5.49997 2H5.5L6.49999 3H3.5C2.83696 3 2.20107 3.2634 1.73223 3.73224C1.26339 4.20108 1 4.83696 1 5.5C1 6.16305 1.26339 6.79893 1.73223 7.26777C2.20107 7.73661 2.83696 8 3.5 8H4V7H3.5C3.10218 7 2.72064 6.84197 2.43934 6.56066C2.15804 6.27936 2 5.89783 2 5.5C2 5.10218 2.15804 4.72065 2.43934 4.43934C2.72064 4.15804 3.10218 4 3.5 4H5V4.00003H5.49996L5.49999 4H6.49999L5.2071 5.29289L5.20711 5.29291L5.2071 5.29292L5.91421 6.00003L6 5.91423V5.9142ZM11 2H8.32838L7.32839 1H12L12.71 1.29L15.71 4.29L16 5V14L15 15H6L5 14V9.00003V6.50003L6 7.34699V14H15V6H11V2ZM12 2V5H15L12 2Z"
-                      Fill="{StaticResource NeutralAccentBrush}"/>
-                  </Viewbox>
-
-                  <StackPanel Grid.Column="1"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Center"
-                    Margin="0,0,8,0">
-
-                    <TextBlock HorizontalAlignment="Stretch"
-                      Text="{DynamicResource welcome.open}"
-                      FontSize="14"
-                      FontWeight="Normal"
-                      TextWrapping="Wrap" />
-
-                    <TextBlock HorizontalAlignment="Stretch"
-                      Text="{DynamicResource welcome.open.description}"
-                      FontSize="12"
-                      FontWeight="Normal"
-                      TextWrapping="Wrap" />
+                </Button>
+                <Button Classes="material-outlined" Margin="4" Click="OnMenuOpen" MinHeight="64" Padding="20,12" CornerRadius="20"
+                        BorderBrush="{DynamicResource MaterialOnPrimaryContainerBrush}">
+                  <StackPanel Orientation="Horizontal" Spacing="14">
+                    <Path Width="24" Height="24" VerticalAlignment="Center"
+                          Data="M10 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V8C22 6.9 21.1 6 20 6H12L10 4ZM20 18H4V8H20V18Z"
+                          Fill="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+                    <StackPanel Spacing="3" VerticalAlignment="Center">
+                      <TextBlock Text="{DynamicResource welcome.open}" FontSize="15" FontWeight="Medium"
+                                 Foreground="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+                      <TextBlock Text="{DynamicResource welcome.open.description}" FontSize="12"
+                                 Foreground="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+                    </StackPanel>
                   </StackPanel>
-                </Grid>
-              </Button>
-            </WrapPanel>
-          </StackPanel>
+                </Button>
+              </WrapPanel>
+            </StackPanel>
+          </Border>
 
           <!-- Recent files -->
-          <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,24,0,8" Text="{DynamicResource welcome.recent}" FontSize="20"/>
-          <ListBox ItemsSource="{Binding RecentFiles}" Grid.Row="3" Grid.Column="0" Margin="0,0,15,0" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch">
-            <ListBox.Styles>
-              <Style Selector="ListBoxItem">
-                <Setter Property="Height" Value="NaN" />
-                <Setter Property="MinHeight" Value="48" />
-                <Setter Property="Padding" Value="16,0" />
-                <Setter Property="VerticalContentAlignment" Value="Center" />
-              </Style>
-            </ListBox.Styles>
+          <TextBlock Grid.Row="2" Grid.Column="0" Margin="8,28,0,12" Text="{DynamicResource welcome.recent}" FontSize="20" FontWeight="Medium"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Margin="8,12,28,0" VerticalAlignment="Top"
+                     IsVisible="{Binding !RecentFiles.Count}" Text="{DynamicResource welcome.recent.empty}"
+                     TextWrapping="Wrap" Foreground="{DynamicResource MaterialOnSurfaceVariantBrush}"/>
+          <ListBox Classes="welcome-files" ItemsSource="{Binding RecentFiles}" Grid.Row="3" Grid.Column="0" Margin="0,0,20,0"
+                   ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch">
             <ListBox.ItemTemplate>
               <DataTemplate x:DataType="vm:RecentFileInfo">
-                <StackPanel Margin="0,4" PointerPressed="OnWelcomeRecent" Background="Transparent">
-                  <TextBlock FontSize="16" Text="{Binding Name}"/>
-                  <TextBlock FontSize="12" Text="{Binding Directory}" TextWrapping="Wrap"/>
+                <StackPanel Spacing="4" PointerPressed="OnWelcomeRecent" Background="Transparent">
+                  <TextBlock FontSize="15" FontWeight="Medium" Text="{Binding Name}" TextTrimming="CharacterEllipsis"/>
+                  <TextBlock FontSize="12" Text="{Binding Directory}" TextTrimming="CharacterEllipsis"
+                             Foreground="{DynamicResource MaterialOnSurfaceVariantBrush}"/>
                 </StackPanel>
               </DataTemplate>
             </ListBox.ItemTemplate>
           </ListBox>
 
           <!-- Template files -->
-          <TextBlock Grid.Row="2" Grid.Column="1" Margin="15,24,0,8" Text="{DynamicResource welcome.template}" FontSize="20"/>
-          <ListBox ItemsSource="{Binding TemplateFiles}" Grid.Row="3" Grid.Column="1" Margin="15,0,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch">
-            <ListBox.Styles>
-              <Style Selector="ListBoxItem">
-                <Setter Property="Height" Value="NaN" />
-                <Setter Property="MinHeight" Value="48" />
-                <Setter Property="Padding" Value="16,0" />
-                <Setter Property="VerticalContentAlignment" Value="Center" />
-              </Style>
-            </ListBox.Styles>
+          <TextBlock Grid.Row="2" Grid.Column="1" Margin="20,28,0,12" Text="{DynamicResource welcome.template}" FontSize="20" FontWeight="Medium"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Margin="20,12,8,0" VerticalAlignment="Top"
+                     IsVisible="{Binding !TemplateFiles.Count}" Text="{DynamicResource welcome.template.empty}"
+                     TextWrapping="Wrap" Foreground="{DynamicResource MaterialOnSurfaceVariantBrush}"/>
+          <ListBox Classes="welcome-files" ItemsSource="{Binding TemplateFiles}" Grid.Row="3" Grid.Column="1" Margin="12,0,0,0"
+                   ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch">
             <ListBox.ItemTemplate>
               <DataTemplate x:DataType="vm:RecentFileInfo">
-                <StackPanel Margin="0,4" PointerPressed="OnWelcomeTemplate" Background="Transparent">
-                  <TextBlock FontSize="16" Text="{Binding Name}"/>
+                <StackPanel PointerPressed="OnWelcomeTemplate" Background="Transparent">
+                  <TextBlock FontSize="15" FontWeight="Medium" Text="{Binding Name}" TextTrimming="CharacterEllipsis"/>
                 </StackPanel>
               </DataTemplate>
             </ListBox.ItemTemplate>
           </ListBox>
         </Grid>
-      
         <!--Main page-->
-        <Grid ColumnDefinitions="300,*,24" Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" KeyDown="OnCarouselPageKeyDown">
+        <Border Margin="12,0,12,8" CornerRadius="24" ClipToBounds="True"
+                Background="{DynamicResource MaterialSurfaceContainerBrush}">
+        <Grid ColumnDefinitions="300,*,24" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" KeyDown="OnCarouselPageKeyDown">
           <Grid.RowDefinitions>
-            <RowDefinition Height="24"/>
+            <RowDefinition Height="52"/>
             <RowDefinition Height="24"/>
             <RowDefinition Height="*" MinHeight="0.01"/>
             <RowDefinition Height="auto"/>
@@ -222,10 +205,13 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="4"/>
           </Grid.RowDefinitions>
-          <Panel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="24">
-            <Border Classes="playback" Width="72" HorizontalAlignment="Left" Margin="4,0">
-              <Grid>
-                <TextBlock Width="28" HorizontalAlignment="Left"
+          <Border Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Background="{DynamicResource MaterialSurfaceBrush}"
+                  CornerRadius="16,0,0,0" IsHitTestVisible="False"/>
+          <Grid Grid.Row="0" Grid.ColumnSpan="3" ColumnDefinitions="Auto,Auto,Auto,*" Margin="12,8,8,8">
+            <Border Grid.Column="0" Classes="material-transport" Width="92" Height="36" CornerRadius="18"
+                    Background="{DynamicResource MaterialSurfaceContainerHighBrush}">
+              <Grid ColumnDefinitions="36,*">
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center"
                           Background="Transparent" PointerPressed="OnEditTimeSignature">
                   <TextBlock.Text>
                     <MultiBinding StringFormat="{}{0}/{1}">
@@ -234,7 +220,7 @@
                     </MultiBinding>
                   </TextBlock.Text>
                 </TextBlock>
-                <TextBlock Width="42" HorizontalAlignment="Right"
+                <TextBlock Grid.Column="1" HorizontalAlignment="Center"
                             Background="Transparent" PointerPressed="OnEditBpm" PointerWheelChanged="OnEditBpmScroll">
                   <TextBlock.Text>
                     <MultiBinding StringFormat="{}{0:#0.00}">
@@ -244,50 +230,58 @@
                 </TextBlock>
               </Grid>
             </Border>
-            <Border Classes="playback" HorizontalAlignment="Center">
-              <StackPanel Orientation="Horizontal">
-                <Button Command="{Binding PlaybackViewModel.SeekStart}" Height="18">
-                  <Path Fill="{Binding $parent[Window].Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="18" Width="18"
+            <Border Grid.Column="1" Margin="8,0" CornerRadius="18"
+                    Background="{DynamicResource MaterialSurfaceContainerHighBrush}">
+              <StackPanel Orientation="Horizontal" Spacing="2">
+                <Button Classes="material-icon" Command="{Binding PlaybackViewModel.SeekStart}" Width="32" Height="36"
+                        ToolTip.Tip="{DynamicResource tip.playback.start}">
+                  <Path Fill="{Binding $parent[Button].Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="18" Width="18"
                         Data="M5.35 4.3H7.44V13.7H5.35ZM7.44 9L12.65 4.3V13.7Z"/>
                 </Button>
-                <Button Click="OnPlayOrPause" Height="18">
-                  <Path Fill="{Binding $parent[Window].Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="18" Width="18"
-                        Data="M5.35 4.3L12.65 9.01L5.35 13.7Z"/>
+                <Button Classes="material-primary" Click="OnPlayOrPause" Width="44" Height="36" Padding="0"
+                        ToolTip.Tip="{DynamicResource tip.playback.playpause}">
+                  <Grid Width="18" Height="18">
+                    <Path Fill="{DynamicResource MaterialOnPrimaryBrush}" Height="18" Width="18"
+                          IsVisible="{Binding !PlaybackViewModel.IsPlaying}" Data="M5.35 4.3L12.65 9.01L5.35 13.7Z"/>
+                    <Path Fill="{DynamicResource MaterialOnPrimaryBrush}" Height="18" Width="18"
+                          IsVisible="{Binding PlaybackViewModel.IsPlaying}" Data="M5.35 4.3H7.78V13.7H5.35ZM10.22 4.3H12.65V13.7H10.22Z"/>
+                  </Grid>
                 </Button>
-                <Button Command="{Binding PlaybackViewModel.Pause}" Height="18">
-                  <Path Fill="{Binding $parent[Window].Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="18" Width="18"
+                <Button Classes="material-icon" Command="{Binding PlaybackViewModel.Pause}" Width="32" Height="36"
+                        ToolTip.Tip="{DynamicResource tip.playback.pause}">
+                  <Path Fill="{Binding $parent[Button].Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="18" Width="18"
                         Data="M5.35 4.3H7.78V13.7H5.35ZM10.22 4.3H12.65V13.7H10.22Z"/>
                 </Button>
-                <Button Command="{Binding PlaybackViewModel.SeekEnd}" Height="18">
-                  <Path Fill="{Binding $parent[Window].Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="18" Width="18"
+                <Button Classes="material-icon" Command="{Binding PlaybackViewModel.SeekEnd}" Width="32" Height="36"
+                        ToolTip.Tip="{DynamicResource tip.playback.end}">
+                  <Path Fill="{Binding $parent[Button].Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="18" Width="18"
                         Data="M5.35 4.3L10.56 9L5.35 13.7ZM10.56 4.3H12.65V13.7H10.56Z"/>
                 </Button>
-                <ToggleButton IsChecked="{Binding PlaybackViewModel.LoopPlayback}"
-                              ToolTip.Tip="{DynamicResource tip.playback.loop}" Height="18">
-                  <Path Fill="{Binding $parent[Window].Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="18" Width="18"
+                <ToggleButton Classes="material-icon" IsChecked="{Binding PlaybackViewModel.LoopPlayback}"
+                              ToolTip.Tip="{DynamicResource tip.playback.loop}" Width="32" Height="36">
+                  <Path Fill="{Binding $parent[ToggleButton].Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="18" Width="18"
                         Data="M5.19 4.86H11.11V2.8l2.53 3.09-2.53 3.1V6.93H6.05V8.99H4.35V6.93c0-1.14.34-2.07.84-2.07ZM12.81 13.13H6.88v2.07L4.35 12.1l2.53-3.1V11.06h5.08V8.99H13.65v2.07c0 1.14-.34 2.07-.84 2.07Z"/>
                 </ToggleButton>
-                <ToggleButton IsChecked="{Binding PlaybackViewModel.Metronome}" Height="18"
+                <ToggleButton Classes="material-icon" IsChecked="{Binding PlaybackViewModel.Metronome}" Width="32" Height="36"
                               ToolTip.Tip="{DynamicResource prefs.playback.metronome}">
-                  <Path Fill="{Binding $parent[Window].Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="18" Width="18"
+                  <Path Fill="{Binding $parent[ToggleButton].Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="18" Width="18"
                         Data="M7.93 4.3a.43.34 0 0 0-.41.25L4.33 13.25a.43.34 0 0 0 .41.45h8.5a.43.34 0 0 0 .41-.45L12.32 9.65l-1.89 1.36c-.09.56-.7 1.02-1.42 1.02-.78 0-1.44-.54-1.44-1.18 0-.64.66-1.18 1.44-1.18.01 0 .02 0 .03 0l2.61-1.85-1.2-3.27a.43.34 0 0 0-.41-.25ZM14.65 6.13a.8.66 0 0 0-.48.16L9.13 9.92a1.17.95 0 0 0-1.17.95 1.17.95 0 0 0 1.17.95 1.17.95 0 0 0 1.16-.9l5.06-3.65a.8.66 0 0 0 .07-.92.8.66 0 0 0-.66-.22Z"/>
                 </ToggleButton>
               </StackPanel>
             </Border>
-            <Border Classes="playback" Width="72" HorizontalAlignment="Right" Margin="4,0">
-              <Grid>
+            <Border Grid.Column="2" Classes="material-transport" Width="88" Height="36" CornerRadius="18"
+                    Background="{DynamicResource MaterialSurfaceContainerHighBrush}">
                 <TextBlock Text="{Binding Path=PlaybackViewModel.PlayPosTime, StringFormat={}{0:mm\\:ss\\.fff}}"/>
-              </Grid>
             </Border>
-          </Panel>
-          <ScrollBar Name="HScrollBar" Classes="music" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                    Margin="0,4,0,4" Orientation="Horizontal" AllowAutoHide="False"
+          <ScrollBar Name="HScrollBar" Classes="music" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    Margin="16,8,4,8" Orientation="Horizontal" AllowAutoHide="False"
                     DataContext="{Binding TracksViewModel}"
                     Maximum="{Binding HScrollBarMax, Mode=OneWay}"
                     Value="{Binding TickOffset}"
                     ViewportSize="{Binding ViewportTicks}"
                     LargeChange="{Binding ViewportTicks}"
                     SmallChange="{Binding SmallChangeX}" PointerWheelChanged="HScrollPointerWheelChanged"/>
+          </Grid>
           <ScrollBar Name="VScrollBar" Classes="music" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                     Margin="4,0,4,0" Orientation="Vertical" AllowAutoHide="False"
                     DataContext="{Binding TracksViewModel}"
@@ -418,9 +412,9 @@
             </c:PartsCanvas.ContextMenu>
           </c:PartsCanvas>
           <Border Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent"
-                  BoxShadow="inset 0 0 5 1 #3F000000" ClipToBounds="True" IsHitTestVisible="False">
-            <Border HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10,5"
-                    IsVisible="{Binding TracksViewModel.PlayPosWaitingRendering}" Background="{DynamicResource BackgroundBrushSemi}">
+                  ClipToBounds="True" IsHitTestVisible="False">
+            <Border HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20,12" CornerRadius="16"
+                    IsVisible="{Binding TracksViewModel.PlayPosWaitingRendering}" Background="{DynamicResource MaterialSurfaceContainerHighBrush}">
               <TextBlock Text="{DynamicResource progress.waitingrendering}" FontSize="15"/>
             </Border>
           </Border>
@@ -428,10 +422,81 @@
             <c:ViewScaler Name="VScaler" DataContext="{Binding TracksViewModel}" Value="{Binding TrackHeight}" Min="{Binding TrackHeightMin}" Max="{Binding TrackHeightMax}"/>
           </Border>
           <GridSplitter Grid.Row="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                        Background="{DynamicResource SystemControlBackgroundAltHighBrush}" Focusable="False" Cursor="SizeNorthSouth" IsVisible="{Binding ShowPianoRoll}"/>
+                        Background="{DynamicResource MaterialSurfaceContainerBrush}" Height="8" Focusable="False" Cursor="SizeNorthSouth" IsVisible="{Binding ShowPianoRoll}"/>
           <ContentControl Grid.Row="4" Grid.ColumnSpan="3" Name="PianoRollContainer"/>
-          <TextBlock Grid.Row="5" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Height="20" Margin="4,4,4,0" Text="{Binding ProgressText}"/>
+          <TextBlock Grid.Row="5" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Height="20" Margin="12,2,12,0"
+                     Foreground="{DynamicResource MaterialOnSurfaceVariantBrush}" Text="{Binding ProgressText}"/>
           <ProgressBar Grid.Row="6" Grid.ColumnSpan="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Value="{Binding Progress}"/>
+        </Grid>
+        </Border>
+        <!--First-launch quick start-->
+        <Grid Name="QuickStartPage" RowDefinitions="*,Auto" Margin="24,8,24,24"
+              KeyDown="OnCarouselPageKeyDown">
+          <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel MaxWidth="800" HorizontalAlignment="Stretch" Spacing="24" Margin="8,0,8,16">
+              <Border CornerRadius="28" Padding="28" Background="{DynamicResource MaterialPrimaryContainerBrush}">
+                <Grid ColumnDefinitions="Auto,*">
+                  <Image Source="/Assets/OpenUtau.png" Width="64" Height="64" Margin="0,0,20,0" VerticalAlignment="Center"/>
+                  <StackPanel Grid.Column="1" Spacing="8">
+                    <TextBlock Text="{DynamicResource quickstart.title}" FontSize="28" FontWeight="Medium" TextWrapping="Wrap"
+                               Foreground="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+                    <TextBlock Text="{DynamicResource quickstart.subtitle}" FontSize="14" LineHeight="22" TextWrapping="Wrap"
+                               Foreground="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+                  </StackPanel>
+                </Grid>
+              </Border>
+              <StackPanel Spacing="24" Margin="8,0">
+                <Grid ColumnDefinitions="40,*" RowDefinitions="Auto,Auto">
+                  <Border Width="32" Height="32" CornerRadius="16" VerticalAlignment="Top"
+                          Background="{DynamicResource MaterialPrimaryContainerBrush}">
+                    <TextBlock Text="1" FontSize="14" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Foreground="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+                  </Border>
+                  <StackPanel Grid.Column="1" Spacing="5" Margin="12,0,0,0">
+                    <TextBlock Text="{DynamicResource quickstart.singer.title}" FontSize="18" FontWeight="Medium" TextWrapping="Wrap"/>
+                    <TextBlock Text="{DynamicResource quickstart.singer.description}" FontSize="14" LineHeight="22" TextWrapping="Wrap"
+                               Foreground="{DynamicResource MaterialOnSurfaceVariantBrush}"/>
+                  </StackPanel>
+                  <Button Grid.Column="1" Grid.Row="1" Classes="material-tonal" Margin="12,12,0,0" Focusable="True"
+                          Content="{DynamicResource menu.tools.singer.install}" Click="OnMenuInstallSinger"/>
+                </Grid>
+                <Grid ColumnDefinitions="40,*" RowDefinitions="Auto,Auto">
+                  <Border Width="32" Height="32" CornerRadius="16" VerticalAlignment="Top"
+                          Background="{DynamicResource MaterialPrimaryContainerBrush}">
+                    <TextBlock Text="2" FontSize="14" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Foreground="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+                  </Border>
+                  <StackPanel Grid.Column="1" Spacing="5" Margin="12,0,0,0">
+                    <TextBlock Text="{DynamicResource quickstart.audio.title}" FontSize="18" FontWeight="Medium" TextWrapping="Wrap"/>
+                    <TextBlock Text="{DynamicResource quickstart.audio.description}" FontSize="14" LineHeight="22" TextWrapping="Wrap"
+                               Foreground="{DynamicResource MaterialOnSurfaceVariantBrush}"/>
+                  </StackPanel>
+                  <Button Grid.Column="1" Grid.Row="1" Classes="material-tonal" Margin="12,12,0,0" Focusable="True"
+                          Content="{DynamicResource menu.tools.prefs}" Click="OnMenuPreferences"/>
+                </Grid>
+                <Grid ColumnDefinitions="40,*">
+                  <Border Width="32" Height="32" CornerRadius="16" VerticalAlignment="Top"
+                          Background="{DynamicResource MaterialPrimaryContainerBrush}">
+                    <TextBlock Text="3" FontSize="14" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Foreground="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+                  </Border>
+                  <StackPanel Grid.Column="1" Spacing="5" Margin="12,0,0,0">
+                    <TextBlock Text="{DynamicResource quickstart.notes.title}" FontSize="18" FontWeight="Medium" TextWrapping="Wrap"/>
+                    <TextBlock Text="{DynamicResource quickstart.notes.description}" FontSize="14" LineHeight="22" TextWrapping="Wrap"
+                               Foreground="{DynamicResource MaterialOnSurfaceVariantBrush}"/>
+                  </StackPanel>
+                </Grid>
+              </StackPanel>
+            </StackPanel>
+          </ScrollViewer>
+          <Grid Grid.Row="1" MaxWidth="800" HorizontalAlignment="Stretch" Margin="8,16,8,0">
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="12">
+              <Button Name="QuickStartSkipButton" Classes="material-text" Content="{DynamicResource quickstart.skip}"
+                      Focusable="True" Click="OnQuickStartComplete"/>
+              <Button Name="QuickStartContinueButton" Classes="material-primary" Content="{DynamicResource quickstart.continue}"
+                      Focusable="True" Click="OnQuickStartComplete"/>
+            </StackPanel>
+          </Grid>
         </Grid>
       </Carousel>
     </Grid>

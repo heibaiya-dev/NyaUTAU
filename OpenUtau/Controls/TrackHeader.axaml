@@ -1,4 +1,4 @@
-<UserControl xmlns="https://github.com/avaloniaui"
+﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -11,30 +11,41 @@
   </Design.DataContext>
   <UserControl.Styles>
     <Style Selector="ToggleButton">
-      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="Background" Value="{DynamicResource MaterialSurfaceContainerHighBrush}"/>
+    </Style>
+    <Style Selector="Button, ToggleButton">
+      <Setter Property="MinHeight" Value="0"/>
+      <Setter Property="MinWidth" Value="0"/>
+    </Style>
+    <Style Selector="Button.clear, ToggleButton.toolbar, Button.fxButton">
+      <Setter Property="CornerRadius" Value="9"/>
+    </Style>
+    <Style Selector="Button.clear">
+      <Setter Property="FontSize" Value="11"/>
+      <Setter Property="Foreground" Value="{DynamicResource MaterialOnSurfaceVariantBrush}"/>
     </Style>
     <Style Selector="Button.fxButton">
-      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="Background" Value="{DynamicResource MaterialSurfaceContainerHighBrush}"/>
       <Setter Property="BorderThickness" Value="0"/>
       <Setter Property="Padding" Value="0"/>
       <Setter Property="HorizontalContentAlignment" Value="Center"/>
       <Setter Property="VerticalContentAlignment" Value="Center"/>
       <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource NeutralAccentBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}" />
       </Style>
       <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource NeutralAccentBrushPointerOver}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}" />
       </Style>
     </Style>
     <Style Selector="Button.fxButton.fxOn">
       <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource NeutralAccentBrushSemi}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}" />
       </Style>
       <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource NeutralAccentBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}" />
       </Style>
       <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource NeutralAccentBrushPointerOver}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}" />
       </Style>
     </Style>
     <Style Selector="Slider.fader" x:DataType="vm:TrackHeaderViewModel">
@@ -58,14 +69,14 @@
       </Style>
     </Style>
     <Style Selector="FlyoutPresenter">
-      <Setter Property="Padding" Value="5"/>
+      <Setter Property="Padding" Value="8"/>
       <Setter Property="MinHeight" Value="0"/>
     </Style>
     <Style Selector="FlyoutPresenter.singerFlyout">
       <Setter Property="MaxWidth" Value="10000"/>
       <Setter Property="MaxHeight" Value="10000"/>
-      <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAltHighBrush}"/>
-      <Setter Property="BorderBrush" Value="{DynamicResource MenuFlyoutPresenterBorderBrush}"/>
+      <Setter Property="Background" Value="{DynamicResource MaterialSurfaceContainerHighBrush}"/>
+      <Setter Property="BorderBrush" Value="{DynamicResource MaterialOutlineVariantBrush}"/>
     </Style>
   </UserControl.Styles>
   <UserControl.Resources>
@@ -92,29 +103,32 @@
       </ContextMenu.Styles>
     </ContextMenu>
   </UserControl.Resources>
-  <Border Margin="1,1,1,1" BorderThickness="1" BorderBrush="{Binding HeaderBorderBrush}"
-           CornerRadius="2" PointerPressed="HeaderPointerPressed">
+  <Border Margin="4,1" BorderThickness="1" BorderBrush="{Binding HeaderBorderBrush}"
+          Background="{DynamicResource MaterialSurfaceContainerHighBrush}" ClipToBounds="True"
+          CornerRadius="14" PointerPressed="HeaderPointerPressed">
     <Grid ColumnDefinitions="auto,*" Background="Transparent">
       <Panel Grid.Column="0" VerticalAlignment="Stretch" Background="Transparent" PointerWheelChanged="MoveHandleScrolled"
              PointerMoved="MoveHandleMoved" PointerPressed="MoveHandlePressed" PointerReleased="MoveHandleReleased">
-        <Border BorderThickness="0,0,1,1" VerticalAlignment="Top" CornerRadius="0,0,2,0"
-                BorderBrush="{DynamicResource NeutralAccentBrushSemi}" ClipToBounds="True" IsHitTestVisible="false">
-          <Image Height="{Binding AvatarHeight}" Source="{Binding Avatar}" Stretch="Uniform" VerticalAlignment="Top" ToolTip.Tip="{Binding Singer}"/>
+        <Border Width="56" Margin="4" VerticalAlignment="Stretch" CornerRadius="10"
+                Background="{DynamicResource MaterialSurfaceContainerBrush}" ClipToBounds="True" IsHitTestVisible="false">
+          <Image Height="{Binding AvatarHeight}" Source="{Binding Avatar}" Stretch="UniformToFill" VerticalAlignment="Top" ToolTip.Tip="{Binding Singer}"/>
         </Border>
-        <Border Background="{Binding TrackAccentColor}" Height="16" Width="22" CornerRadius="1,0,2,0"
+        <Border Background="{Binding TrackAccentColor}" Height="20" Width="20" CornerRadius="10" Margin="6"
                 HorizontalAlignment="Left" VerticalAlignment="Top" IsHitTestVisible="false">
           <TextBlock TextAlignment="Center" FontWeight="Bold"
-                     Text="{Binding TrackNo}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                     Text="{Binding TrackNo}" Foreground="{DynamicResource MaterialOnPrimaryBrush}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Border>
       </Panel>
       <!-- One grid for the labels and the buttons so they line up: mute and solo with the name,
            settings with the renderer and fx with the faders. Rows hidden at small track heights
            fold into the more menu; settings goes along with the renderer. -->
-      <Grid Grid.Column="1" ColumnDefinitions="*,auto,auto,auto" RowDefinitions="auto,auto,auto,auto,auto,*">
+      <Grid Grid.Column="1" ColumnDefinitions="*,auto,auto,auto" RowDefinitions="auto,auto,auto,auto,auto,*" Margin="0,0,4,0">
         <Button Classes="clear" Grid.Row="0" Margin="1" Padding="2,1,0,0" Height="18"
+                FontWeight="SemiBold" Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
                 HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Focusable="False"
                 Content="{Binding TrackName}" Click="TrackNameButtonClicked"/>
         <Button Name="SingerButton" Grid.Row="1" Grid.ColumnSpan="4" Classes="clear" Margin="1" Padding="2,1,0,0" Height="18" IsVisible="{Binding IsSingerVisible}"
+                Foreground="{DynamicResource MaterialPrimaryBrush}"
                 HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Focusable="False"
                 Content="{Binding Singer, TargetNullValue={StaticResource tracks.selectsinger}}" Click="SingerButtonClicked"
                 ContextRequested="SingerButtonContextRequested" ToolTip.Tip="{Binding Singer}"/>
@@ -127,7 +141,7 @@
                 Content="{Binding Renderer}" Click="RendererButtonClicked" ContextRequested="RendererButtonContextRequested"
                 ToolTip.Tip="{DynamicResource tracks.selectrenderer}" ContextMenu="{StaticResource RendererMenuRes}"/>
         <Button Name="MoreButton" Grid.Column="1" Grid.Row="0" Classes="clear" Height="18" Width="18" Margin="1" Padding="0"
-                VerticalAlignment="Top" Content="⋯" IsVisible="{Binding !IsRendererVisible}">
+                VerticalAlignment="Top" Content="⋯" IsVisible="{Binding !IsRendererVisible}" ToolTip.Tip="{DynamicResource tracks.more}">
           <Button.Flyout>
             <Flyout>
               <StackPanel Spacing="2">

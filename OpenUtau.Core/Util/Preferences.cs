@@ -163,6 +163,7 @@ namespace OpenUtau.Core.Util {
 
         [Serializable]
         public class SerializablePreferences {
+            public bool QuickStartCompleted = false;
             public WindowSize MainWindowSize = new WindowSize();
             public WindowSize PianorollWindowSize = new WindowSize();
             public int UndoLimit = 100;

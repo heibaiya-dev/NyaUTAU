@@ -1,0 +1,125 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:OpenUtau.App.ViewModels"
+        x:Class="OpenUtau.App.Views.AutoTuningDialog"
+        x:DataType="vm:AutoTuningViewModel"
+        Icon="/Assets/open-utau.ico"
+        Title="{DynamicResource autotuning.title}"
+        WindowStartupLocation="CenterOwner"
+        Width="540" Height="720" MinWidth="440" MinHeight="480">
+  <Window.Styles>
+    <Style Selector="TextBlock.section-title">
+      <Setter Property="FontWeight" Value="Medium"/>
+      <Setter Property="FontSize" Value="14"/>
+    </Style>
+    <Style Selector="TextBlock.supporting">
+      <Setter Property="Foreground" Value="{DynamicResource MaterialOnSurfaceVariantBrush}"/>
+      <Setter Property="TextWrapping" Value="Wrap"/>
+      <Setter Property="FontSize" Value="12"/>
+    </Style>
+    <Style Selector="ToggleSwitch">
+      <Setter Property="OnContent" Value=""/>
+      <Setter Property="OffContent" Value=""/>
+      <Setter Property="Margin" Value="16,0,0,0"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+  </Window.Styles>
+  <Grid Margin="{Binding $parent[Window].WindowDecorationMargin}" RowDefinitions="*,Auto">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+      <StackPanel Margin="24,24,24,16" Spacing="24">
+        <StackPanel Spacing="8">
+          <TextBlock Text="{DynamicResource autotuning.title}" FontSize="24" FontWeight="Medium"/>
+          <TextBlock Text="{DynamicResource autotuning.description}" TextWrapping="Wrap"/>
+          <TextBlock Text="{Binding SingerLabel}" Classes="supporting"/>
+        </StackPanel>
+        <StackPanel Spacing="8">
+          <TextBlock Text="{DynamicResource autotuning.scope}" Classes="section-title"/>
+          <RadioButton Name="SelectionScopeButton" GroupName="Scope"
+                       Content="{Binding SelectionLabel}" IsEnabled="{Binding HasSelection}"
+                       IsChecked="{Binding UseSelection}"/>
+          <RadioButton Name="PartScopeButton" GroupName="Scope"
+                       Content="{Binding PartLabel}" IsChecked="{Binding UseWholePart}"/>
+        </StackPanel>
+        <Grid ColumnDefinitions="*,16,*">
+          <StackPanel Spacing="8">
+            <TextBlock Text="{DynamicResource autotuning.preset}" Classes="section-title"/>
+            <ComboBox Name="PresetSelector" SelectedIndex="{Binding PresetIndex}"
+                      HorizontalAlignment="Stretch"
+                      AutomationProperties.Name="{DynamicResource autotuning.preset}">
+              <ComboBoxItem Content="{DynamicResource autotuning.preset.natural}"/>
+              <ComboBoxItem Content="{DynamicResource autotuning.preset.gentle}"/>
+              <ComboBoxItem Content="{DynamicResource autotuning.preset.powerful}"/>
+            </ComboBox>
+          </StackPanel>
+          <StackPanel Grid.Column="2" Spacing="8">
+            <Grid ColumnDefinitions="*,Auto">
+              <TextBlock Text="{DynamicResource autotuning.strength}" Classes="section-title"/>
+              <TextBlock Grid.Column="1" Text="{Binding Strength, StringFormat={}{0:0}%}"/>
+            </Grid>
+            <Slider Name="StrengthSlider" Minimum="0" Maximum="100" TickFrequency="1"
+                    IsSnapToTickEnabled="True" Value="{Binding Strength}"
+                    AutomationProperties.Name="{DynamicResource autotuning.strength}"/>
+          </StackPanel>
+        </Grid>
+        <StackPanel Spacing="12">
+          <TextBlock Text="{DynamicResource autotuning.parameters}" Classes="section-title"/>
+          <Grid ColumnDefinitions="*,Auto">
+            <StackPanel Spacing="4">
+              <TextBlock Text="{DynamicResource autotuning.pitch}"/>
+              <TextBlock Text="{DynamicResource autotuning.pitch.description}" Classes="supporting"/>
+            </StackPanel>
+            <ToggleSwitch Name="PitchToggle" Grid.Column="1" IsChecked="{Binding Pitch}"
+                          AutomationProperties.Name="{DynamicResource autotuning.pitch}"/>
+          </Grid>
+          <Grid ColumnDefinitions="*,Auto">
+            <StackPanel Spacing="4">
+              <TextBlock Text="{DynamicResource autotuning.vibrato}"/>
+              <TextBlock Text="{DynamicResource autotuning.vibrato.description}" Classes="supporting"/>
+            </StackPanel>
+            <ToggleSwitch Name="VibratoToggle" Grid.Column="1" IsChecked="{Binding Vibrato}"
+                          AutomationProperties.Name="{DynamicResource autotuning.vibrato}"/>
+          </Grid>
+          <Grid ColumnDefinitions="*,Auto">
+            <StackPanel Spacing="4">
+              <TextBlock Text="{DynamicResource autotuning.dynamics}"/>
+              <TextBlock Text="{Binding DynamicsStatus}" Classes="supporting"/>
+            </StackPanel>
+            <ToggleSwitch Name="DynamicsToggle" Grid.Column="1" IsChecked="{Binding Dynamics}"
+                          IsEnabled="{Binding SupportsDynamics}"
+                          AutomationProperties.Name="{DynamicResource autotuning.dynamics}"/>
+          </Grid>
+          <Grid ColumnDefinitions="*,Auto">
+            <StackPanel Spacing="4">
+              <TextBlock Text="{DynamicResource autotuning.breathiness}"/>
+              <TextBlock Text="{Binding BreathinessStatus}" Classes="supporting"/>
+            </StackPanel>
+            <ToggleSwitch Name="BreathToggle" Grid.Column="1" IsChecked="{Binding Breathiness}"
+                          IsEnabled="{Binding SupportsBreathiness}"
+                          AutomationProperties.Name="{DynamicResource autotuning.breathiness}"/>
+          </Grid>
+          <Grid ColumnDefinitions="*,Auto">
+            <StackPanel Spacing="4">
+              <TextBlock Text="{DynamicResource autotuning.articulation}"/>
+              <TextBlock Text="{Binding ArticulationStatus}" Classes="supporting"/>
+            </StackPanel>
+            <ToggleSwitch Name="ArticulationToggle" Grid.Column="1" IsChecked="{Binding Articulation}"
+                          IsEnabled="{Binding SupportsArticulation}"
+                          AutomationProperties.Name="{DynamicResource autotuning.articulation}"/>
+          </Grid>
+        </StackPanel>
+        <Border Background="{DynamicResource MaterialSurfaceContainerHighBrush}"
+                CornerRadius="12" Padding="16">
+          <TextBlock Text="{DynamicResource autotuning.replacehint}" Classes="supporting"/>
+        </Border>
+      </StackPanel>
+    </ScrollViewer>
+    <Border Grid.Row="1" Background="{DynamicResource MaterialSurfaceContainerBrush}" Padding="24,16">
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+        <Button Name="CancelButton" Classes="material-text" Content="{DynamicResource button.cancel}"
+                Click="OnCancelClicked"/>
+        <Button Name="ApplyButton" Classes="material-primary" Content="{DynamicResource button.apply}"
+                IsEnabled="{Binding CanApply}" Click="OnApplyClicked"/>
+      </StackPanel>
+    </Border>
+  </Grid>
+</Window>

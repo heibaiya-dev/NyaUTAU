@@ -1,4 +1,4 @@
-<!--DO NOT modify this file. It is managed autometically.-->
+﻿<!--DO NOT modify this file. It is managed autometically.-->
 <!--To contribute to OpenUtau's localization, visit https://crowdin.com/project/oxygen-dioxideopenutau -->
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -101,9 +101,9 @@
   <system:String x:Key="debug.copylog">Logu kopyala</system:String>
   <system:String x:Key="debug.reverselogorder">Log sırasını ters çevir</system:String>
 
-  <system:String x:Key="dialogs.about.caption">OpenUTAU Hakkında</system:String>
-  <system:String x:Key="dialogs.about.message">OpenUtau, UTAU topluluğu için modern bir kullanıcı deneyimi ve akıllı fonolojik destek sunan açık kaynak bir düzenleme ortamı olmayı amaçlar. Github'ta bizi ziyaret edin.</system:String>
-  <system:String x:Key="dialogs.exitsave.caption">OpenUTAU'dan Çık</system:String>
+  <system:String x:Key="dialogs.about.caption">NyaUTAU Hakkında</system:String>
+  <system:String x:Key="dialogs.about.message">NyaUTAU, UTAU topluluğu için modern bir kullanıcı deneyimi ve akıllı fonolojik destek sunan açık kaynak bir düzenleme ortamı olmayı amaçlar. Github'ta bizi ziyaret edin.</system:String>
+  <system:String x:Key="dialogs.exitsave.caption">NyaUTAU'dan Çık</system:String>
   <system:String x:Key="dialogs.exitsave.message">Aktif projede kaydedilmemiş değişiklikler var. Kaydetmek ister misiniz?</system:String>
   <system:String x:Key="dialogs.export.caption">Dışa Aktar</system:String>
   <system:String x:Key="dialogs.export.savefirst">Önce proje dosyasını kaydedin</system:String>
@@ -124,7 +124,7 @@
   <system:String x:Key="dialogs.messagebox.copy">Hata detaylarını panoya kopyala</system:String>
   <system:String x:Key="dialogs.noresampler.caption">Resampler yok</system:String>
   <system:String x:Key="dialogs.noresampler.message">Resampler yok! Favori resampler exe veya dll dosyanızı Resamplers klasörüne koyun ve Tercihler'den seçin!</system:String>
-  <system:String x:Key="dialogs.recovery">Önceki çalıştırmada OpenUtau anormal şekilde sonlandı. Kurtarmak için buraya tıklayın.</system:String>
+  <system:String x:Key="dialogs.recovery">Önceki çalıştırmada NyaUTAU anormal şekilde sonlandı. Kurtarmak için buraya tıklayın.</system:String>
   <system:String x:Key="dialogs.recovery.caption">Kurtarma projesi</system:String>
   <system:String x:Key="dialogs.remaptimeaxis.message">Bu araç, notaların gerçek konum ve sürelerini (saniye cinsinden) değiştirmeden projenin temposunu değiştirecek.
   Yeni BPM:</system:String>
@@ -186,7 +186,7 @@ Devam edip mevcut çalma kafasından sonra, notaların olmadığı en yakın kon
   <system:String x:Key="errors.failed.loadprefs">Ayarlar yüklenemedi. Yeniden başlatın.</system:String>
   <system:String x:Key="errors.failed.openfile">Açma başarısız</system:String>
   <system:String x:Key="errors.failed.openlocation">Konum açılamadı</system:String>
-  <system:String x:Key="errors.failed.opennewerproject">Proje dosyası yazılımdan daha yeni! OpenUtau'yu güncelleyin!</system:String>
+  <system:String x:Key="errors.failed.opennewerproject">Proje dosyası yazılımdan daha yeni! NyaUTAU'yu güncelleyin!</system:String>
   <!--<system:String x:Key="errors.failed.prerender">Failed to render in the background.</system:String>-->
   <system:String x:Key="errors.failed.render">Render başarısız.</system:String>
   <system:String x:Key="errors.failed.runeditingmacro">Düzenleme makrosu çalıştırılamadı</system:String>
@@ -313,7 +313,7 @@ Devam edip mevcut çalma kafasından sonra, notaların olmadığı en yakın kon
   <system:String x:Key="menu.file.saveas">Farklı Kaydet...</system:String>
   <system:String x:Key="menu.file.savetemplate">Şablonu Kaydet...</system:String>
   <system:String x:Key="menu.help">Yardım</system:String>
-  <system:String x:Key="menu.help.about">OpenUtau Hakkında</system:String>
+  <system:String x:Key="menu.help.about">NyaUTAU Hakkında</system:String>
   <system:String x:Key="menu.help.checkupdate">Güncellemeleri Kontrol Et</system:String>
   <system:String x:Key="menu.help.logslocation">Log Konumunu Aç</system:String>
   <system:String x:Key="menu.help.reportissue">Sorun Bildir</system:String>
@@ -624,7 +624,7 @@ Uyarı: Bu seçenek özel önayarları kaldırır.</system:String>
   <!--<system:String x:Key="prefs.diffsinger">DiffSinger</system:String>-->
   <system:String x:Key="prefs.editing">Düzenleme</system:String>
   <system:String x:Key="prefs.general">Genel</system:String>
-  <system:String x:Key="prefs.note.restart">Not: Bu öğeyi değiştirdikten sonra OpenUtau'yu yeniden başlatın.</system:String>
+  <system:String x:Key="prefs.note.restart">Not: Bu öğeyi değiştirdikten sonra NyaUTAU'yu yeniden başlatın.</system:String>
   <system:String x:Key="prefs.otoeditor">Oto Editörü</system:String>
   <system:String x:Key="prefs.otoeditor.select">Varsayılan Oto Editörü</system:String>
   <system:String x:Key="prefs.otoeditor.setparampath">setParam Yolu</system:String>
@@ -670,9 +670,9 @@ Uyarı: Bu seçenek özel önayarları kaldırır.</system:String>
   1. moreconfig.txt içinde "resampler-compatibility" değerini "on" yapın.
   2. moreconfig.txt içinde "auto-update-llsm-mrq" değerini "off" yapın.
   3. moresampler eksik llsm dosyalarını oluşturana kadar sabırlı olun.</system:String>
-  <system:String x:Key="prefs.rendering.resampler.note">Not: Harici resampler kullanmak için, resampler DLL veya EXE dosyasını OpenUtau kurulum yolundaki Resamplers klasörüne ekleyin ve Tercihler'den seçin.</system:String>
+  <system:String x:Key="prefs.rendering.resampler.note">Not: Harici resampler kullanmak için, resampler DLL veya EXE dosyasını NyaUTAU kurulum yolundaki Resamplers klasörüne ekleyin ve Tercihler'den seçin.</system:String>
   <system:String x:Key="prefs.rendering.skipmuted">Susturulmuş parçaları atla</system:String>
-  <system:String x:Key="prefs.rendering.threads.cpuwarn">Uyarı: çok fazla render iş parçacığı OpenUtau'nun yavaş çalışmasına neden olabilir.</system:String>
+  <system:String x:Key="prefs.rendering.threads.cpuwarn">Uyarı: çok fazla render iş parçacığı NyaUTAU'nun yavaş çalışmasına neden olabilir.</system:String>
   <system:String x:Key="prefs.rendering.threads.numthreads">Maksimum Render İş Parçacığı</system:String>
   <!--<system:String x:Key="prefs.rendering.wavtool">Wavtool</system:String>-->
   <!--<system:String x:Key="prefs.utau">UTAU</system:String>-->
@@ -856,7 +856,7 @@ Genel
   <system:String x:Key="updater.update">Güncelle</system:String>
 
   <system:String x:Key="warning">Uyarı</system:String>
-  <system:String x:Key="warning.asciipath">OpenUtau ana yolunuz "{0}" ASCII olmayan karakter içeriyor. Exe resamplers çalışmayabilir.</system:String>
+  <system:String x:Key="warning.asciipath">NyaUTAU ana yolunuz "{0}" ASCII olmayan karakter içeriyor. Exe resamplers çalışmayabilir.</system:String>
   <system:String x:Key="warning.renderer">Bu renderer için ayar yok.</system:String>
 
   <system:String x:Key="welcome.new">Yeni</system:String>

@@ -49,6 +49,9 @@ namespace OpenUtau.Core.Ustx {
         [YamlIgnore] public int RightBound => position + duration;
         [YamlIgnore] public bool Error { get; set; } = false;
         [YamlIgnore] public bool OverlapError { get; set; } = false;
+        // A command that restores an exact pitch snapshot can suppress the
+        // derived snapFirst rewrite during the validation immediately following undo.
+        [YamlIgnore] internal bool SkipSnapFirstValidation { get; set; }
         [YamlIgnore] public List<UExpression> phonemizerExpressions = new List<UExpression>();
         [YamlIgnore] public int[] phonemeIndexes { get; set; } = new int[0];
 
@@ -98,6 +101,7 @@ namespace OpenUtau.Core.Ustx {
             if (Prev != null && Prev.End > position) {
                 Error = true;
                 OverlapError = true;
+                SkipSnapFirstValidation = false;
                 return;
             }
             Error = false;
@@ -105,13 +109,14 @@ namespace OpenUtau.Core.Ustx {
             if (track.Singer == null || !track.Singer.Found || !track.Singer.Loaded) {
                 Error |= true;
             }
-            if (pitch.snapFirst) {
+            if (pitch.snapFirst && !SkipSnapFirstValidation) {
                 if (Prev != null && Prev.End == position) {
                     pitch.data[0].Y = (Prev.AdjustedTone - AdjustedTone) * 10;
                 } else {
                     pitch.data[0].Y = 0;
                 }
             }
+            SkipSnapFirstValidation = false;
         }
 
         static List<Phonemizer.PhonemeAttributes> attributesBuffer = new List<Phonemizer.PhonemeAttributes>();

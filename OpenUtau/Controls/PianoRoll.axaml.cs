@@ -47,6 +47,7 @@ namespace OpenUtau.App.Controls {
         private ReactiveCommand<RxVoid, RxVoid>? lyricsDialogCommand;
         private ReactiveCommand<RxVoid, RxVoid>? noteDefaultsCommand;
         private ReactiveCommand<BatchEdit, RxVoid>? noteBatchEditCommand;
+        private ReactiveCommand<RxVoid, RxVoid>? autoTuningCommand;
 
         private Window RootWindow => (Window)TopLevel.GetTopLevel(this)!;
         
@@ -112,12 +113,23 @@ namespace OpenUtau.App.Controls {
                     } else {
                         edit.Run(NotesVm.Project, NotesVm.Part, NotesVm.Selection.ToList(),
                             DocManager.Inst);
+                        if (edit is SmartPitch && NotesVm.Part.notes.Count > 0) {
+                            NotesVm.ShowPitch = true;
+                        }
                     }
                 } catch (Exception e) {
                     var customEx = new MessageCustomizableException("Failed to run editing macro", "<translate:errors.failed.runeditingmacro>", e);
                     DocManager.Inst.ExecuteCmd(new ErrorMessageNotification(customEx));
                 }
 
+            });
+            // The main window prepares these commands on a worker thread.
+            // Avalonia controls must be updated by their owning dispatcher.
+            Dispatcher.UIThread.Invoke(() => {
+                SmartPitchButton.Command = noteBatchEditCommand;
+                SmartPitchButton.CommandParameter = new SmartPitch();
+                autoTuningCommand = ReactiveCommand.Create(() => { _ = OpenAutoTuningAsync(); });
+                AutoTuningButton.Command = autoTuningCommand;
             });
             ViewModel.NoteBatchEdits.AddRange(new List<BatchEdit>() {
                 new LoadRenderedPitch(),
@@ -134,7 +146,8 @@ namespace OpenUtau.App.Controls {
                 new FixOverlap(),
                 new BakePitch(),
                 new RandomizeTiming(),
-                new RandomizePhonemeOffset()
+                new RandomizePhonemeOffset(),
+                new SmartPitch()
             }.Select(edit => new MenuItemViewModel() {
                 Header = ThemeManager.GetString(edit.Name),
                 Command = noteBatchEditCommand,
@@ -211,6 +224,10 @@ namespace OpenUtau.App.Controls {
                 Command = ReactiveCommand.Create(() => {
                     LengthenCrossfade();
                 })
+            });
+            ViewModel.NoteBatchEdits.Add(new MenuItemViewModel() {
+                Header = ThemeManager.GetString("pianoroll.menu.notes.autovocaltuning"),
+                Command = autoTuningCommand,
             });
             ViewModel.LyricBatchEdits.Add(new MenuItemViewModel() {
                 Header = ThemeManager.GetString("lyricsreplace.replace"),
@@ -371,6 +388,12 @@ namespace OpenUtau.App.Controls {
             });
         }
 
+        void OnDismissTips(object sender, RoutedEventArgs args) {
+            ViewModel.NotesViewModel.ShowTips = false;
+            Focus();
+            args.Handled = true;
+        }
+
         void OnHidePianoRoll(object sender, RoutedEventArgs args) {
             if (RootWindow.DataContext is MainWindowViewModel mwvm) {
                 mwvm.ShowPianoRoll = false;
@@ -415,6 +438,86 @@ namespace OpenUtau.App.Controls {
                 return;
             }
             SearchBar.Show(ViewModel.NotesViewModel);
+        }
+
+        async Task OpenAutoTuningAsync() {
+            var notesVm = ViewModel.NotesViewModel;
+            var part = notesVm.Part;
+            if (part == null) {
+                return;
+            }
+            var project = notesVm.Project;
+            var selected = notesVm.Selection.Where(part.notes.Contains).ToList();
+            var vm = new AutoTuningViewModel(project, part, selected.Count);
+            var dialog = new AutoTuningDialog { DataContext = vm };
+            await dialog.ShowDialog(RootWindow);
+            if (!dialog.Confirmed) {
+                return;
+            }
+            if (notesVm.Part != part || notesVm.Project != project ||
+                    (vm.UseSelection && selected.Count == 0)) {
+                ShowAutoTuningResult(ThemeManager.GetString("autotuning.result.scopechanged"));
+                return;
+            }
+            try {
+                var edit = new AutoVocalTuning(vm.GetOptions());
+                edit.Run(project, part, vm.UseSelection ? selected : new List<UNote>(),
+                    DocManager.Inst);
+                var result = edit.LastResult;
+                if (result.AppliedNoteCount > 0) {
+                    notesVm.ShowPitch = true;
+                }
+                ShowAutoTuningResult(FormatAutoTuningResult(result));
+                Focus();
+            } catch (Exception e) {
+                var customEx = new MessageCustomizableException("Failed to run automatic tuning",
+                    "<translate:errors.failed.runeditingmacro>", e);
+                DocManager.Inst.ExecuteCmd(new ErrorMessageNotification(customEx));
+            }
+        }
+
+        static string FormatAutoTuningResult(AutoVocalTuningResult result) {
+            if (result.EligibleNoteCount == 0) {
+                return ThemeManager.GetString("autotuning.result.noeligible");
+            }
+            var applied = new List<string>();
+            AddApplied("pitch", result.PitchNoteCount);
+            AddApplied("vibrato", result.VibratoNoteCount);
+            AddApplied("dynamics", result.DynamicsNoteCount);
+            AddApplied("breathiness", result.BreathinessNoteCount);
+            AddApplied("articulation", result.ArticulationNoteCount);
+            var summary = result.AppliedNoteCount > 0
+                ? string.Format(ThemeManager.GetString("autotuning.result.completed"),
+                    result.AppliedNoteCount, string.Join(", ", applied))
+                : ThemeManager.GetString("autotuning.result.nochange");
+            if (result.SkippedChannels.Count > 0) {
+                var skipped = result.SkippedChannels.Select(channel => string.Format(
+                    ThemeManager.GetString("autotuning.result.skippedchannel"),
+                    ThemeManager.GetString($"autotuning.{channel.Channel.ToString().ToLowerInvariant()}"),
+                    ThemeManager.GetString(channel.Reason == VocalTuningSkipReason.NoSustainedNotes
+                        ? "autotuning.result.nosustained"
+                        : "autotuning.result.unsupported")));
+                summary += "\n" + string.Format(
+                    ThemeManager.GetString("autotuning.result.skipped"), string.Join(", ", skipped));
+            }
+            return summary;
+
+            void AddApplied(string channel, int count) {
+                if (count > 0) {
+                    applied.Add(string.Format(ThemeManager.GetString("autotuning.result.channel"),
+                        ThemeManager.GetString($"autotuning.{channel}"), count));
+                }
+            }
+        }
+
+        void ShowAutoTuningResult(string message) {
+            AutoTuningResultText.Text = message;
+            AutoTuningResultBanner.IsVisible = true;
+        }
+
+        void OnDismissAutoTuningResult(object? sender, RoutedEventArgs e) {
+            AutoTuningResultBanner.IsVisible = false;
+            Focus();
         }
 
         void ReplaceLyrics() {

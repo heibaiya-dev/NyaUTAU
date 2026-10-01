@@ -12,15 +12,15 @@
   <UserControl.Styles>
     <StyleInclude Source="/Styles/PianoRollStyles.axaml"/>
   </UserControl.Styles>
-  <Border>
+  <Border Background="{DynamicResource MaterialSurfaceBrush}">
     <Grid Margin="{Binding $parent[Window].OffScreenMargin}" PointerMoved="BackgroundPointerMoved">
       <Grid.RowDefinitions>
-        <RowDefinition Height="24"/>
+        <RowDefinition Height="52"/>
         <RowDefinition Height="24"/>
         <RowDefinition Height="24"/>
         <RowDefinition Height="*" MinHeight="60"/>
         <RowDefinition Height="Auto"/>
-        <RowDefinition Height="150" 
+        <RowDefinition Height="150"
                        MinHeight="{Binding NotesViewModel.ExpHeightMin}"
                        MaxHeight="{Binding NotesViewModel.ExpHeightMax}"/>
         <RowDefinition Height="4"/>
@@ -32,10 +32,11 @@
         <ColumnDefinition Width="Auto"/>
       </Grid.ColumnDefinitions>
       <Grid Grid.Column="0" Grid.Row="1" Grid.RowSpan="2">
-        <Rectangle HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="12" Fill="{Binding NotesViewModel.TrackAccentColor}"/>
-        <Border Margin="12,0,0,0" Width="48" Height="48" ClipToBounds="True">
+        <Rectangle HorizontalAlignment="Left" VerticalAlignment="Center" Width="4" Height="28" RadiusX="2" RadiusY="2"
+                   Margin="4,0,0,0" Fill="{Binding NotesViewModel.TrackAccentColor}"/>
+        <Border Margin="12,4,4,4" Width="40" Height="40" CornerRadius="20" ClipToBounds="True">
           <Image HorizontalAlignment="Center" VerticalAlignment="Center"
-                 Width="50" Height="50" Stretch="UniformToFill" Source="{Binding NotesViewModel.Avatar}"/>
+                 Width="40" Height="40" Stretch="UniformToFill" Source="{Binding NotesViewModel.Avatar}"/>
         </Border>
       </Grid>
       <ScrollBar Name="HScrollBar" Classes="music" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
@@ -221,17 +222,17 @@
                    IsHitTestVisible="False" IsVisible="False"
                    ZIndex="999"/>
       </Canvas>
-      <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="2"
-            HorizontalAlignment="Stretch" VerticalAlignment="Top">
+      <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Margin="6,4"
+            HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="Auto"/>
-          <ColumnDefinition Width="12"/>
-          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="8"/>
           <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="8"/>
           <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Border Grid.Column="0">
-          <Menu Height="20" Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+        <Border Grid.Column="0" Classes="editor-toolbar" Padding="4">
+          <Menu Classes="editor-menu" Height="32" Background="Transparent"
                 Closed="OnMenuClosed" PointerExited="OnMenuPointerLeave">
             <Menu.Styles>
               <Style Selector="CheckBox">
@@ -376,9 +377,20 @@
           </Menu>
         </Border>
 
-        <Border Grid.Column="2">
-          <StackPanel Orientation="Horizontal">
-            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="20" Width="20" IsChecked="{Binding NotesViewModel.ShowTips}"
+        <Border Grid.Column="2" Classes="editor-toolbar" Padding="4,2">
+          <ScrollViewer Classes="editor-tools" HorizontalScrollBarVisibility="Auto"
+                        VerticalScrollBarVisibility="Disabled">
+          <StackPanel Orientation="Horizontal" Spacing="2" VerticalAlignment="Center">
+            <Button Name="AutoTuningButton" Classes="material-tonal" Height="32" Padding="12,0"
+                    Content="{DynamicResource autotuning.title}"
+                    ToolTip.Tip="{DynamicResource autotuning.tip}"
+                    IsEnabled="{Binding NotesViewModel.Part, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+            <Button Name="SmartPitchButton" Classes="material-tonal" Height="32" Padding="12,0"
+                    Content="{DynamicResource pianoroll.menu.notes.smartpitch}"
+                    ToolTip.Tip="{DynamicResource pianoroll.smartpitch.tip}"
+                    IsEnabled="{Binding NotesViewModel.Part, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+            <Border Width="8"/>
+            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="32" Width="32" IsChecked="{Binding NotesViewModel.ShowTips}"
                           ToolTip.Tip="{DynamicResource pianoroll.toggle.tips}">
               <Grid Width="18" Height="18">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="?" FontWeight="Bold"
@@ -417,7 +429,7 @@
                   <ListBoxItem Classes="toolbar pitchSmoothenTool" ToolTip.Tip="{DynamicResource pianoroll.tool.pitchsmoothen}"/>
                 </ListBox.Items>
             </ListBox>
-            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="20" Width="20" IsChecked="{Binding PitchOverwrite}"
+            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="32" Width="32" IsChecked="{Binding PitchOverwrite}"
                     ToolTip.Tip="{DynamicResource pianoroll.toggle.overwritepitch}">
               <Grid Width="18" Height="18">
                 <Path Classes="filled" Data="M 19.540126 3.1598821 C 19.330126 2.9498825 18.969979 2.9502481 18.759981 3.1602475 L 17.740128 4.1801 L 19.820028 6.2599998 L 20.840246 5.2500134 C 21.060246 5.0300138 21.060246 4.6700018 20.840246 4.4600022 L 19.540126 3.1598821 Z  M 17.149995 4.7702332 L 11.000186 10.920042 L 11.000186 12.999942 L 13.080086 12.999942 L 19.229895 6.8501331 L 17.149995 4.7702332 Z  M 19.879589 13.222841 L 17.879714 13.222475 L 17.879714 16.222471 L 14.879718 16.222471 L 14.879718 18.222712 L 17.879714 18.222712 L 17.879714 21.222708 L 19.879955 21.222708 L 19.879955 18.222712 L 22.879951 18.222712 L 22.879585 16.222837 L 19.879589 16.222837 L 19.879589 13.222841 Z  M 10.059992 11.260237 C 8.4999952 10.230239 6.499898 9.3198861 4.6399018 9.0498865 C 3.5799038 8.8898869 2.4599531 9.1097532 2.0999539 10.259751 C 1.7799545 11.249749 2.2898688 12.249906 2.8698676 13.029906 C 4.2398648 14.859902 6.369998 15.739794 7.9599948 17.31979 C 8.2999942 17.64979 8.7100549 18.040057 8.9100545 18.500057 C 9.1200541 18.940055 9.0701879 18.969971 8.6001889 18.969971 C 7.3601913 18.969971 5.8099483 17.999985 4.7999503 17.359985 L 3.7899638 19.059861 C 5.3199608 19.999859 7.8801301 21.469991 9.7501265 20.849993 C 11.530123 20.149993 11.139771 18.220057 10.239773 17.000059 C 9.349774 15.750061 8.1202131 14.889988 6.8802155 14.05999 C 6.0002173 13.49999 5.1901443 12.79982 4.5401455 11.999822 C 4.2601461 11.669822 3.6901105 11.059774 4.2701093 10.939774 C 4.8601081 10.819776 5.880071 11.399798 6.40007 11.619798 C 7.3100682 11.999798 8.2100072 12.440113 9.0500056 12.960113 L 10.059992 11.260237 Z" >
@@ -432,7 +444,7 @@
             </ToggleButton>
             <Border Width="12"/>
 
-            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="20" Width="20" IsChecked="{Binding NotesViewModel.ShowVibrato}"
+            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="32" Width="32" IsChecked="{Binding NotesViewModel.ShowVibrato}"
                           ToolTip.Tip="{DynamicResource pianoroll.toggle.vibrato}">
               <Grid Width="18" Height="18">
                 <Path Classes="stroked" Data="M-6.5 1 L-6 1.5 L-4.5 0 L-2 2.5 L0.5 0 L3 2.5 L6.5 -1 L6 -1.5 L4.5 0 L2 -2.5 L-0.5 0 L-3 -2.5 Z">
@@ -442,7 +454,7 @@
                 </Path>
               </Grid>
             </ToggleButton>
-            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="20" Width="20" IsChecked="{Binding NotesViewModel.ShowPitch}"
+            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="32" Width="32" IsChecked="{Binding NotesViewModel.ShowPitch}"
                           ToolTip.Tip="{DynamicResource pianoroll.toggle.pitch}">
               <Grid Width="18" Height="18">
                 <Ellipse Classes="stroked" Height="4" Width="4" Margin="2,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
@@ -450,13 +462,13 @@
                 <Path Classes="stroked" Data="M 6.5 11.5 L 8 11.5 L 8.5 11 L 9.5 7 L 10 6.5 L 11.5 6.5"/>
               </Grid>
             </ToggleButton>
-            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="20" Width="20" IsChecked="{Binding NotesViewModel.ShowFinalPitch}"
+            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="32" Width="32" IsChecked="{Binding NotesViewModel.ShowFinalPitch}"
                           ToolTip.Tip="{DynamicResource pianoroll.toggle.finalpitch}">
               <Grid Width="18" Height="18">
                 <Path Classes="stroked" Data="M 5.5 11.5 L 8 11.5 L 8.5 11 L 9.5 7 L 10 6.5 L 12.5 6.5"/>
               </Grid>
             </ToggleButton>
-            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="20" Width="20" IsChecked="{Binding NotesViewModel.ShowWaveform}"
+            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="32" Width="32" IsChecked="{Binding NotesViewModel.ShowWaveform}"
                           ToolTip.Tip="{DynamicResource pianoroll.toggle.waveform}">
               <Grid Width="18" Height="18">
                 <Path Classes="filled" Data="M22 12L20 13L19 14L18 13L17 16L16 13L15 21L14 13L13 15L12 13L11 17L10 13L9 22L8 13L7 19L6 13L5 14L4 13L2 12L4 11L5 10L6 11L7 5L8 11L9 2L10 11L11 7L12 11L13 9L14 11L15 3L16 11L17 8L18 11L19 10L20 11L22 12Z">
@@ -469,13 +481,13 @@
                 </Path>
               </Grid>
             </ToggleButton>
-            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="20" Width="20" IsChecked="{Binding NotesViewModel.ShowPhoneme}"
+            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="32" Width="32" IsChecked="{Binding NotesViewModel.ShowPhoneme}"
                           ToolTip.Tip="{DynamicResource pianoroll.toggle.phoneme}">
               <Grid Width="18" Height="18">
                 <Path Classes="stroked" Data="M 3 13 L 6 5.5 L 12 5.5 L 15 13"/>
               </Grid>
             </ToggleButton>
-            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="20" IsChecked="{Binding NotesViewModel.ShowExpressions}"
+            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="32" Width="32" IsChecked="{Binding NotesViewModel.ShowExpressions}"
                           ToolTip.Tip="{DynamicResource pianoroll.toggle.expressions}">
               <Grid Width="18" Height="18">
                 <Ellipse Classes="stroked" Height="4" Width="4" Margin="4,4,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
@@ -484,7 +496,7 @@
                 <Path Classes="stroked" Data="M 12 10 V 13.62"/>
               </Grid>
             </ToggleButton>
-            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="20" Width="20" IsChecked="{Binding ShowPhonemizerTags}"
+            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="32" Width="32" IsChecked="{Binding ShowPhonemizerTags}"
                           ToolTip.Tip="{DynamicResource pianoroll.toggle.phonemizer}">
               <Grid Width="18" Height="18">
                 <Path Classes="filled" Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z">
@@ -498,8 +510,8 @@
               </Grid>
             </ToggleButton>
             <Border Width="12"/>
-            
-            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="20" Width="20" IsChecked="{Binding NotesViewModel.PlayTone}"
+
+            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="32" Width="32" IsChecked="{Binding NotesViewModel.PlayTone}"
                           ToolTip.Tip="{DynamicResource pianoroll.toggle.tone}">
               <Grid Width="18" Height="18">
                 <Path Classes="filled" Data="M21,3V15.5A3.5,3.5 0 0,1 17.5,19A3.5,3.5 0 0,1 14,15.5A3.5,3.5 0 0,1 17.5,12C18.04,12 18.55,12.12 19,12.34V6.47L9,8.6V17.5A3.5,3.5 0 0,1 5.5,21A3.5,3.5 0 0,1 2,17.5A3.5,3.5 0 0,1 5.5,14C6.04,14 6.55,14.12 7,14.34V6L21,3Z" >
@@ -512,33 +524,33 @@
                 </Path>
               </Grid>
             </ToggleButton>
-            <ToggleButton Name="SnapToggle" Classes="toolbar" Margin="0" Padding="1" Height="20" IsChecked="{Binding NotesViewModel.IsSnapOn}"
+            <ToggleButton Name="SnapToggle" Classes="toolbar" Margin="0" Padding="1" Height="32" Width="32" IsChecked="{Binding NotesViewModel.IsSnapOn}"
                           ToolTip.Tip="{DynamicResource pianoroll.toggle.snap}">
               <Border Width="18" Height="18">
                 <Path Classes="stroked" Data="M 4.5 13.5 L 7.5 13.5 L 7.5 9.5 A 1,1 0 1 1 10.5,9.5 L 10.5 13.5 L 13.5 13.5 L 13.5 8.5 A 1,1 0 1 0 4.5,8.5 Z"/>
               </Border>
             </ToggleButton>
-            <Button Margin="0" Padding="0,1" Height="20" Width="40" Background="Transparent" Click="OnSnapDivMenuButton"
+            <Button Classes="material-text" Margin="0" Padding="4,1" Height="32" MinWidth="40" Width="44" Background="Transparent" Click="OnSnapDivMenuButton"
               ToolTip.Tip="{DynamicResource pianoroll.snapdiv}">
               <TextBlock Grid.Column="0" Text="{Binding NotesViewModel.SnapDivText}"
-                         TextAlignment="Right" FontSize="10" FontFamily="monospace"
+                         TextAlignment="Center" FontSize="12"
                          Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
               <Button.ContextMenu>
                 <ContextMenu Name="SnapDivMenu" Classes="WithCommand" Placement="BottomEdgeAlignedLeft"
                              ItemsSource="{Binding NotesViewModel.SnapDivs}" KeyDown="OnSnapDivKeyDown"/>
               </Button.ContextMenu>
             </Button>
-            <Button Margin="0" Padding="0,1" Height="20" Width="40" Background="Transparent" Click="OnKeyMenuButton"
+            <Button Classes="material-text" Margin="0" Padding="4,1" Height="32" MinWidth="40" Width="44" Background="Transparent" Click="OnKeyMenuButton"
               ToolTip.Tip="{DynamicResource pianoroll.key}">
               <TextBlock Grid.Column="0" Text="{Binding NotesViewModel.KeyText}"
-                          TextAlignment="Right" FontSize="10" FontFamily="monospace"
+                          TextAlignment="Center" FontSize="12"
                           Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
               <Button.ContextMenu>
                 <ContextMenu Name="KeyMenu" Classes="WithCommand" Placement="BottomEdgeAlignedLeft"
                              ItemsSource="{Binding NotesViewModel.Keys}" KeyDown="OnKeyKeyDown"/>
               </Button.ContextMenu>
             </Button>
-            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="20" Width="20" IsChecked="{Binding NotesViewModel.LivePitchNormal}"
+            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="32" Width="32" IsChecked="{Binding NotesViewModel.LivePitchNormal}"
                           IsVisible="{Binding NotesViewModel.IsDiffSinger}"
                           ToolTip.Tip="{DynamicResource pianoroll.toggle.livepitch.normal}">
               <Grid Width="18" Height="18">
@@ -552,7 +564,7 @@
                 </Path>
               </Grid>
             </ToggleButton>
-            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="20" Width="20" IsChecked="{Binding NotesViewModel.LivePitchFast}"
+            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="32" Width="32" IsChecked="{Binding NotesViewModel.LivePitchFast}"
                           IsVisible="{Binding NotesViewModel.IsDiffSinger}"
                           ToolTip.Tip="{DynamicResource pianoroll.toggle.livepitch.fast}">
               <Grid Width="18" Height="18">
@@ -567,7 +579,7 @@
               </Grid>
             </ToggleButton>
             <Border Width="12"/>
-            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="20" Width="20" IsChecked="{Binding NotesViewModel.MergeNearbyPhrases}"
+            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="32" Width="32" IsChecked="{Binding NotesViewModel.MergeNearbyPhrases}"
                           IsVisible="{Binding NotesViewModel.IsDiffSinger}"
                           ToolTip.Tip="{DynamicResource pianoroll.toggle.mergephrases}">
               <Grid Width="18" Height="18">
@@ -582,11 +594,12 @@
               </Grid>
             </ToggleButton>
           </StackPanel>
+          </ScrollViewer>
         </Border>
         <Border Grid.Column="3" Background="Transparent" DoubleTapped="OnHidePianoRoll"/>
-        <Border Grid.Column="4">
-          <StackPanel Orientation="Horizontal">
-            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="20" Width="20" IsChecked="{Binding NotesViewModel.ShowNoteParams}"
+        <Border Grid.Column="4" Classes="editor-toolbar" Padding="4">
+          <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="32" Width="32" IsChecked="{Binding NotesViewModel.ShowNoteParams}"
                           ToolTip.Tip="{DynamicResource pianoroll.toggle.noteparams}">
               <Grid Width="18" Height="18">
                 <Path Classes="filled" Data="M3,17V19H9V17H3M3,5V7H13V5H3M13,21V19H21V17H13V15H11V21H13M7,9V11H3V13H7V15H9V9H7M21,13V11H11V13H21M15,9H17V7H21V5H17V3H15V9Z">
@@ -601,7 +614,7 @@
             </ToggleButton>
             <!-- Hide PianoRoll Padding -->
             <Border IsVisible="{Binding HideMenuItemVisible}">
-              <Border Width="20" IsVisible="{Binding !NotesViewModel.ShowNoteParams}"/>
+              <Border Width="32"/>
             </Border>
           </StackPanel>
         </Border>
@@ -609,7 +622,7 @@
       <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"
                   Margin="12,12,12,70" Orientation="Horizontal">
         <Border>
-          <c:SearchBar Name="SearchBar"/>
+          <c:SearchBar Name="SearchBar" DataContext="{x:Null}"/>
         </Border>
       </StackPanel>
       <Rectangle Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
@@ -665,7 +678,7 @@
                           PointerPressed="ExpCanvasPointerPressed"
                           PointerMoved="ExpCanvasPointerMoved"
                           PointerReleased="ExpCanvasPointerReleased"/>
-      <ListBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Classes="toolbar" Padding="2"
+      <ListBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Classes="toolbar" Padding="4" Margin="8" CornerRadius="16"
                SelectedIndex="{Binding CurveViewModel.CurveToolIndex}" IsVisible="{Binding NotesViewModel.ShowCurveToolbar, Mode=OneWay}">
         <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
@@ -687,17 +700,18 @@
                  IsHitTestVisible="False" VerticalAlignment="Bottom" Margin="10,5"
                  IsVisible="{Binding NotesViewModel.PrimaryKeyNotSupported}"
                  Text="{DynamicResource tip.exps.notsupported}"/>
-      <Border Grid.Column="3" Grid.Row="0" Grid.RowSpan="6"
+      <Border Grid.Column="3" Grid.Row="1" Grid.RowSpan="6"
               IsEnabled="{Binding NotesViewModel.ShowNoteParams}"
               IsVisible="{Binding NotesViewModel.ShowNoteParams}"
-              Background="{DynamicResource SystemRegionBrush}" Padding="0">
+              Background="{DynamicResource MaterialSurfaceContainerBrush}" Padding="0"
+              BorderBrush="{DynamicResource MaterialOutlineVariantBrush}" BorderThickness="1,0,0,0">
         <c:NotePropertiesControl/>
       </Border>
 
       <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"
-              Classes="toolbar clear" Margin="2"
+              Classes="toolbar clear material-icon" Margin="10,10,10,0"
               HorizontalAlignment="Right" VerticalAlignment="Top"
-              Height="20" Width="20" Padding="1"
+              Height="32" Width="32" Padding="1"
               Click="OnHidePianoRoll"
               IsVisible="{Binding HideMenuItemVisible}"
               ToolTip.Tip="{DynamicResource pianoroll.toggle.hidepianoroll}">
@@ -707,40 +721,71 @@
       </Button>
 
       <Border Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-              BoxShadow="inset 0 0 5 1 #3F000000" ClipToBounds="True" IsHitTestVisible="False">
+              ClipToBounds="True">
         <Grid>
-          <Border Classes="tips" HorizontalAlignment="Center" VerticalAlignment="Center"
-                IsVisible="{Binding NotesViewModel.ShowTips}" BoxShadow="0 0 5 1 #3F000000">
-            <TextBlock Classes="tips" Grid.Column="0" Margin="10,5"
-                       Text="{DynamicResource tip.notes.basics}"/>
+          <Border Name="NoteHelpPanel" Classes="tips" IsHitTestVisible="True"
+                  MaxHeight="{Binding $parent.Bounds.Height}"
+                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                  IsVisible="{Binding NotesViewModel.ShowTips}">
+            <Grid ColumnDefinitions="*,Auto">
+              <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Disabled"
+                            VerticalScrollBarVisibility="Auto">
+                <TextBlock Classes="tips" Margin="10,5"
+                           Text="{DynamicResource tip.notes.basics}"/>
+              </ScrollViewer>
+              <Button Name="DismissNoteTipsButton" Grid.Column="1" Classes="material-icon"
+                      Width="28" Height="28" MinWidth="28" Margin="0" Padding="6"
+                      VerticalAlignment="Top" Focusable="True" Click="OnDismissTips"
+                      ToolTip.Tip="{DynamicResource pianoroll.menu.searchnote.close}"
+                      AutomationProperties.Name="{DynamicResource pianoroll.menu.searchnote.close}">
+                <Path Width="12" Height="12" Stretch="Uniform" IsHitTestVisible="False"
+                      Stroke="{DynamicResource MaterialOnSurfaceVariantBrush}" StrokeThickness="2"
+                      Data="M 1 1 L 11 11 M 11 1 L 1 11"/>
+              </Button>
+            </Grid>
           </Border>
           <Border Classes="tips" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0" Padding="4,4,4,2"
-                   IsVisible="{Binding NotesViewModel.ShowTips}" BoxShadow="0 0 5 1 #3F000000">
+                   IsVisible="{Binding NotesViewModel.ShowTips}">
             <TextBlock Classes="tips" Text="{DynamicResource tip.notes.zoomx}"/>
           </Border>
           <Border Classes="tips" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="4,4,4,2"
-                   IsVisible="{Binding NotesViewModel.ShowTips}" BoxShadow="0 0 5 1 #3F000000">
+                   IsVisible="{Binding NotesViewModel.ShowTips}">
             <TextBlock Classes="tips" Text="{DynamicResource tip.notes.zoomy}"/>
           </Border>
           <Border HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10,5"
-                IsVisible="{Binding NotesViewModel.PlayPosWaitingRendering}" Background="{DynamicResource BackgroundBrushSemi}">
+                IsHitTestVisible="False" IsVisible="{Binding NotesViewModel.PlayPosWaitingRendering}" Background="{DynamicResource BackgroundBrushSemi}">
             <TextBlock Text="{DynamicResource progress.waitingrendering}" FontSize="15"/>
           </Border>
         </Grid>
       </Border>
       <Grid Grid.Row="3" Grid.Column="1" RowDefinitions="1*,1*">
         <Border Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top"
-                BoxShadow="0 0 5 1 #3F000000">
+               >
           <c:LyricBox Name="LyricBox" Width="360" LostFocus="LyricBoxLostFocus"/>
         </Border>
       </Grid>
       <Border Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-              IsVisible="{Binding NotesViewModel.ShowExpressions}" BoxShadow="inset 0 0 5 1 #3F000000"
-              ClipToBounds="True" IsHitTestVisible="False">
-        <Border Classes="tips" HorizontalAlignment="Center" VerticalAlignment="Center"
-                IsVisible="{Binding NotesViewModel.ShowTips}" BoxShadow="0 0 5 1 #3F000000">
-          <TextBlock Classes="tips" Grid.Column="0" Margin="10,5"
-                     Text="{DynamicResource tip.exps}"/>
+              IsVisible="{Binding NotesViewModel.ShowExpressions}" ClipToBounds="True">
+        <Border Name="ExpressionHelpPanel" Classes="tips" IsHitTestVisible="True"
+                MaxHeight="{Binding $parent.Bounds.Height}"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                IsVisible="{Binding NotesViewModel.ShowTips}">
+          <Grid ColumnDefinitions="*,Auto">
+            <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto">
+              <TextBlock Classes="tips" Margin="10,5"
+                         Text="{DynamicResource tip.exps}"/>
+            </ScrollViewer>
+            <Button Name="DismissExpressionTipsButton" Grid.Column="1" Classes="material-icon"
+                    Width="28" Height="28" MinWidth="28" Margin="0" Padding="6"
+                    VerticalAlignment="Top" Focusable="True" Click="OnDismissTips"
+                    ToolTip.Tip="{DynamicResource pianoroll.menu.searchnote.close}"
+                    AutomationProperties.Name="{DynamicResource pianoroll.menu.searchnote.close}">
+              <Path Width="12" Height="12" Stretch="Uniform" IsHitTestVisible="False"
+                    Stroke="{DynamicResource MaterialOnSurfaceVariantBrush}" StrokeThickness="2"
+                    Data="M 1 1 L 11 11 M 11 1 L 1 11"/>
+            </Button>
+          </Grid>
         </Border>
       </Border>
       <Border Grid.Row="2" Grid.Column="2" Background="Transparent"
@@ -756,6 +801,24 @@
         </Border>
       </Canvas>
       <ProgressBar Grid.Row="6" Grid.ColumnSpan="4" Value="{Binding Progress}" IsVisible="{Binding PianoRollDetached}"/>
+      <Border Name="AutoTuningResultBanner" Grid.Row="3" Grid.Column="1"
+              Margin="16" Padding="16,12" CornerRadius="12" IsVisible="False"
+              VerticalAlignment="Bottom"
+              Background="{DynamicResource MaterialPrimaryContainerBrush}">
+        <Grid ColumnDefinitions="*,Auto">
+          <TextBlock Name="AutoTuningResultText" TextWrapping="Wrap" VerticalAlignment="Center"
+                     Foreground="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+          <Button Name="DismissAutoTuningResultButton" Grid.Column="1" Classes="material-icon"
+                  Width="32" Height="32" MinWidth="32" Margin="12,0,0,0" Padding="8"
+                  VerticalAlignment="Top" Click="OnDismissAutoTuningResult"
+                  ToolTip.Tip="{DynamicResource pianoroll.menu.searchnote.close}"
+                  AutomationProperties.Name="{DynamicResource pianoroll.menu.searchnote.close}">
+            <Path Width="12" Height="12" Stretch="Uniform" IsHitTestVisible="False"
+                  Stroke="{DynamicResource MaterialOnPrimaryContainerBrush}" StrokeThickness="2"
+                  Data="M 1 1 L 11 11 M 11 1 L 1 11"/>
+          </Button>
+        </Grid>
+      </Border>
     </Grid>
   </Border>
 </UserControl>

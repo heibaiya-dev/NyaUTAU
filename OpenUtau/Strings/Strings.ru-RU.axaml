@@ -1,4 +1,4 @@
-<!--DO NOT modify this file. It is managed autometically.-->
+﻿<!--DO NOT modify this file. It is managed autometically.-->
 <!--To contribute to OpenUtau's localization, visit https://crowdin.com/project/oxygen-dioxideopenutau -->
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -101,10 +101,10 @@
   <system:String x:Key="debug.copylog">Копировать лог</system:String>
   <system:String x:Key="debug.reverselogorder">Обратный порядок лога</system:String>
 
-  <system:String x:Key="dialogs.about.caption">Об OpenUtau</system:String>
+  <system:String x:Key="dialogs.about.caption">Об NyaUTAU</system:String>
   <system:String x:Key="dialogs.about.message">
-OpenUtau стремится стать средой редактирования с открытым исходным кодом для сообщества UTAU, с современным пользовательским интерфейсом и интеллектуальной фонологической поддержкой. Посетите нас на GitHub.</system:String>
-  <system:String x:Key="dialogs.exitsave.caption">Выход из OpenUtau</system:String>
+NyaUTAU стремится стать средой редактирования с открытым исходным кодом для сообщества UTAU, с современным пользовательским интерфейсом и интеллектуальной фонологической поддержкой. Посетите нас на GitHub.</system:String>
+  <system:String x:Key="dialogs.exitsave.caption">Выход из NyaUTAU</system:String>
   <system:String x:Key="dialogs.exitsave.message">Текущий проект содержит несохраненные изменения. Хотите сохранить изменения?</system:String>
   <system:String x:Key="dialogs.export.caption">Экспорт</system:String>
   <system:String x:Key="dialogs.export.savefirst">Сначала нужно сохранить проект</system:String>
@@ -125,7 +125,7 @@ OpenUtau стремится стать средой редактирования
   <system:String x:Key="dialogs.messagebox.copy">Копировать ошибку в буфер обмена</system:String>
   <system:String x:Key="dialogs.noresampler.caption">Нет ресамплера</system:String>
   <system:String x:Key="dialogs.noresampler.message">Нет ресамплера! Поместите нужный вам ресамплер (.exe или .dll) в папку Resamplers и выберите его в параметрах!</system:String>
-  <system:String x:Key="dialogs.recovery">Ранее OpenUtau завершил работу с ошибкой. Нажмите здесь, чтобы восстановиться.</system:String>
+  <system:String x:Key="dialogs.recovery">Ранее NyaUTAU завершил работу с ошибкой. Нажмите здесь, чтобы восстановиться.</system:String>
   <system:String x:Key="dialogs.recovery.caption">Восстановить проект</system:String>
   <system:String x:Key="dialogs.remaptimeaxis.message">Этот инструмент позволяет изменять темп проекта без изменения фактических позиций и длительностей (в секундах) нот.
   Новый BPM:</system:String>
@@ -186,7 +186,7 @@ OpenUtau стремится стать средой редактирования
   <system:String x:Key="errors.failed.loadprefs">Не удалось загрузить параметры. Пожалуйста, проведите инициализацию.</system:String>
   <system:String x:Key="errors.failed.openfile">Не удалось открыть</system:String>
   <system:String x:Key="errors.failed.openlocation">Не удалось открыть расположение</system:String>
-  <system:String x:Key="errors.failed.opennewerproject">Файл проекта устарел! Пожалуйста, обновите OpenUtau!</system:String>
+  <system:String x:Key="errors.failed.opennewerproject">Файл проекта устарел! Пожалуйста, обновите NyaUTAU!</system:String>
   <!--<system:String x:Key="errors.failed.prerender">Failed to render in the background.</system:String>-->
   <system:String x:Key="errors.failed.render">Рендер не удался.</system:String>
   <system:String x:Key="errors.failed.runeditingmacro">Не удалось запустить макрос редактирования</system:String>
@@ -313,7 +313,7 @@ OpenUtau стремится стать средой редактирования
   <system:String x:Key="menu.file.saveas">Сохранить как...</system:String>
   <system:String x:Key="menu.file.savetemplate">Сохранить шаблон...</system:String>
   <system:String x:Key="menu.help">Справка</system:String>
-  <system:String x:Key="menu.help.about">Об OpenUtau</system:String>
+  <system:String x:Key="menu.help.about">Об NyaUTAU</system:String>
   <system:String x:Key="menu.help.checkupdate">Проверить наличие обновлений</system:String>
   <system:String x:Key="menu.help.logslocation">Открыть расположение логов</system:String>
   <system:String x:Key="menu.help.reportissue">Сообщить об ошибке</system:String>
@@ -624,7 +624,7 @@ OpenUtau стремится стать средой редактирования
   <!--<system:String x:Key="prefs.diffsinger">DiffSinger</system:String>-->
   <system:String x:Key="prefs.editing">Редактирование</system:String>
   <system:String x:Key="prefs.general">Общее</system:String>
-  <system:String x:Key="prefs.note.restart">Примечание: пожалуйста, перезапустите OpenUtau после изменения этого пункта.</system:String>
+  <system:String x:Key="prefs.note.restart">Примечание: пожалуйста, перезапустите NyaUTAU после изменения этого пункта.</system:String>
   <system:String x:Key="prefs.otoeditor">Редактор Oto</system:String>
   <system:String x:Key="prefs.otoeditor.select">Редактор Oto по умолчанию</system:String>
   <system:String x:Key="prefs.otoeditor.setparampath">Путь к setParam</system:String>
@@ -670,9 +670,9 @@ OpenUtau стремится стать средой редактирования
   1. Для параметра "resampler-compatibility" установите значение "on" в moreconfig.txt.
   2. Для параметра "auto-update-llsm-mrq" установите значение "off" в moreconfig.txt.
   3. Терпеливо ждите, пока moresampler сгенерирует недостающие llsm файлы.</system:String>
-  <system:String x:Key="prefs.rendering.resampler.note">Примечание: для использования внешних ресамплеров, пожалуйста, переместите DLL или EXE ресамплера в папку Resamplers (где установлен OpenUtau) и выберите его в параметрах.</system:String>
+  <system:String x:Key="prefs.rendering.resampler.note">Примечание: для использования внешних ресамплеров, пожалуйста, переместите DLL или EXE ресамплера в папку Resamplers (где установлен NyaUTAU) и выберите его в параметрах.</system:String>
   <system:String x:Key="prefs.rendering.skipmuted">Пропускать отключенные треки</system:String>
-  <system:String x:Key="prefs.rendering.threads.cpuwarn">Предупреждение: слишком большое количество потоков рендеринга может привести к медленной работе OpenUtau.</system:String>
+  <system:String x:Key="prefs.rendering.threads.cpuwarn">Предупреждение: слишком большое количество потоков рендеринга может привести к медленной работе NyaUTAU.</system:String>
   <system:String x:Key="prefs.rendering.threads.numthreads">Максимальное количество потоков рендеринга</system:String>
   <system:String x:Key="prefs.rendering.wavtool">Вавтул</system:String>
   <!--<system:String x:Key="prefs.utau">UTAU</system:String>-->
@@ -855,7 +855,7 @@ OpenUtau стремится стать средой редактирования
   <system:String x:Key="updater.update">Обновить</system:String>
 
   <system:String x:Key="warning">Предупреждение</system:String>
-  <system:String x:Key="warning.asciipath">Ваш путь к OpenUtau ("{0}") содержит символы, не являющиеся символами ASCII. EXE-ресамплеры могут не работать.</system:String>
+  <system:String x:Key="warning.asciipath">Ваш путь к NyaUTAU ("{0}") содержит символы, не являющиеся символами ASCII. EXE-ресамплеры могут не работать.</system:String>
   <system:String x:Key="warning.renderer">Для этого типа рендера нет настроек.</system:String>
 
   <system:String x:Key="welcome.new">Новый</system:String>

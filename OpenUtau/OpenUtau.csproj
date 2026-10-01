@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
     <TargetFramework>net10.0-windows</TargetFramework>
   </PropertyGroup>
@@ -7,6 +7,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
+    <Product>NyaUTAU</Product>
+    <Title>NyaUTAU</Title>
     <SatelliteResourceLanguages>none</SatelliteResourceLanguages>
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -17,8 +19,8 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <CFBundleName>OpenUtau</CFBundleName>
-    <CFBundleDisplayName>OpenUtau</CFBundleDisplayName>
+    <CFBundleName>NyaUTAU</CFBundleName>
+    <CFBundleDisplayName>NyaUTAU</CFBundleDisplayName>
     <CFBundleIdentifier>com.stakira.openutau</CFBundleIdentifier>
     <CFBundleVersion>0.0.0</CFBundleVersion>
     <CFBundleShortVersionString>0.0.0</CFBundleShortVersionString>
@@ -32,7 +34,7 @@
         <array>
             <dict>
                 <key>CFBundleTypeName</key>
-                <string>OpenUtau Sequence File</string>
+                <string>NyaUTAU Sequence File</string>
                 <key>CFBundleTypeExtensions</key>
                 <array>
                     <string>ustx</string>

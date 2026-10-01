@@ -1,14 +1,18 @@
-<Window xmlns="https://github.com/avaloniaui"
+﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         x:Class="OpenUtau.App.Views.TypeInDialog"
         Icon="/Assets/open-utau.ico"
-        Title="TypeInDialog" Height="120" Width="320" WindowStartupLocation="CenterOwner">
-  <StackPanel VerticalAlignment="Center" Margin="{Binding $parent[Window].WindowDecorationMargin}">
-    <TextBlock Margin="20" Name="Prompt" IsVisible="False" TextWrapping="Wrap" MaxWidth="560"/>
-    <TextBox Name="TextBox" Margin="4"/>
-    <Button Name="OkButton" Content="OK" Margin="4" HorizontalAlignment="Stretch"/>
-  </StackPanel>
+        Title="TypeInDialog" SizeToContent="Height" Width="360" MinWidth="320" MinHeight="160"
+        Background="{DynamicResource MaterialSurfaceContainerBrush}" WindowStartupLocation="CenterOwner">
+  <Border Margin="{Binding $parent[Window].WindowDecorationMargin}" Padding="24">
+    <StackPanel VerticalAlignment="Center" Spacing="16">
+      <TextBlock Name="Prompt" IsVisible="False" TextWrapping="Wrap" FontSize="14" LineHeight="22"/>
+      <TextBox Name="TextBox" Height="44" Margin="0" Padding="12,8" VerticalContentAlignment="Center"/>
+      <Button Name="OkButton" Classes="material-primary" Content="{DynamicResource button.ok}"
+              MinWidth="80" HorizontalAlignment="Right"/>
+    </StackPanel>
+  </Border>
 </Window>

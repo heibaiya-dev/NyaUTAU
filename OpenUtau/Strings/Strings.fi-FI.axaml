@@ -1,4 +1,4 @@
-<!--DO NOT modify this file. It is managed autometically.-->
+﻿<!--DO NOT modify this file. It is managed autometically.-->
 <!--To contribute to OpenUtau's localization, visit https://crowdin.com/project/oxygen-dioxideopenutau -->
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -101,10 +101,10 @@
   <!--<system:String x:Key="debug.copylog">Copy Log</system:String>-->
   <!--<system:String x:Key="debug.reverselogorder">Reverse Log Order</system:String>-->
 
-  <system:String x:Key="dialogs.about.caption">OpenUtausta</system:String>
+  <system:String x:Key="dialogs.about.caption">NyaUTAUsta</system:String>
   <system:String x:Key="dialogs.about.message">
-OpenUtaun tavoitteena on olla avoimen lähdekoodin editointiympäristö UTAU-yhteisölle, jossa on moderni käyttökokemus ja älykäs foneettinen tuki. Vieraile Githubissa.</system:String>
-  <system:String x:Key="dialogs.exitsave.caption">Lopeta OpenUtau</system:String>
+NyaUTAUn tavoitteena on olla avoimen lähdekoodin editointiympäristö UTAU-yhteisölle, jossa on moderni käyttökokemus ja älykäs foneettinen tuki. Vieraile Githubissa.</system:String>
+  <system:String x:Key="dialogs.exitsave.caption">Lopeta NyaUTAU</system:String>
   <system:String x:Key="dialogs.exitsave.message">Tämänhetkinen projekti sisältää tallentamattomia muutoksia. Haluatko tallentaa muutokset?</system:String>
   <system:String x:Key="dialogs.export.caption">Vie</system:String>
   <system:String x:Key="dialogs.export.savefirst">Muistathan tallentaa</system:String>
@@ -288,7 +288,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="menu.edit.selectall">Valitse kaikki</system:String>
   <system:String x:Key="menu.edit.undo">Kumoa</system:String>
   <system:String x:Key="menu.file">Tiedosto</system:String>
-  <system:String x:Key="menu.file.exit">Lopeta OpenUtau</system:String>
+  <system:String x:Key="menu.file.exit">Lopeta NyaUTAU</system:String>
   <!--<system:String x:Key="menu.file.exportaudio">Export Audio</system:String>-->
   <!--<system:String x:Key="menu.file.exportds">Export DiffSinger Scripts To</system:String>-->
   <!--<system:String x:Key="menu.file.exportmidi">Export Midi File</system:String>-->
@@ -314,7 +314,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="menu.file.saveas">Tallenna nimellä...</system:String>
   <system:String x:Key="menu.file.savetemplate">Tallenna malli...</system:String>
   <system:String x:Key="menu.help">Apua</system:String>
-  <system:String x:Key="menu.help.about">Tietoa OpenUtausta</system:String>
+  <system:String x:Key="menu.help.about">Tietoa NyaUTAUsta</system:String>
   <!--<system:String x:Key="menu.help.checkupdate">Check Update</system:String>-->
   <!--<system:String x:Key="menu.help.logslocation">Open Logs Location</system:String>-->
   <!--<system:String x:Key="menu.help.reportissue">Report Issue</system:String>-->
@@ -625,7 +625,7 @@ Warning: this option removes custom presets.</system:String>-->
   <!--<system:String x:Key="prefs.diffsinger">DiffSinger</system:String>-->
   <!--<system:String x:Key="prefs.editing">Editing</system:String>-->
   <!--<system:String x:Key="prefs.general">General</system:String>-->
-  <system:String x:Key="prefs.note.restart">HUOM: Käynnistäthän OpenUtau uudelleen muutettuasi tätä asetusta.</system:String>
+  <system:String x:Key="prefs.note.restart">HUOM: Käynnistäthän NyaUTAU uudelleen muutettuasi tätä asetusta.</system:String>
   <!--<system:String x:Key="prefs.otoeditor">Oto Editor</system:String>-->
   <!--<system:String x:Key="prefs.otoeditor.select">Default Oto Editor</system:String>-->
   <!--<system:String x:Key="prefs.otoeditor.setparampath">setParam Path</system:String>-->
@@ -671,7 +671,7 @@ Warning: this option removes custom presets.</system:String>-->
   1. Set "resampler-compatibility" to "on" in moreconfig.txt.
   2. Set "auto-update-llsm-mrq" to "off" in moreconfig.txt.
   3. Patiently wait for moresampler to generate missing llsm files.</system:String>-->
-  <system:String x:Key="prefs.rendering.resampler.note">HUOM: Jos haluat käyttää ulkoisia resamplereita, lisää resampler DLL tai EXE-tiedosto Resamplers-kansioon, joka sijaitsee OpenUtaun polulla ja valitse se asetuksista.</system:String>
+  <system:String x:Key="prefs.rendering.resampler.note">HUOM: Jos haluat käyttää ulkoisia resamplereita, lisää resampler DLL tai EXE-tiedosto Resamplers-kansioon, joka sijaitsee NyaUTAUn polulla ja valitse se asetuksista.</system:String>
   <!--<system:String x:Key="prefs.rendering.skipmuted">Skip muted tracks</system:String>-->
   <!--<system:String x:Key="prefs.rendering.threads.cpuwarn">Warning: too many render threads may cause OpenUtau to run slowly.</system:String>-->
   <!--<system:String x:Key="prefs.rendering.threads.numthreads">Maximum Render Threads</system:String>-->
@@ -857,7 +857,7 @@ Yleiset
   <!--<system:String x:Key="updater.update">Update</system:String>-->
 
   <system:String x:Key="warning">Varoitus</system:String>
-  <system:String x:Key="warning.asciipath">OpenUtau -kotihakemistossasi "{0}" sisältää ei-ASCII merkkejä. Exe resampler ei välttämättä toimi.</system:String>
+  <system:String x:Key="warning.asciipath">NyaUTAU -kotihakemistossasi "{0}" sisältää ei-ASCII merkkejä. Exe resampler ei välttämättä toimi.</system:String>
   <!--<system:String x:Key="warning.renderer">No settings for this renderer.</system:String>-->
 
   <!--<system:String x:Key="welcome.new">New</system:String>-->

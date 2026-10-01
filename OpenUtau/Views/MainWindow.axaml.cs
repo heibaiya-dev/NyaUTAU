@@ -66,7 +66,8 @@ namespace OpenUtau.App.Views {
             // Set before InitializeComponent, so bindings to the window's view model resolve on first evaluation.
             DataContext = viewModel = new MainWindowViewModel {
                 // give the viewmodel a way to prompt/save using the view's existing method
-                AskIfSaveAndContinue = AskIfSaveAndContinue
+                AskIfSaveAndContinue = AskIfSaveAndContinue,
+                ConfirmUstxConversion = ConfirmUstxConversion
             };
             InitializeComponent();
             Log.Information("Initialized main window component.");
@@ -123,8 +124,12 @@ namespace OpenUtau.App.Views {
             this.Cursor = null;
         }
 
-        public void InitProject() {
-            viewModel.InitProject(this);
+        public void InitProject(string[]? startupArgs = null) {
+            viewModel.InitProject(this, startupArgs);
+        }
+
+        void OnQuickStartComplete(object sender, RoutedEventArgs args) {
+            viewModel.CompleteQuickStart(this);
         }
 
         void OnEditTimeSignature(object sender, PointerPressedEventArgs args) {
@@ -302,9 +307,32 @@ namespace OpenUtau.App.Views {
             try {
                 viewModel.OpenProject(files);
                 viewModel.Page = 1;
+            } catch (UstxVersionException e) {
+                await RecoverUstxProject(e);
             } catch (Exception e) {
                 Log.Error(e, $"Failed to open files {string.Join("\n", files)}");
                 _ = await MessageBox.ShowError(this, new MessageCustomizableException($"Failed to open files {string.Join("\n", files)}", $"<translate:errors.failed.openfile>:\n{string.Join("\n", files)}", e));
+            }
+        }
+
+        async Task<bool> ConfirmUstxConversion(UstxVersionException exception) {
+            var message = string.Format(ThemeManager.GetString("dialogs.ustxversion.message"),
+                exception.FileVersion, exception.SupportedVersion, exception.FilePath);
+            var result = await MessageBox.Show(this, message,
+                ThemeManager.GetString("dialogs.ustxversion.caption"),
+                MessageBox.MessageBoxButtons.OkCancel,
+                primaryButtonText: ThemeManager.GetString("dialogs.ustxversion.convert"));
+            return result == MessageBox.MessageBoxResult.Ok;
+        }
+
+        async Task RecoverUstxProject(UstxVersionException exception) {
+            try {
+                await viewModel.TryRecoverUstxProject(exception);
+            } catch (Exception e) {
+                Log.Error(e, "Failed to convert and open USTX project {File}", exception.FilePath);
+                var message = string.Format(ThemeManager.GetString("dialogs.ustxversion.failed"),
+                    exception.FilePath, e.Message);
+                await MessageBox.ShowError(this, new InvalidDataException(message, e), message);
             }
         }
 
@@ -884,6 +912,15 @@ namespace OpenUtau.App.Views {
         }
 
         void OnKeyDown(object sender, KeyEventArgs args) {
+            if (viewModel.ShowQuickStart) {
+                if (args.Key == Key.Escape) {
+                    viewModel.CompleteQuickStart(this);
+                    args.Handled = true;
+                } else if (args.Key == Key.F11) {
+                    GlobalHotkey(args);
+                }
+                return;
+            }
             if (PianoRollContainer.IsKeyboardFocusWithin) {
                 args.Handled = false;
                 return;
@@ -1051,6 +1088,9 @@ namespace OpenUtau.App.Views {
             string FirstExt = Path.GetExtension(supportedFiles[0]).ToLower();
             //If multiple project/audio files are dropped, open/import them all.
             if (ProjectExts.Contains(FirstExt) || AudioExts.Contains(FirstExt)) {
+                if (viewModel.ShowQuickStart) {
+                    viewModel.CompleteQuickStart(this);
+                }
                 var projectFiles = supportedFiles.Where(file => ProjectExts.Contains(Path.GetExtension(file).ToLower())).ToArray();
                 viewModel.Page = 1;
                 if (projectFiles.Length > 0) {
@@ -1768,9 +1808,16 @@ namespace OpenUtau.App.Views {
             }
         }
 
-        public void OnWelcomeRecovery(object sender, RoutedEventArgs args) {
-            viewModel.OpenProject(new string[] { viewModel.RecoveryPath });
-            viewModel.Page = 1;
+        public async void OnWelcomeRecovery(object sender, RoutedEventArgs args) {
+            try {
+                viewModel.OpenProject(new[] { viewModel.RecoveryPath });
+                viewModel.Page = 1;
+            } catch (UstxVersionException e) {
+                await RecoverUstxProject(e);
+            } catch (Exception e) {
+                Log.Error(e, "Failed to open recovery project {File}", viewModel.RecoveryPath);
+                await MessageBox.ShowError(this, e);
+            }
         }
 
         void MergePart(UPart part) {
@@ -2075,6 +2122,9 @@ namespace OpenUtau.App.Views {
         public void OnNext(UCommand cmd, bool isUndo) {
             if (cmd is ErrorMessageNotification notif) {
                 switch (notif.e) {
+                    case UstxVersionException versionError:
+                        _ = RecoverUstxProject(versionError);
+                        break;
                     case Core.Render.NoResamplerException:
                     case Core.Render.NoWavtoolException:
                         MessageBox.Show(

@@ -1,4 +1,4 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui"
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <SolidColorBrush x:Key="SystemRegionBrush"
                    Color="{DynamicResource BackgroundColor}"/>
@@ -149,4 +149,15 @@
   </LinearGradientBrush >
   <SolidColorBrush x:Key="BlackKeyNameBrush"
                    Color="{DynamicResource BlackKeyNameColor}"/>
+  <!-- Material roles reuse the theme palette, including installed custom themes. -->
+  <SolidColorBrush x:Key="MaterialSurfaceBrush" Color="{DynamicResource BackgroundColor}"/>
+  <SolidColorBrush x:Key="MaterialSurfaceContainerBrush" Color="{DynamicResource TrackBackgroundAltColor}"/>
+  <SolidColorBrush x:Key="MaterialSurfaceContainerHighBrush" Color="{DynamicResource BackgroundColorPointerOver}"/>
+  <SolidColorBrush x:Key="MaterialPrimaryBrush" Color="{DynamicResource AccentColor1}"/>
+  <Color x:Key="MaterialOnPrimaryColor">#FFFFFF</Color>
+  <SolidColorBrush x:Key="MaterialOnPrimaryBrush" Color="{DynamicResource MaterialOnPrimaryColor}"/>
+  <SolidColorBrush x:Key="MaterialPrimaryContainerBrush" Color="{DynamicResource BackgroundColorPressed}"/>
+  <SolidColorBrush x:Key="MaterialOnPrimaryContainerBrush" Color="{DynamicResource ForegroundColor}"/>
+  <SolidColorBrush x:Key="MaterialOnSurfaceVariantBrush" Color="{DynamicResource ForegroundColorPressed}"/>
+  <SolidColorBrush x:Key="MaterialOutlineVariantBrush" Color="{DynamicResource BorderColor}"/>
 </ResourceDictionary>

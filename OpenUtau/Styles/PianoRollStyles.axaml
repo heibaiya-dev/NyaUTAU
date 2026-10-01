@@ -32,9 +32,53 @@
     <Setter Property="Background" Value="{DynamicResource SelectedTrackAccentLightBrushSemi}"/>
   </Style>
 
+  <Style Selector="Border.editor-toolbar">
+    <Setter Property="Background" Value="{DynamicResource MaterialSurfaceContainerBrush}"/>
+    <Setter Property="CornerRadius" Value="16"/>
+  </Style>
+
+  <Style Selector="Menu.editor-menu > MenuItem">
+    <Setter Property="Height" Value="32"/>
+    <Setter Property="Padding" Value="10,4"/>
+    <Setter Property="CornerRadius" Value="16"/>
+  </Style>
+
+  <Style Selector="ScrollViewer.editor-tools /template/ ScrollBar:horizontal">
+    <Setter Property="Height" Value="6"/>
+    <Setter Property="MinHeight" Value="6"/>
+  </Style>
+
+  <Style Selector="ToggleButton.toolbar">
+    <Setter Property="CornerRadius" Value="16"/>
+    <Setter Property="MinWidth" Value="32"/>
+    <Setter Property="MinHeight" Value="32"/>
+    <Setter Property="Background" Value="Transparent"/>
+  </Style>
+
+  <Style Selector="ToggleButton.toolbar:checked /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}"/>
+  </Style>
+
+  <Style Selector="ToggleButton.toolbar:checked Path.filled">
+    <Setter Property="Fill" Value="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+  </Style>
+
+  <Style Selector="ToggleButton.toolbar:checked Path.stroked, ToggleButton.toolbar:checked Ellipse.stroked">
+    <Setter Property="Stroke" Value="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+  </Style>
+
+  <Style Selector="Border.tips">
+    <Setter Property="Background" Value="{DynamicResource MaterialSurfaceContainerHighBrush}"/>
+    <Setter Property="CornerRadius" Value="12"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialOutlineVariantBrush}"/>
+  </Style>
+
   <Style Selector="ListBox.toolbar">
     <Setter Property="FontSize" Value="12"/>
-    <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAltHighBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MaterialSurfaceContainerBrush}"/>
+    <Setter Property="CornerRadius" Value="16"/>
+    <Setter Property="Padding" Value="0"/>
   </Style>
 
   <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
@@ -43,27 +87,35 @@
 
   <Style Selector="ListBoxItem.toolbar">
     <Setter Property="BorderThickness" Value="0"/>
-    <Setter Property="MinHeight" Value="20"/>
-    <Setter Property="Height" Value="20"/>
-    <Setter Property="Width" Value="20"/>
-    <Setter Property="Padding" Value="1"/>
-    <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAltHighBrush}" />
+    <Setter Property="MinHeight" Value="32"/>
+    <Setter Property="Height" Value="32"/>
+    <Setter Property="Width" Value="32"/>
+    <Setter Property="Padding" Value="4"/>
+    <Setter Property="CornerRadius" Value="16"/>
+    <Setter Property="Background" Value="Transparent"/>
     <Setter Property="ContextFlyout" Value="{Binding $self.(FlyoutBase.AttachedFlyout)}" />
 
     <Style Selector="^:pointerover /template/ Border#PART_LayoutRoot">
-        <Setter Property="Background" Value="{DynamicResource NeutralAccentBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource MaterialSurfaceContainerHighBrush}"/>
     </Style>
     <Style Selector="^:pressed /template/ Border#PART_LayoutRoot">
-        <Setter Property="Background" Value="{DynamicResource NeutralAccentBrushPointerOver}"/>
+        <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}"/>
     </Style>
     <Style Selector="^:selected /template/ Border#PART_LayoutRoot">
-        <Setter Property="Background" Value="{DynamicResource NeutralAccentBrushSemi}"/>
+        <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}"/>
     </Style>
     <Style Selector="^:selected:pointerover /template/ Border#PART_LayoutRoot">
-        <Setter Property="Background" Value="{DynamicResource NeutralAccentBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}"/>
     </Style>
     <Style Selector="^:selected:pressed /template/ Border#PART_LayoutRoot">
-        <Setter Property="Background" Value="{DynamicResource NeutralAccentBrushPointerOver}"/>
+        <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}"/>
+    </Style>
+    <Style Selector="^:selected /template/ Path.filled">
+        <Setter Property="Fill" Value="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+    </Style>
+    <Style Selector="^:focus-visible /template/ Border#PART_LayoutRoot">
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush1}"/>
     </Style>
     <Style Selector="^.hasSubTool /template/ Path#PART_SubToolArrow">
         <Setter Property="Opacity" Value="0.7" />
@@ -88,7 +140,8 @@
         <Border Name="PART_LayoutRoot"
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
-                BorderThickness="{TemplateBinding BorderThickness}">
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}">
           <Grid Width="18" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Path Name="PART_ToolIcon" Classes="filled">
               <Path.RenderTransform>
@@ -98,10 +151,10 @@
                 </TransformGroup>
               </Path.RenderTransform>
             </Path>
-            <Path Name="PART_SubToolArrow" 
-                Data="M 0,4 L 4,4 L 4,0 Z" 
+            <Path Name="PART_SubToolArrow"
+                Data="M 0,4 L 4,4 L 4,0 Z"
                 Classes="filled"
-                HorizontalAlignment="Right" 
+                HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 Margin="0,0,-1,-1"
                 Opacity="0">

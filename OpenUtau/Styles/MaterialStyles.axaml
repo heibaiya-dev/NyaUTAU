@@ -1,0 +1,166 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <!-- Material 3 for a desktop music workspace: tonal surfaces, pill actions, and
+       visible state layers. Existing compact editor measurements remain local. -->
+  <Style Selector="Window">
+    <Setter Property="Background" Value="{DynamicResource MaterialSurfaceBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+  </Style>
+  <Style Selector="Button, ToggleButton, RepeatButton">
+    <Setter Property="CornerRadius" Value="20"/>
+    <Setter Property="Background" Value="{DynamicResource MaterialSurfaceContainerHighBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+    <Setter Property="BorderBrush" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="0"/>
+  </Style>
+  <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter, ToggleButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+  </Style>
+  <Style Selector="Button:pressed /template/ ContentPresenter#PART_ContentPresenter, ToggleButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}"/>
+    <Setter Property="Opacity" Value="0.8"/>
+  </Style>
+  <Style Selector="Button:focus-visible, ToggleButton:focus-visible, ComboBox:focus-visible">
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialPrimaryBrush}"/>
+    <Setter Property="BorderThickness" Value="2"/>
+  </Style>
+  <Style Selector="Button:disabled /template/ ContentPresenter#PART_ContentPresenter, ToggleButton:disabled /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource MaterialSurfaceContainerBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrushDisabled}"/>
+    <Setter Property="Opacity" Value="0.55"/>
+  </Style>
+
+  <!-- Explicit action roles are spacious; legacy fixed-height editor rows stay compact. -->
+  <Style Selector="Button.material-primary, Button.material-tonal, Button.material-outlined, Button.material-text">
+    <Setter Property="Height" Value="40"/>
+    <Setter Property="MinWidth" Value="64"/>
+    <Setter Property="Padding" Value="20,0"/>
+    <Setter Property="FontSize" Value="14"/>
+    <Setter Property="FontWeight" Value="Medium"/>
+    <Setter Property="Margin" Value="0"/>
+    <Setter Property="CornerRadius" Value="20"/>
+  </Style>
+  <Style Selector="Button.material-primary">
+    <Setter Property="Background" Value="{DynamicResource MaterialPrimaryBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource MaterialOnPrimaryBrush}"/>
+  </Style>
+  <Style Selector="Button.material-primary:pointerover /template/ ContentPresenter#PART_ContentPresenter, Button.material-primary:pressed /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource MaterialPrimaryBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource MaterialOnPrimaryBrush}"/>
+    <Setter Property="Opacity" Value="0.88"/>
+  </Style>
+  <Style Selector="Button.material-tonal">
+    <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+  </Style>
+  <Style Selector="Button.material-outlined">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Foreground" Value="{DynamicResource MaterialPrimaryBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialOutlineVariantBrush}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+  </Style>
+  <Style Selector="Button.material-text, Button.material-icon">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Foreground" Value="{DynamicResource MaterialPrimaryBrush}"/>
+  </Style>
+  <Style Selector="Button.material-icon">
+    <Setter Property="Width" Value="40"/>
+    <Setter Property="Height" Value="40"/>
+    <Setter Property="Padding" Value="8"/>
+    <Setter Property="Margin" Value="0"/>
+  </Style>
+  <Style Selector="Button.material-primary:focus-visible">
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialOnPrimaryBrush}"/>
+  </Style>
+  <Style Selector="ToggleButton.normal:checked /template/ ContentPresenter#PART_ContentPresenter, ToggleButton.toolbar:checked /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+  </Style>
+
+  <Style Selector="TextBox">
+    <Setter Property="CornerRadius" Value="4,4,0,0"/>
+    <Setter Property="Background" Value="{DynamicResource MaterialSurfaceContainerHighBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialOnSurfaceVariantBrush}"/>
+    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+    <Setter Property="SelectionBrush" Value="{DynamicResource MaterialPrimaryContainerBrush}"/>
+    <Setter Property="SelectionForegroundBrush" Value="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+  </Style>
+  <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialPrimaryBrush}"/>
+    <Setter Property="BorderThickness" Value="0,0,0,2"/>
+  </Style>
+  <Style Selector="ComboBox, NumericUpDown">
+    <Setter Property="CornerRadius" Value="8"/>
+    <Setter Property="Background" Value="{DynamicResource MaterialSurfaceContainerHighBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialOutlineVariantBrush}"/>
+  </Style>
+  <Style Selector="ComboBoxItem, ListBoxItem">
+    <Setter Property="CornerRadius" Value="8"/>
+  </Style>
+  <Style Selector="ListBox">
+    <Setter Property="Background" Value="Transparent"/>
+  </Style>
+  <Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter, ComboBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+  </Style>
+  <Style Selector="Menu">
+    <Setter Property="Height" Value="36"/>
+    <Setter Property="Background" Value="Transparent"/>
+  </Style>
+  <Style Selector="MenuItem">
+    <Setter Property="Height" Value="32"/>
+    <Setter Property="FontSize" Value="13"/>
+    <Setter Property="Padding" Value="12,4"/>
+    <Setter Property="CornerRadius" Value="8"/>
+  </Style>
+  <Style Selector="ContextMenu MenuItem">
+    <Setter Property="FontSize" Value="13"/>
+    <Setter Property="Padding" Value="12,4"/>
+  </Style>
+  <Style Selector="ContextMenu, MenuFlyoutPresenter">
+    <Setter Property="Background" Value="{DynamicResource MaterialSurfaceContainerBrush}"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="CornerRadius" Value="12"/>
+    <Setter Property="Padding" Value="4"/>
+  </Style>
+  <Style Selector="FlyoutPresenter">
+    <Setter Property="Background" Value="{DynamicResource MaterialSurfaceContainerBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialOutlineVariantBrush}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="CornerRadius" Value="16"/>
+    <Setter Property="Padding" Value="12"/>
+  </Style>
+  <Style Selector="ToolTip">
+    <Setter Property="Background" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource MaterialSurfaceBrush}"/>
+    <Setter Property="CornerRadius" Value="8"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="Padding" Value="12,8"/>
+  </Style>
+  <Style Selector="TabItem">
+    <Setter Property="Padding" Value="16,10"/>
+    <Setter Property="FontSize" Value="13"/>
+  </Style>
+  <Style Selector="TabItem:selected">
+    <Setter Property="Foreground" Value="{DynamicResource MaterialPrimaryBrush}"/>
+  </Style>
+  <Style Selector="ProgressBar">
+    <Setter Property="CornerRadius" Value="3"/>
+    <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource MaterialPrimaryBrush}"/>
+  </Style>
+  <Style Selector="Border.tips">
+    <Setter Property="CornerRadius" Value="8"/>
+    <Setter Property="Background" Value="{DynamicResource MaterialSurfaceContainerHighBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialOutlineVariantBrush}"/>
+    <Setter Property="Padding" Value="8,4"/>
+  </Style>
+  <Style Selector="HeaderedContentControl.groupbox">
+    <Setter Property="Background" Value="{DynamicResource MaterialSurfaceBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource MaterialOutlineVariantBrush}"/>
+  </Style>
+</Styles>

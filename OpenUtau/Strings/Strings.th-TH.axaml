@@ -1,4 +1,4 @@
-<!--DO NOT modify this file. It is managed autometically.-->
+﻿<!--DO NOT modify this file. It is managed autometically.-->
 <!--To contribute to OpenUtau's localization, visit https://crowdin.com/project/oxygen-dioxideopenutau -->
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -101,10 +101,10 @@
   <system:String x:Key="debug.copylog">บันทึกการคัดลอก</system:String>
   <system:String x:Key="debug.reverselogorder">ย้อนกลับไปยังบันทึกคำสั่งเดิม</system:String>
 
-  <system:String x:Key="dialogs.about.caption">เกี่ยวกับ OpenUTAU</system:String>
+  <system:String x:Key="dialogs.about.caption">เกี่ยวกับ NyaUTAU</system:String>
   <system:String x:Key="dialogs.about.message">
-OpenUtau มีเป้าหมายที่จะเป็นฐานข้อมูลแบบเปิดสำหรับชุมชนเสียงสังเคราะห์ UTAU ซึ่งทุกคนสามารถแก้ไขเขียนโค้ดโปรแกรมได้ ทำให้ได้รับประสบการณ์การใช้งานที่ทันสมัย และการออกเสียงที่เป็นอัจฉริยะมากยิ่งขึ้น เยี่ยมชมเราได้บน Github.</system:String>
-  <system:String x:Key="dialogs.exitsave.caption">ออกจาก OpenUtau</system:String>
+NyaUTAU มีเป้าหมายที่จะเป็นฐานข้อมูลแบบเปิดสำหรับชุมชนเสียงสังเคราะห์ UTAU ซึ่งทุกคนสามารถแก้ไขเขียนโค้ดโปรแกรมได้ ทำให้ได้รับประสบการณ์การใช้งานที่ทันสมัย และการออกเสียงที่เป็นอัจฉริยะมากยิ่งขึ้น เยี่ยมชมเราได้บน Github.</system:String>
+  <system:String x:Key="dialogs.exitsave.caption">ออกจาก NyaUTAU</system:String>
   <system:String x:Key="dialogs.exitsave.message">โปรเจกต์ปัจจุบันยังไม่มีการบันทึกการเปลี่ยนแปลง คุณต้องการบันทึกหรือไม่?</system:String>
   <system:String x:Key="dialogs.export.caption">ส่งออก</system:String>
   <system:String x:Key="dialogs.export.savefirst">บันทึกไฟล์โปรเจกต์ก่อน</system:String>
@@ -315,7 +315,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="menu.file.saveas">บันทึกเป็น...</system:String>
   <system:String x:Key="menu.file.savetemplate">บันทึกเทมเพลต...</system:String>
   <system:String x:Key="menu.help">ช่วยเหลือ</system:String>
-  <system:String x:Key="menu.help.about">เกี่ยวกับ OpenUtau</system:String>
+  <system:String x:Key="menu.help.about">เกี่ยวกับ NyaUTAU</system:String>
   <!--<system:String x:Key="menu.help.checkupdate">Check Update</system:String>-->
   <!--<system:String x:Key="menu.help.logslocation">Open Logs Location</system:String>-->
   <!--<system:String x:Key="menu.help.reportissue">Report Issue</system:String>-->
@@ -626,7 +626,7 @@ Syntax: prefix,suffix</system:String>-->
   <!--<system:String x:Key="prefs.diffsinger">DiffSinger</system:String>-->
   <!--<system:String x:Key="prefs.editing">Editing</system:String>-->
   <!--<system:String x:Key="prefs.general">General</system:String>-->
-  <system:String x:Key="prefs.note.restart">หมายเหตุ: โปรดรีสตาร์ท OpenUtau หลังจากเปลี่ยนรายการนี้</system:String>
+  <system:String x:Key="prefs.note.restart">หมายเหตุ: โปรดรีสตาร์ท NyaUTAU หลังจากเปลี่ยนรายการนี้</system:String>
   <!--<system:String x:Key="prefs.otoeditor">Oto Editor</system:String>-->
   <!--<system:String x:Key="prefs.otoeditor.select">Default Oto Editor</system:String>-->
   <!--<system:String x:Key="prefs.otoeditor.setparampath">setParam Path</system:String>-->
@@ -672,7 +672,7 @@ Syntax: prefix,suffix</system:String>-->
   1. Set "resampler-compatibility" to "on" in moreconfig.txt.
   2. Set "auto-update-llsm-mrq" to "off" in moreconfig.txt.
   3. Patiently wait for moresampler to generate missing llsm files.</system:String>-->
-  <system:String x:Key="prefs.rendering.resampler.note">หมายเหตุ: หากต้องการใช้  resampler นอกเหนือจากโปรแกรมโปรดเพิ่มไฟล์ DLL หรือ EXE ใน Resamplers folder ในเส้นทางการติดตั้ง OpenUtau และเลือก resampler  ได้ในการตั้งค่า</system:String>
+  <system:String x:Key="prefs.rendering.resampler.note">หมายเหตุ: หากต้องการใช้  resampler นอกเหนือจากโปรแกรมโปรดเพิ่มไฟล์ DLL หรือ EXE ใน Resamplers folder ในเส้นทางการติดตั้ง NyaUTAU และเลือก resampler  ได้ในการตั้งค่า</system:String>
   <!--<system:String x:Key="prefs.rendering.skipmuted">Skip muted tracks</system:String>-->
   <!--<system:String x:Key="prefs.rendering.threads.cpuwarn">Warning: too many render threads may cause OpenUtau to run slowly.</system:String>-->
   <!--<system:String x:Key="prefs.rendering.threads.numthreads">Maximum Render Threads</system:String>-->
@@ -858,7 +858,7 @@ Curve Type
   <system:String x:Key="updater.update">อัปเดต</system:String>
 
   <system:String x:Key="warning">คำเตือน</system:String>
-  <system:String x:Key="warning.asciipath">เส้นทางหลัก OpenUtau ของคุณ "{0}" ประกอบด้วยอักขระที่ไม่ใช่ ASCII. Exe resamplers โปรแกรมอาจไม่ทำงาน</system:String>
+  <system:String x:Key="warning.asciipath">เส้นทางหลัก NyaUTAU ของคุณ "{0}" ประกอบด้วยอักขระที่ไม่ใช่ ASCII. Exe resamplers โปรแกรมอาจไม่ทำงาน</system:String>
   <!--<system:String x:Key="warning.renderer">No settings for this renderer.</system:String>-->
 
   <!--<system:String x:Key="welcome.new">New</system:String>-->

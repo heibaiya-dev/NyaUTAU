@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Avalonia;
@@ -17,7 +17,7 @@ namespace OpenUtau.App.Controls {
         const int MinRows = 3;
         const double WheelStep = 60;
         // Flyout presenter padding and border plus the search box and footer rows, around the tile grid.
-        const double ChromeHeight = 78;
+        const double ChromeHeight = 102;
         // Flyout presenter padding and border left and right of the tile grid.
         const double ChromeWidth = 20;
         // Hover scroll speed in px/s, from the inner to the outer edge of a grabber.

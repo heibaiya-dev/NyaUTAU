@@ -4,8 +4,8 @@
         xmlns:notif="using:Avalonia.Controls.Notifications">
     <Style>
     <Style.Resources>
-      <CornerRadius x:Key="ControlCornerRadius">0</CornerRadius>
-      <CornerRadius x:Key="OverlayCornerRadius">0</CornerRadius>
+      <CornerRadius x:Key="ControlCornerRadius">8</CornerRadius>
+      <CornerRadius x:Key="OverlayCornerRadius">16</CornerRadius>
       <x:Double x:Key="MenuFlyoutThemeMinHeight">20</x:Double>
       <Thickness x:Key="MenuFlyoutScrollerMargin">0</Thickness>
       <Thickness x:Key="ComboBoxDropdownContentMargin">0</Thickness>

@@ -1,4 +1,4 @@
-<Window xmlns="https://github.com/avaloniaui"
+﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -12,10 +12,9 @@
     <Grid RowDefinitions="Auto, Auto, Auto, *, Auto">
         <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" Margin="20,20,20,4">
             <Image Width="96" Height="96" Source="/Assets/open-utau.ico"/>
-            <Image Height="16" Margin="0,8,0,0"
-                   Source="/Assets/logotype.png" IsVisible="{Binding !IsDarkMode}"/>
-            <Image Height="16" Margin="0,8,0,0"
-                   Source="/Assets/logotype-w.png" IsVisible="{Binding IsDarkMode}"/>
+            <TextBlock Text="NyaUTAU" FontSize="24" FontWeight="Medium"
+                       Margin="0,8,0,0" HorizontalAlignment="Center"
+                       Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
         </StackPanel>
         <TextBlock Grid.Row="1" Margin="40,4" TextAlignment="Center"
                    Text="{Binding AppVersion}"/>

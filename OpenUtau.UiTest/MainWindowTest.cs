@@ -47,6 +47,8 @@ namespace OpenUtau.UiTest {
             HeadlessUi.Run(() => {
                 InitCore();
                 HeadlessUi.Errors.Clear();
+                var originalQuickStartCompleted = Preferences.Default.QuickStartCompleted;
+                Preferences.Default.QuickStartCompleted = true;
                 var window = new MainWindow { Width = 1280, Height = 800 };
                 try {
                     window.Show();
@@ -60,6 +62,8 @@ namespace OpenUtau.UiTest {
                     HeadlessUi.Flush();
                     HeadlessUi.SaveScreenshot(window, name);
                     window.Close();
+                    Preferences.Default.QuickStartCompleted = originalQuickStartCompleted;
+                    Preferences.Save();
                 }
             });
         }

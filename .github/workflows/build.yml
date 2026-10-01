@@ -163,7 +163,7 @@ jobs:
           sudo xcode-select -s /Applications/Xcode_26.2.app
           chmod +x .github/scripts/add-liquid-glass-icon.sh
           .github/scripts/add-liquid-glass-icon.sh \
-            bin/${{ matrix.arch.name }}/publish/OpenUtau.app \
+            bin/${{ matrix.arch.name }}/publish/NyaUTAU.app \
             OpenUtau/Assets/OpenUtau.icon \
             OpenUtau
         if: ${{ matrix.arch.os == 'osx' }}
@@ -215,8 +215,8 @@ jobs:
       - name: Create Dmg
         run: |
           npm install -g create-dmg
-          cp OpenUtau/Assets/OpenUtau.icns bin/${{ matrix.arch.name }}/publish/OpenUtau.app/Contents/Resources/
-          create-dmg bin/${{ matrix.arch.name }}/publish/OpenUtau.app || true
+          cp OpenUtau/Assets/OpenUtau.icns bin/${{ matrix.arch.name }}/publish/NyaUTAU.app/Contents/Resources/
+          create-dmg bin/${{ matrix.arch.name }}/publish/NyaUTAU.app || true
           mv *.dmg OpenUtau-${{ matrix.arch.name }}.dmg
           codesign -fvs - OpenUtau-${{ matrix.arch.name }}.dmg
         if: ${{ matrix.arch.os == 'osx' }}
@@ -237,9 +237,9 @@ jobs:
           cp OpenUtau/Assets/AppRun bin/${{ matrix.arch.name }}
           chmod 755 bin/${{ matrix.arch.name }}/AppRun
           ARCH=${{ matrix.arch.linuxarch }} linuxdeploy --appdir bin/${{ matrix.arch.name }} --output appimage
-          # linuxdeploy names the output by linux arch (OpenUtau-x86_64.AppImage);
+          # linuxdeploy names the output by display name and Linux arch (NyaUTAU-x86_64.AppImage);
           # rename to the matrix name so artifact, file, and release all match.
-          mv OpenUtau-${{ matrix.arch.linuxarch }}.AppImage OpenUtau-${{ matrix.arch.name }}.AppImage
+          mv NyaUTAU-${{ matrix.arch.linuxarch }}.AppImage OpenUtau-${{ matrix.arch.name }}.AppImage
         if: ${{ matrix.arch.os == 'linux' }}
 
       # Always upload so successful legs keep their artifacts even when the

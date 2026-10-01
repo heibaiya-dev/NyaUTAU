@@ -1,4 +1,4 @@
-<UserControl xmlns="https://github.com/avaloniaui"
+﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -24,13 +24,14 @@
       <Setter Property="Padding" Value="2"/>
       <Setter Property="BorderThickness" Value="2"/>
       <Setter Property="BorderBrush" Value="Transparent"/>
-      <Setter Property="CornerRadius" Value="3"/>
+      <Setter Property="CornerRadius" Value="12"/>
       <Setter Property="Background" Value="Transparent"/>
       <Style Selector="^:pointerover">
-        <Setter Property="Background" Value="{DynamicResource NeutralAccentBrushSemi2}"/>
+        <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}"/>
       </Style>
       <Style Selector="^.current">
-        <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush1}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialPrimaryBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}"/>
       </Style>
       <Style Selector="^.missing Panel.avatar, ^.missing TextBlock">
         <Setter Property="Opacity" Value="0.5"/>
@@ -44,8 +45,8 @@
       <Setter Property="HorizontalAlignment" Value="Right"/>
       <Setter Property="VerticalAlignment" Value="Top"/>
       <Setter Property="Opacity" Value="0"/>
-      <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAltHighBrush}"/>
-      <Setter Property="BorderBrush" Value="{DynamicResource NeutralAccentBrushSemi}"/>
+      <Setter Property="Background" Value="{DynamicResource MaterialSurfaceContainerHighBrush}"/>
+      <Setter Property="BorderBrush" Value="{DynamicResource MaterialOutlineVariantBrush}"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="CornerRadius" Value="8"/>
       <Style Selector="^ > Path">
@@ -87,7 +88,7 @@
     </Style>
     <Style Selector="Border.grabber.left">
       <Setter Property="HorizontalAlignment" Value="Left"/>
-      <Setter Property="CornerRadius" Value="3,0,0,3"/>
+      <Setter Property="CornerRadius" Value="12,0,0,12"/>
       <Setter Property="Background">
         <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
           <GradientStop Color="{DynamicResource NeutralAccentColor}" Offset="0"/>
@@ -97,7 +98,7 @@
     </Style>
     <Style Selector="Border.grabber.right">
       <Setter Property="HorizontalAlignment" Value="Right"/>
-      <Setter Property="CornerRadius" Value="0,3,3,0"/>
+      <Setter Property="CornerRadius" Value="0,12,12,0"/>
       <Setter Property="Background">
         <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
           <GradientStop Color="Transparent" Offset="0"/>
@@ -105,10 +106,11 @@
         </LinearGradientBrush>
       </Setter>
     </Style>
-    <!-- Same metrics and colors as the piano roll toolbar buttons. -->
+    <!-- Compact Material icon actions stay separate from the fixed-size singer grid. -->
     <Style Selector="Button.footer">
-      <Setter Property="Width" Value="20"/>
-      <Setter Property="Height" Value="20"/>
+      <Setter Property="Width" Value="32"/>
+      <Setter Property="Height" Value="32"/>
+      <Setter Property="CornerRadius" Value="16"/>
       <Setter Property="Margin" Value="0"/>
       <Setter Property="Padding" Value="1"/>
       <Setter Property="BorderThickness" Value="0"/>
@@ -116,10 +118,10 @@
       <Setter Property="HorizontalContentAlignment" Value="Center"/>
       <Setter Property="VerticalContentAlignment" Value="Center"/>
       <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource NeutralAccentBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}"/>
       </Style>
       <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource NeutralAccentBrushPointerOver}"/>
+        <Setter Property="Background" Value="{DynamicResource MaterialPrimaryContainerBrush}"/>
       </Style>
       <Style Selector="^ Viewbox">
         <Setter Property="Width" Value="18"/>
@@ -131,14 +133,14 @@
         <Setter Property="Height" Value="24"/>
       </Style>
       <Style Selector="^ Path">
-        <Setter Property="Fill" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+        <Setter Property="Fill" Value="{DynamicResource MaterialOnSurfaceVariantBrush}"/>
       </Style>
     </Style>
   </UserControl.Styles>
   <DockPanel>
     <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" Margin="0,4,0,0" Padding="0,4,0,0"
-            BorderBrush="{DynamicResource NeutralAccentBrushSemi}">
-      <StackPanel Orientation="Horizontal" Spacing="2" VerticalAlignment="Center">
+            BorderBrush="{DynamicResource MaterialOutlineVariantBrush}">
+      <StackPanel Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
         <!-- mdi-plus -->
         <Button Classes="footer" ToolTip.Tip="{DynamicResource tracks.installsinger}" Command="{Binding InstallSinger}">
           <Viewbox><Canvas>
@@ -166,14 +168,17 @@
         </Button>
       </StackPanel>
     </Border>
-    <TextBox Name="SearchBox" DockPanel.Dock="Top" Height="24" Padding="4,3" Margin="0,0,0,4"
+    <TextBox Name="SearchBox" DockPanel.Dock="Top" Height="36" Padding="12,6" Margin="0,0,0,4"
+             CornerRadius="18" BorderThickness="0" VerticalContentAlignment="Center"
              Text="{Binding SearchText}" PlaceholderText="{DynamicResource tracks.searchsinger}"
              KeyDown="SearchBoxKeyDown"/>
     <Panel>
       <TextBlock IsVisible="{Binding IsEmpty}" Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center"
+                 Foreground="{DynamicResource MaterialOnSurfaceVariantBrush}"
                  Text="{DynamicResource tracks.nosinger}"/>
       <!-- Over the empty grid, which keeps its size so the flyout doesn't jump while typing. -->
       <TextBlock IsVisible="{Binding NoMatch}" Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center"
+                 Foreground="{DynamicResource MaterialOnSurfaceVariantBrush}"
                  Text="{DynamicResource tracks.nosingermatch}"/>
       <Panel IsVisible="{Binding !IsEmpty}">
         <ScrollViewer Name="TileScroller"
@@ -193,10 +198,11 @@
                           PointerPressed="TilePressed" PointerReleased="TileReleased"
                           ContextRequested="TileContextRequested">
                     <DockPanel>
-                      <Panel Classes="avatar" DockPanel.Dock="Left" Width="32" Height="32"
-                             Background="{DynamicResource NeutralAccentBrushSemi2}">
-                        <Image Source="{Binding Avatar}" Stretch="UniformToFill"
-                               RenderOptions.BitmapInterpolationMode="HighQuality"/>
+                      <Panel Classes="avatar" DockPanel.Dock="Left" Width="32" Height="32">
+                        <Border CornerRadius="10" ClipToBounds="True" Background="{DynamicResource MaterialSurfaceContainerBrush}">
+                          <Image Source="{Binding Avatar}" Stretch="UniformToFill"
+                                 RenderOptions.BitmapInterpolationMode="HighQuality"/>
+                        </Border>
                         <Border Classes="favStar" Classes.on="{Binding IsFavourite}" IsVisible="{Binding !IsMissing}"
                                 ToolTip.Tip="{DynamicResource tracks.favorite}" PointerPressed="FavStarPressed">
                           <Path/>
@@ -209,7 +215,7 @@
                 </DataTemplate>
               </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <c:SingerSectionDividers Name="SectionDividers" Stroke="{DynamicResource NeutralAccentBrush}"/>
+            <c:SingerSectionDividers Name="SectionDividers" Stroke="{DynamicResource MaterialOutlineVariantBrush}"/>
           </Panel>
         </ScrollViewer>
         <!-- mdi-chevron-left -->

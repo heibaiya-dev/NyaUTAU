@@ -1,4 +1,4 @@
-<!--DO NOT modify this file. It is managed autometically.-->
+﻿<!--DO NOT modify this file. It is managed autometically.-->
 <!--To contribute to OpenUtau's localization, visit https://crowdin.com/project/oxygen-dioxideopenutau -->
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -101,10 +101,10 @@
   <system:String x:Key="debug.copylog">Copiar registro</system:String>
   <system:String x:Key="debug.reverselogorder">Revertir orden del registro</system:String>
 
-  <system:String x:Key="dialogs.about.caption">Sobre OpenUTAU</system:String>
+  <system:String x:Key="dialogs.about.caption">Sobre NyaUTAU</system:String>
   <system:String x:Key="dialogs.about.message">
-OpenUTAU es un entorno de edición de código abierto para el programa de síntesis UTAU. Su objetivo es ofrecer una interfaz moderna, y soporte fonológico inteligente. ¡Visítanos en GitHub!</system:String>
-  <system:String x:Key="dialogs.exitsave.caption">Salir de OpenUTAU</system:String>
+NyaUTAU es un entorno de edición de código abierto para el programa de síntesis UTAU. Su objetivo es ofrecer una interfaz moderna, y soporte fonológico inteligente. ¡Visítanos en GitHub!</system:String>
+  <system:String x:Key="dialogs.exitsave.caption">Salir de NyaUTAU</system:String>
   <system:String x:Key="dialogs.exitsave.message">El proyecto tiene cambios sin guardar. ¿Quieres guardar el archivo?</system:String>
   <system:String x:Key="dialogs.export.caption">Exportar</system:String>
   <system:String x:Key="dialogs.export.savefirst">Por favor, guarda el archivo antes de exportarlo</system:String>
@@ -124,8 +124,8 @@ OpenUTAU es un entorno de edición de código abierto para el programa de sínte
   <system:String x:Key="dialogs.merge.multitracks">Partes de diferentes pistas no se pueden combinar.</system:String>
   <system:String x:Key="dialogs.messagebox.copy">Copiar error</system:String>
   <system:String x:Key="dialogs.noresampler.caption">Error de resampler</system:String>
-  <system:String x:Key="dialogs.noresampler.message">No se encontró un resampler. Pon uno (sea .exe o .dll) en la carpeta Resamplers en la ruta de instalación de OpenUTAU.</system:String>
-  <system:String x:Key="dialogs.recovery">OpenUTAU se cerró de forma inesperada. ¿Quieres restaurar el proyecto?</system:String>
+  <system:String x:Key="dialogs.noresampler.message">No se encontró un resampler. Pon uno (sea .exe o .dll) en la carpeta Resamplers en la ruta de instalación de NyaUTAU.</system:String>
+  <system:String x:Key="dialogs.recovery">NyaUTAU se cerró de forma inesperada. ¿Quieres restaurar el proyecto?</system:String>
   <system:String x:Key="dialogs.recovery.caption">Restaurar proyecto</system:String>
   <system:String x:Key="dialogs.remaptimeaxis.message">Esta herramienta cambia el tempo sin mover las notas ni cambiar su duración (en segundos).
   Nuevo BPM:</system:String>
@@ -155,7 +155,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <!--<system:String x:Key="dialogs.transcribe.rmvpe.notfound">RMVPE is not installed. Install it from the Package Manager.</system:String>-->
   <system:String x:Key="dialogs.transcribe.some.notfound">SOME no está instalado</system:String>
   <system:String x:Key="dialogs.unsupportedfile.caption">Archivo desconocido</system:String>
-  <system:String x:Key="dialogs.unsupportedfile.message">Este formato no es soportado por OpenUTAU: </system:String>
+  <system:String x:Key="dialogs.unsupportedfile.message">Este formato no es soportado por NyaUTAU: </system:String>
   <system:String x:Key="dialogs.voicecolorremapping">Remapear Colores de Voz</system:String>
   <system:String x:Key="dialogs.voicecolorremapping.caption">Esto se aplicará a todas las notas de las pistas:</system:String>
   <system:String x:Key="dialogs.voicecolorremapping.error">Esta voz no tiene colores de voz</system:String>
@@ -187,7 +187,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="errors.failed.loadprefs">No se pudieron cargar las preferencias, deben de ser inicializadas.</system:String>
   <system:String x:Key="errors.failed.openfile">No se pudo abrir</system:String>
   <system:String x:Key="errors.failed.openlocation">No se pudo abrir la ubicación</system:String>
-  <system:String x:Key="errors.failed.opennewerproject">¡La versión del archivo del proyecto es más nueva que la del programa, por favor actualiza OpenUTAU!</system:String>
+  <system:String x:Key="errors.failed.opennewerproject">¡La versión del archivo del proyecto es más nueva que la del programa, por favor actualiza NyaUTAU!</system:String>
   <!--<system:String x:Key="errors.failed.prerender">Failed to render in the background.</system:String>-->
   <system:String x:Key="errors.failed.render">Error al renderizar.</system:String>
   <system:String x:Key="errors.failed.runeditingmacro">No se pudo ejecutar el macro de edición</system:String>
@@ -314,7 +314,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="menu.file.saveas">Guardar _como</system:String>
   <system:String x:Key="menu.file.savetemplate">Guardar plantilla</system:String>
   <system:String x:Key="menu.help">_Ayuda</system:String>
-  <system:String x:Key="menu.help.about">Sobre OpenUTAU</system:String>
+  <system:String x:Key="menu.help.about">Sobre NyaUTAU</system:String>
   <system:String x:Key="menu.help.checkupdate">Buscar actualizaciones</system:String>
   <system:String x:Key="menu.help.logslocation">Abrir la ubicación de los registros</system:String>
   <system:String x:Key="menu.help.reportissue">Reportar problema</system:String>
@@ -625,7 +625,7 @@ Advertencia: Esta opción eliminará las bases personalizadas.</system:String>
   <!--<system:String x:Key="prefs.diffsinger">DiffSinger</system:String>-->
   <system:String x:Key="prefs.editing">Edición</system:String>
   <!--<system:String x:Key="prefs.general">General</system:String>-->
-  <system:String x:Key="prefs.note.restart">Nota: Por favor, reinicia OpenUTAU después de cambiar esta opción.</system:String>
+  <system:String x:Key="prefs.note.restart">Nota: Por favor, reinicia NyaUTAU después de cambiar esta opción.</system:String>
   <system:String x:Key="prefs.otoeditor">Editor de OTO</system:String>
   <system:String x:Key="prefs.otoeditor.select">Editor predeterminado</system:String>
   <system:String x:Key="prefs.otoeditor.setparampath">Ubicación de setParam</system:String>
@@ -671,9 +671,9 @@ Advertencia: Esta opción eliminará las bases personalizadas.</system:String>
 1. Establezca "resampler-compatibility" como "on" en moreconfig.txt.
 2. Establezca "auto-update-llsm-mrq" como "off" en moreconfig.txt.
 3. Espere pacientemente a que Moresampler genere los archivos llsm faltantes.</system:String>
-  <system:String x:Key="prefs.rendering.resampler.note">Nota: Para usar un Resampler externo, pon su archivo (sea .exe o .dll) en la carpeta Resamplers, en la ruta de instalación de OpenUTAU.</system:String>
+  <system:String x:Key="prefs.rendering.resampler.note">Nota: Para usar un Resampler externo, pon su archivo (sea .exe o .dll) en la carpeta Resamplers, en la ruta de instalación de NyaUTAU.</system:String>
   <system:String x:Key="prefs.rendering.skipmuted">Saltar pistas silenciadas</system:String>
-  <system:String x:Key="prefs.rendering.threads.cpuwarn">Cuidado: Activar demasiados hilos de renderización puede causar que OpenUTAU corra lento. </system:String>
+  <system:String x:Key="prefs.rendering.threads.cpuwarn">Cuidado: Activar demasiados hilos de renderización puede causar que NyaUTAU corra lento. </system:String>
   <system:String x:Key="prefs.rendering.threads.numthreads">Máximo número de hilos de renderización</system:String>
   <!--<system:String x:Key="prefs.rendering.wavtool">Wavtool</system:String>-->
   <!--<system:String x:Key="prefs.utau">UTAU</system:String>-->
@@ -852,12 +852,12 @@ General
   <system:String x:Key="updater.github">Abrir GitHub</system:String>
   <system:String x:Key="updater.status.available">Actualización disponible (v{0}).</system:String>
   <system:String x:Key="updater.status.checking">Buscando actualizaciones...</system:String>
-  <system:String x:Key="updater.status.notavailable">OpenUTAU esta actualizado</system:String>
+  <system:String x:Key="updater.status.notavailable">NyaUTAU esta actualizado</system:String>
   <system:String x:Key="updater.status.unknown">No se pueden buscar actualizaciones</system:String>
   <system:String x:Key="updater.update">Actualizar</system:String>
 
   <system:String x:Key="warning">Alerta</system:String>
-  <system:String x:Key="warning.asciipath">La ruta de OpenUTAU "{0}" contiene símbolos que no son ASCII. Puede que Resamplers en .exe no funcionen.</system:String>
+  <system:String x:Key="warning.asciipath">La ruta de NyaUTAU "{0}" contiene símbolos que no son ASCII. Puede que Resamplers en .exe no funcionen.</system:String>
   <system:String x:Key="warning.renderer">Este renderizador no está configurado para esto.</system:String>
 
   <system:String x:Key="welcome.new">Nuevo</system:String>

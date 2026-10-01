@@ -110,7 +110,7 @@
   <system:String x:Key="dawintegration.connecting">Connecting...</system:String>
   <system:String x:Key="dawintegration.disconnect">Disconnect</system:String>
   <system:String x:Key="dawintegration.disconnected">Not connected.</system:String>
-  <system:String x:Key="dawintegration.hint">Connect to a DAW plugin listening on this machine. Editing stays in OpenUtau; the plugin receives the project and the rendered audio.</system:String>
+  <system:String x:Key="dawintegration.hint">Connect to a DAW plugin listening on this machine. Editing stays in NyaUTAU; the plugin receives the project and the rendered audio.</system:String>
   <system:String x:Key="dawintegration.incompatible">Unsupported API version</system:String>
   <system:String x:Key="dawintegration.lost">Connection lost: {0}</system:String>
   <system:String x:Key="dawintegration.none">No DAW plugin found. Load the OpenUtau Bridge plugin on an instrument track in your DAW, then refresh. New to this? Expand &quot;How to use&quot; above.</system:String>
@@ -125,20 +125,20 @@
   <system:String x:Key="dawintegration.state.free">Not connected</system:String>
   <system:String x:Key="dawintegration.connected.count">Connected to {0} plugin(s).</system:String>
   <system:String x:Key="dawintegration.guide.caption">How to use</system:String>
-  <system:String x:Key="dawintegration.guide.what">OpenUtau Bridge is a free plugin (VST3/CLAP) for your DAW. It receives OpenUtau's project and rendered audio and places them on the DAW's timeline: keep writing and tuning in OpenUtau, and mix in your DAW. It makes no sound by itself and needs no extra setup inside OpenUtau.</system:String>
+  <system:String x:Key="dawintegration.guide.what">OpenUtau Bridge is a free plugin (VST3/CLAP) for your DAW. It receives NyaUTAU's project and rendered audio and places them on the DAW's timeline: keep writing and tuning in NyaUTAU, and mix in your DAW. It makes no sound by itself and needs no extra setup inside NyaUTAU.</system:String>
   <system:String x:Key="dawintegration.guide.caps.header">What it can do</system:String>
   <system:String x:Key="dawintegration.guide.caps.1">Automatically follows every edit — the project and each rendered part are sent to the plugin as you work.</system:String>
-  <system:String x:Key="dawintegration.guide.caps.2">One plugin instance per DAW track; choose which OpenUtau track each instance plays from the plugin window or the DAW's automation panel.</system:String>
-  <system:String x:Key="dawintegration.guide.caps.3">Playhead sync — the OpenUtau playhead follows your DAW's transport.</system:String>
+  <system:String x:Key="dawintegration.guide.caps.2">One plugin instance per DAW track; choose which NyaUTAU track each instance plays from the plugin window or the DAW's automation panel.</system:String>
+  <system:String x:Key="dawintegration.guide.caps.3">Playhead sync — the NyaUTAU playhead follows your DAW's transport.</system:String>
   <system:String x:Key="dawintegration.guide.caps.4">Export-friendly — a DAW bounce waits for parts that are still rendering, so exports match playback.</system:String>
   <system:String x:Key="dawintegration.guide.scope.header">Boundaries</system:String>
   <system:String x:Key="dawintegration.guide.scope.1">The bridge works on one computer only, and your DAW needs to load VST3 or CLAP instruments (REAPER, Cubase, FL Studio, Studio One, Ableton Live, Bitwig, ...).</system:String>
   <system:String x:Key="dawintegration.guide.scope.2">The two timelines align by absolute time — give both projects the same BPM to keep bars aligned.</system:String>
-  <system:String x:Key="dawintegration.guide.scope.3">OpenUtau delivers the vocals only: volume, pan, mute and effects live on the DAW mixer.</system:String>
+  <system:String x:Key="dawintegration.guide.scope.3">NyaUTAU delivers the vocals only: volume, pan, mute and effects live on the DAW mixer.</system:String>
   <system:String x:Key="dawintegration.guide.steps.header">Setup (three steps)</system:String>
   <system:String x:Key="dawintegration.guide.step1">1. Install the plugin: click an install button above (confirm the administrator prompt if it appears), or download it manually and copy the whole &quot;OpenUtau Bridge.vst3&quot; folder into your DAW's plugin folder:</system:String>
-  <system:String x:Key="dawintegration.guide.step2">2. In your DAW, add an instrument track and insert &quot;OpenUtau Bridge&quot; (vendor OpenUTAU). Do this while OpenUtau is still closed — the DAW comes first.</system:String>
-  <system:String x:Key="dawintegration.guide.step3">3. Open OpenUtau, save your project, then come back here: Refresh, select the plugin, Connect.</system:String>
+  <system:String x:Key="dawintegration.guide.step2">2. In your DAW, add an instrument track and insert &quot;OpenUtau Bridge&quot; (vendor OpenUTAU). Do this while NyaUTAU is still closed — the DAW comes first.</system:String>
+  <system:String x:Key="dawintegration.guide.step3">3. Open NyaUTAU, save your project, then come back here: Refresh, select the plugin, Connect.</system:String>
   <system:String x:Key="dawintegration.guide.paths.win">VST3: C:\Program Files\Common Files\VST3&#10;CLAP: C:\Program Files\Common Files\CLAP&#10;No administrator rights? Use %LOCALAPPDATA%\Programs\Common\VST3 (or ...\CLAP) instead.</system:String>
   <system:String x:Key="dawintegration.guide.paths.mac">VST3: ~/Library/Audio/Plug-Ins/VST3&#10;CLAP: ~/Library/Audio/Plug-Ins/CLAP</system:String>
   <system:String x:Key="dawintegration.guide.paths.linux">VST3: ~/.vst3&#10;CLAP: ~/.clap</system:String>
@@ -165,10 +165,10 @@
   <system:String x:Key="debug.copylog">Copy Log</system:String>
   <system:String x:Key="debug.reverselogorder">Reverse Log Order</system:String>
 
-  <system:String x:Key="dialogs.about.caption">About OpenUTAU</system:String>
+  <system:String x:Key="dialogs.about.caption">About NyaUTAU</system:String>
   <system:String x:Key="dialogs.about.message">
-OpenUtau aims to be an open source editing environment for UTAU community, with a modern user experience and intelligent phonological support. Visit us on Github.</system:String>
-  <system:String x:Key="dialogs.exitsave.caption">Exit OpenUtau</system:String>
+NyaUTAU aims to be an open source editing environment for UTAU community, with a modern user experience and intelligent phonological support. Visit us on Github.</system:String>
+  <system:String x:Key="dialogs.exitsave.caption">Exit NyaUTAU</system:String>
   <system:String x:Key="dialogs.exitsave.message">The current project contains unsaved changes. Do you want to save it?</system:String>
   <system:String x:Key="dialogs.export.caption">Export</system:String>
   <system:String x:Key="dialogs.export.savefirst">Save project file first</system:String>
@@ -189,7 +189,7 @@ OpenUtau aims to be an open source editing environment for UTAU community, with 
   <system:String x:Key="dialogs.messagebox.copy">Copy error to clipboard</system:String>
   <system:String x:Key="dialogs.noresampler.caption">No resampler</system:String>
   <system:String x:Key="dialogs.noresampler.message">No resampler! Put your favourite resampler exe or dll in the Resamplers folder and choose it in Preferences!</system:String>
-  <system:String x:Key="dialogs.recovery">Previously, OpenUtau terminated abnormally. Click here to recover.</system:String>
+  <system:String x:Key="dialogs.recovery">Previously, NyaUTAU terminated abnormally. Click here to recover.</system:String>
   <system:String x:Key="dialogs.recovery.caption">Recovery project</system:String>
   <system:String x:Key="dialogs.remaptimeaxis.message">This tool will change the tempo of the project without changing the actual positions and durations (in seconds) of notes.
   New BPM:</system:String>
@@ -251,7 +251,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="errors.failed.loadprefs">Failed to load prefs. Initialize it.</system:String>
   <system:String x:Key="errors.failed.openfile">Failed to open</system:String>
   <system:String x:Key="errors.failed.openlocation">Failed to open location</system:String>
-  <system:String x:Key="errors.failed.opennewerproject">Project file is newer than software! Upgrade OpenUtau!</system:String>
+  <system:String x:Key="errors.failed.opennewerproject">Project file is newer than software! Upgrade NyaUTAU!</system:String>
   <system:String x:Key="errors.failed.prerender">Failed to render in the background.</system:String>
   <system:String x:Key="errors.failed.render">Failed to render.</system:String>
   <system:String x:Key="errors.failed.runeditingmacro">Failed to run editing macro</system:String>
@@ -298,7 +298,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="expressiongraph.import.added">Added expressions</system:String>
   <system:String x:Key="expressiongraph.import.conflicts">Already defined differently in this project, so the project's definitions were kept</system:String>
   <system:String x:Key="expressiongraph.import.invalid">Not an expression graph file</system:String>
-  <system:String x:Key="expressiongraph.import.newer">This expression graph file was saved by a newer version of OpenUtau</system:String>
+  <system:String x:Key="expressiongraph.import.newer">This expression graph file was saved by a newer version of NyaUTAU</system:String>
   <system:String x:Key="expressiongraph.input">In</system:String>
   <system:String x:Key="expressiongraph.missing">unavailable</system:String>
   <system:String x:Key="expressiongraph.name">Name</system:String>
@@ -436,7 +436,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="menu.file.saveas">Save As...</system:String>
   <system:String x:Key="menu.file.savetemplate">Save Template...</system:String>
   <system:String x:Key="menu.help">Help</system:String>
-  <system:String x:Key="menu.help.about">About OpenUtau</system:String>
+  <system:String x:Key="menu.help.about">About NyaUTAU</system:String>
   <system:String x:Key="menu.help.checkupdate">Check Update</system:String>
   <system:String x:Key="menu.help.logslocation">Open Logs Location</system:String>
   <system:String x:Key="menu.help.reportissue">Report Issue</system:String>
@@ -772,7 +772,7 @@ Warning: this option removes custom presets.</system:String>
   <system:String x:Key="prefs.diffsinger">DiffSinger</system:String>
   <system:String x:Key="prefs.editing">Editing</system:String>
   <system:String x:Key="prefs.general">General</system:String>
-  <system:String x:Key="prefs.note.restart">Note: please restart OpenUtau after changing this item.</system:String>
+  <system:String x:Key="prefs.note.restart">Note: please restart NyaUTAU after changing this item.</system:String>
   <system:String x:Key="prefs.otoeditor">Oto Editor</system:String>
   <system:String x:Key="prefs.otoeditor.select">Default Oto Editor</system:String>
   <system:String x:Key="prefs.otoeditor.setparampath">setParam Path</system:String>
@@ -821,9 +821,9 @@ Warning: this option removes custom presets.</system:String>
   1. Set "resampler-compatibility" to "on" in moreconfig.txt.
   2. Set "auto-update-llsm-mrq" to "off" in moreconfig.txt.
   3. Patiently wait for moresampler to generate missing llsm files.</system:String>
-  <system:String x:Key="prefs.rendering.resampler.note">Note: to use external resamplers, please add the resampler DLL or EXE file in the Resamplers folder in the OpenUtau install path and choose it in Preferences.</system:String>
+  <system:String x:Key="prefs.rendering.resampler.note">Note: to use external resamplers, please add the resampler DLL or EXE file in the Resamplers folder in the NyaUTAU install path and choose it in Preferences.</system:String>
   <system:String x:Key="prefs.rendering.skipmuted">Skip muted tracks</system:String>
-  <system:String x:Key="prefs.rendering.threads.cpuwarn">Warning: too many render threads may cause OpenUtau to run slowly.</system:String>
+  <system:String x:Key="prefs.rendering.threads.cpuwarn">Warning: too many render threads may cause NyaUTAU to run slowly.</system:String>
   <system:String x:Key="prefs.rendering.threads.numthreads">Maximum Render Threads</system:String>
   <system:String x:Key="prefs.rendering.wavtool">Wavtool</system:String>
   <system:String x:Key="prefs.utau">UTAU</system:String>
@@ -1018,7 +1018,7 @@ General
   <system:String x:Key="updater.update">Update</system:String>
 
   <system:String x:Key="warning">Warning</system:String>
-  <system:String x:Key="warning.asciipath">Your OpenUtau home path "{0}" contains non-ASCII character. Exe resamplers may not work.</system:String>
+  <system:String x:Key="warning.asciipath">Your NyaUTAU home path "{0}" contains non-ASCII character. Exe resamplers may not work.</system:String>
   <system:String x:Key="warning.renderer">No settings for this renderer.</system:String>
 
   <system:String x:Key="welcome.new">New</system:String>
@@ -1030,7 +1030,7 @@ General
   <system:String x:Key="welcome.template">Template</system:String>
   <system:String x:Key="yamleditor.default">Default: {0}</system:String>
   <system:String x:Key="yamleditor.discarded">{0} has errors, so it can't be saved. Your changes to it were discarded.</system:String>
-  <system:String x:Key="yamleditor.errors">Errors: {0}, warnings: {1}. OpenUtau could not load this file; fix the errors to save.</system:String>
+  <system:String x:Key="yamleditor.errors">Errors: {0}, warnings: {1}. NyaUTAU could not load this file; fix the errors to save.</system:String>
   <system:String x:Key="yamleditor.noproblems">No problems found</system:String>
   <system:String x:Key="yamleditor.revert">Revert</system:String>
   <system:String x:Key="yamleditor.save">Save</system:String>
@@ -1043,11 +1043,73 @@ General
   <system:String x:Key="yamleditor.type.number">number</system:String>
   <system:String x:Key="yamleditor.type.section">section of keys</system:String>
   <system:String x:Key="yamleditor.type.text">text</system:String>
-  <system:String x:Key="yamleditor.unknownkey">Unknown key "{0}", which OpenUtau ignores. Check the spelling.</system:String>
+  <system:String x:Key="yamleditor.unknownkey">Unknown key "{0}", which NyaUTAU ignores. Check the spelling.</system:String>
   <system:String x:Key="yamleditor.unsaved">Save changes to {0}?</system:String>
   <system:String x:Key="yamleditor.unsaved.caption">Unsaved changes</system:String>
   <system:String x:Key="yamleditor.unsaved.errors">{0} has errors, so it can't be saved. Discard your changes?</system:String>
   <system:String x:Key="yamleditor.value">Value: {0}</system:String>
-  <system:String x:Key="yamleditor.warnings">Warnings: {0}. OpenUtau ignores these parts; you can still save.</system:String>
+  <system:String x:Key="yamleditor.warnings">Warnings: {0}. NyaUTAU ignores these parts; you can still save.</system:String>
   <system:String x:Key="yamleditor.wrongtype">Expected {0}.</system:String>
+  <system:String x:Key="tip.playback.start">Jump to start</system:String>
+  <system:String x:Key="tip.playback.playpause">Play / pause</system:String>
+  <system:String x:Key="tip.playback.pause">Pause</system:String>
+  <system:String x:Key="tip.playback.end">Jump to end</system:String>
+  <system:String x:Key="tracks.add">Add track</system:String>
+  <system:String x:Key="welcome.recent.empty">Projects you open will appear here.</system:String>
+  <system:String x:Key="welcome.template.empty">Save a project as a template to reuse it here.</system:String>
+  <system:String x:Key="pianoroll.menu.notes.smartpitch">Smart pitch</system:String>
+  <system:String x:Key="pianoroll.smartpitch.tip">Generate natural pitch curves for selected notes, or all notes in this part if none are selected. Replaces pitch control points; can be undone.</system:String>
+  <system:String x:Key="autotuning.title">Automatic tuning</system:String>
+  <system:String x:Key="pianoroll.menu.notes.autovocaltuning">Automatic tuning</system:String>
+  <system:String x:Key="autotuning.tip">Tune pitch, vibrato, dynamics, breathiness and articulation with singer-aware controls.</system:String>
+  <system:String x:Key="autotuning.description">Shape the selected notes or the whole voice part with a single undoable edit.</system:String>
+  <system:String x:Key="autotuning.singer">Singer: {0}</system:String>
+  <system:String x:Key="autotuning.singer.none">Not selected</system:String>
+  <system:String x:Key="autotuning.renderer">Renderer: {0}</system:String>
+  <system:String x:Key="autotuning.renderer.none">Not selected</system:String>
+  <system:String x:Key="autotuning.scope">Apply to</system:String>
+  <system:String x:Key="autotuning.scope.selection">Selected notes ({0})</system:String>
+  <system:String x:Key="autotuning.scope.part">Whole voice part ({0} notes)</system:String>
+  <system:String x:Key="autotuning.preset">Preset</system:String>
+  <system:String x:Key="autotuning.preset.natural">Natural</system:String>
+  <system:String x:Key="autotuning.preset.gentle">Gentle</system:String>
+  <system:String x:Key="autotuning.preset.powerful">Powerful</system:String>
+  <system:String x:Key="autotuning.strength">Strength</system:String>
+  <system:String x:Key="autotuning.parameters">Parameters</system:String>
+  <system:String x:Key="autotuning.pitch">Pitch</system:String>
+  <system:String x:Key="autotuning.pitch.description">Natural note transitions and intonation.</system:String>
+  <system:String x:Key="autotuning.vibrato">Vibrato</system:String>
+  <system:String x:Key="autotuning.vibrato.description">Shape vibrato on sustained notes.</system:String>
+  <system:String x:Key="autotuning.dynamics">Dynamics</system:String>
+  <system:String x:Key="autotuning.dynamics.description">Adjust expression curves for musical phrasing.</system:String>
+  <system:String x:Key="autotuning.breathiness">Breathiness</system:String>
+  <system:String x:Key="autotuning.breathiness.description">Add gentle breath variation where supported.</system:String>
+  <system:String x:Key="autotuning.articulation">Articulation</system:String>
+  <system:String x:Key="autotuning.articulation.description">Refine attack and release expression.</system:String>
+  <system:String x:Key="autotuning.unsupported">Not supported by this singer or renderer.</system:String>
+  <system:String x:Key="autotuning.supported">Supported by this singer and renderer.</system:String>
+  <system:String x:Key="autotuning.replacehint">Existing generated values in enabled channels may be replaced. The complete action is one undo step.</system:String>
+  <system:String x:Key="autotuning.result.completed">Automatic tuning completed for {0} notes ({1}).</system:String>
+  <system:String x:Key="autotuning.result.channel">{0}: {1}</system:String>
+  <system:String x:Key="autotuning.result.skipped">Skipped: {0}</system:String>
+  <system:String x:Key="autotuning.result.skippedchannel">{0} ({1})</system:String>
+  <system:String x:Key="autotuning.result.unsupported">unsupported</system:String>
+  <system:String x:Key="autotuning.result.nosustained">no sustained notes</system:String>
+  <system:String x:Key="autotuning.result.noeligible">No eligible pitched notes were found.</system:String>
+  <system:String x:Key="autotuning.result.nochange">No values changed.</system:String>
+  <system:String x:Key="autotuning.result.scopechanged">The active voice part changed before tuning could run.</system:String>
+  <system:String x:Key="dialogs.ustxversion.caption">Unsupported USTX version</system:String>
+  <system:String x:Key="dialogs.ustxversion.message">Project version {0} is newer than supported version {1}.&#10;&#10;{2}&#10;&#10;Convert supported fields into a separate current-format copy and try opening it? The original file will remain unchanged. Newer features may not be preserved.</system:String>
+  <system:String x:Key="dialogs.ustxversion.convert">Convert format and try force open</system:String>
+  <system:String x:Key="dialogs.ustxversion.failed">Could not convert or open this USTX file. The original file was not changed.&#10;&#10;{0}&#10;&#10;{1}</system:String>
+  <system:String x:Key="quickstart.title">Welcome to NyaUTAU</system:String>
+  <system:String x:Key="quickstart.subtitle">A few simple steps to make your first song. You can skip this guide and start creating whenever you're ready.</system:String>
+  <system:String x:Key="quickstart.singer.title">Add a singing voice</system:String>
+  <system:String x:Key="quickstart.singer.description">Install a compatible singer voicebank, then choose that singer for your track. You can also drag a voicebank archive into the window.</system:String>
+  <system:String x:Key="quickstart.audio.title">Check your audio device</system:String>
+  <system:String x:Key="quickstart.audio.description">Choose your audio output in Preferences. If playback is silent, check the selected device and the track volume here first.</system:String>
+  <system:String x:Key="quickstart.notes.title">Write a melody and listen</system:String>
+  <system:String x:Key="quickstart.notes.description">Create or open a project, choose a singer, and edit notes and lyrics in the piano roll. Press Space to listen; Smart pitch can add a starting pitch curve for your notes.</system:String>
+  <system:String x:Key="quickstart.continue">Get started</system:String>
+  <system:String x:Key="quickstart.skip">Skip for now</system:String>
 </ResourceDictionary>

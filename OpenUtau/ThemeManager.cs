@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
@@ -95,6 +96,10 @@ namespace OpenUtau.App {
                     IsDarkMode = b;
                 }
             }
+            if (resDict.TryGetResource("AccentColor1", themeVariant, out outVar) &&
+                outVar is Color primaryColor) {
+                resDict["MaterialOnPrimaryColor"] = GetPrimaryForeground(primaryColor);
+            }
             if (resDict.TryGetResource("SystemControlForegroundBaseHighBrush", themeVariant, out outVar)) {
                 ForegroundBrush = (IBrush)outVar!;
             }
@@ -158,6 +163,21 @@ namespace OpenUtau.App {
             SetKeyboardBrush();
             TextLayoutCache.Clear();
             MessageBus.Current.SendMessage(new ThemeChangedEvent());
+        }
+
+        static Color GetPrimaryForeground(Color primaryColor) {
+            static double Linearize(byte channel) {
+                var value = channel / 255.0;
+                return value <= 0.04045 ? value / 12.92 : Math.Pow((value + 0.055) / 1.055, 2.4);
+            }
+
+            var luminance = 0.2126 * Linearize(primaryColor.R)
+                + 0.7152 * Linearize(primaryColor.G)
+                + 0.0722 * Linearize(primaryColor.B);
+            var lightContrast = 1.05 / (luminance + 0.05);
+            var darkContrast = (luminance + 0.05) / 0.05;
+            return lightContrast >= darkContrast
+                ? Avalonia.Media.Colors.White : Avalonia.Media.Colors.Black;
         }
 
         public static void ChangePianorollColor(string color) {

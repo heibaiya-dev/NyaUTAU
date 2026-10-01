@@ -1,4 +1,4 @@
-<!--DO NOT modify this file. It is managed autometically.-->
+﻿<!--DO NOT modify this file. It is managed autometically.-->
 <!--To contribute to OpenUtau's localization, visit https://crowdin.com/project/oxygen-dioxideopenutau -->
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -101,10 +101,10 @@
   <system:String x:Key="debug.copylog">Kopieer log</system:String>
   <system:String x:Key="debug.reverselogorder">Keer logvolgorde om</system:String>
 
-  <system:String x:Key="dialogs.about.caption">Over OpenUTAU</system:String>
+  <system:String x:Key="dialogs.about.caption">Over NyaUTAU</system:String>
   <system:String x:Key="dialogs.about.message">
-OpenUtau beoogt een open-source bewerkingsomgeving te zijn voor de UTAU-gemeenschap, met een moderne gebruikerservaring en intelligente fonologische ondersteuning. Bezoek ons op Github.</system:String>
-  <system:String x:Key="dialogs.exitsave.caption">Sluit OpenUtau af</system:String>
+NyaUTAU beoogt een open-source bewerkingsomgeving te zijn voor de UTAU-gemeenschap, met een moderne gebruikerservaring en intelligente fonologische ondersteuning. Bezoek ons op Github.</system:String>
+  <system:String x:Key="dialogs.exitsave.caption">Sluit NyaUTAU af</system:String>
   <system:String x:Key="dialogs.exitsave.message">Het huidige project bevat onopgeslagen wijzigingen. Wilt u het opslaan?</system:String>
   <system:String x:Key="dialogs.export.caption">Exporteer</system:String>
   <system:String x:Key="dialogs.export.savefirst">Sla het projectbestand eerst op</system:String>
@@ -125,7 +125,7 @@ OpenUtau beoogt een open-source bewerkingsomgeving te zijn voor de UTAU-gemeensc
   <system:String x:Key="dialogs.messagebox.copy">Kopieer foutmelding naar klembord</system:String>
   <system:String x:Key="dialogs.noresampler.caption">Geen resampler</system:String>
   <system:String x:Key="dialogs.noresampler.message">Geen resampler! Zet je favoriete resampler exe of dll in de Resamplers map en kies het in Voorkeuren!</system:String>
-  <system:String x:Key="dialogs.recovery">Hiervoor is OpenUtau abnormaal beëindigd. Klik hier om te herstellen.</system:String>
+  <system:String x:Key="dialogs.recovery">Hiervoor is NyaUTAU abnormaal beëindigd. Klik hier om te herstellen.</system:String>
   <system:String x:Key="dialogs.recovery.caption">Herstelproject</system:String>
   <system:String x:Key="dialogs.remaptimeaxis.message">Met deze tool verandert u het tempo van het project zonder dat de daadwerkelijke positie en duur (in seconden) van de noten verandert.
   Nieuwe BPM:</system:String>
@@ -187,7 +187,7 @@ Wil je verder gaan met splitten bij de dichtbije positie na de afspeelkop met ge
   <system:String x:Key="errors.failed.loadprefs">Laden van de voorkeuren mislukt. Initialiseer het.</system:String>
   <system:String x:Key="errors.failed.openfile">Openen mislukt</system:String>
   <system:String x:Key="errors.failed.openlocation">Openen van locatie mislukt</system:String>
-  <system:String x:Key="errors.failed.opennewerproject">Projectbestand is nieuwer dan het programma! Upgrade OpenUtau!</system:String>
+  <system:String x:Key="errors.failed.opennewerproject">Projectbestand is nieuwer dan het programma! Upgrade NyaUTAU!</system:String>
   <!--<system:String x:Key="errors.failed.prerender">Failed to render in the background.</system:String>-->
   <system:String x:Key="errors.failed.render">Renderen mislukt.</system:String>
   <system:String x:Key="errors.failed.runeditingmacro">Uitvoeren van bewerkingsmacro mislukt</system:String>
@@ -314,7 +314,7 @@ Wil je verder gaan met splitten bij de dichtbije positie na de afspeelkop met ge
   <system:String x:Key="menu.file.saveas">Opslaan Als...</system:String>
   <system:String x:Key="menu.file.savetemplate">Sla Sjabloon Op...</system:String>
   <!--<system:String x:Key="menu.help">Help</system:String>-->
-  <system:String x:Key="menu.help.about">Over OpenUtau</system:String>
+  <system:String x:Key="menu.help.about">Over NyaUTAU</system:String>
   <system:String x:Key="menu.help.checkupdate">Controleer op Updates</system:String>
   <system:String x:Key="menu.help.logslocation">Open Logslocatie</system:String>
   <system:String x:Key="menu.help.reportissue">Meld een probleem</system:String>
@@ -624,7 +624,7 @@ Waarschuwing: deze optie verwijdert aangepaste voorinstellingen.</system:String>
   <!--<system:String x:Key="prefs.diffsinger">DiffSinger</system:String>-->
   <system:String x:Key="prefs.editing">Bewerken</system:String>
   <system:String x:Key="prefs.general">Algemeen</system:String>
-  <system:String x:Key="prefs.note.restart">PS: herstart OpenUtau a.u.b. na het wijzigen van dit item.</system:String>
+  <system:String x:Key="prefs.note.restart">PS: herstart NyaUTAU a.u.b. na het wijzigen van dit item.</system:String>
   <system:String x:Key="prefs.otoeditor">Otobewerker</system:String>
   <system:String x:Key="prefs.otoeditor.select">Standaard Otobewerker</system:String>
   <system:String x:Key="prefs.otoeditor.setparampath">Locatie van setParam</system:String>
@@ -670,9 +670,9 @@ Waarschuwing: deze optie verwijdert aangepaste voorinstellingen.</system:String>
   1. "resampler-compatibility" als "on" in te stellen in moreconfig.txt.
   2. "auto-update-llsm-mrq" als "off" in te stellen in moreconfig.txt.
   3. Geduldig te wachten tot moresampler de missende llsm-bestanden genereert.</system:String>
-  <system:String x:Key="prefs.rendering.resampler.note">PS: Om externe resamplers te gebruiken, voeg het resampler DLL of EXE bestand toe in de Resamplers map in het OpenUtau installatiepad en selecteer het in Voorkeuren.</system:String>
+  <system:String x:Key="prefs.rendering.resampler.note">PS: Om externe resamplers te gebruiken, voeg het resampler DLL of EXE bestand toe in de Resamplers map in het NyaUTAU installatiepad en selecteer het in Voorkeuren.</system:String>
   <system:String x:Key="prefs.rendering.skipmuted">Sla gedempte tracks over</system:String>
-  <system:String x:Key="prefs.rendering.threads.cpuwarn">Waarschuwing: te veel render threads kan ervoor zorgen dat OpenUtau langzaam werkt.</system:String>
+  <system:String x:Key="prefs.rendering.threads.cpuwarn">Waarschuwing: te veel render threads kan ervoor zorgen dat NyaUTAU langzaam werkt.</system:String>
   <system:String x:Key="prefs.rendering.threads.numthreads">Maximum aantal Render Threads</system:String>
   <!--<system:String x:Key="prefs.rendering.wavtool">Wavtool</system:String>-->
   <!--<system:String x:Key="prefs.utau">UTAU</system:String>-->
@@ -856,7 +856,7 @@ Algemeen
   <!--<system:String x:Key="updater.update">Update</system:String>-->
 
   <system:String x:Key="warning">Waarschuwing</system:String>
-  <system:String x:Key="warning.asciipath">Uw OpenUtau-locatie "{0}" bevat geen ASCII tekens. Exe resamplers werken mogelijk niet.</system:String>
+  <system:String x:Key="warning.asciipath">Uw NyaUTAU-locatie "{0}" bevat geen ASCII tekens. Exe resamplers werken mogelijk niet.</system:String>
   <system:String x:Key="warning.renderer">Geen instellingen voor deze renderer.</system:String>
 
   <system:String x:Key="welcome.new">Nieuw</system:String>

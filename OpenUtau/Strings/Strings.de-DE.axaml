@@ -1,4 +1,4 @@
-<!--DO NOT modify this file. It is managed autometically.-->
+﻿<!--DO NOT modify this file. It is managed autometically.-->
 <!--To contribute to OpenUtau's localization, visit https://crowdin.com/project/oxygen-dioxideopenutau -->
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -101,10 +101,10 @@
   <system:String x:Key="debug.copylog">Log kopieren</system:String>
   <system:String x:Key="debug.reverselogorder">Log Reihenfolge umkehren</system:String>
 
-  <system:String x:Key="dialogs.about.caption">Über OpenUTAU</system:String>
+  <system:String x:Key="dialogs.about.caption">Über NyaUTAU</system:String>
   <system:String x:Key="dialogs.about.message">
-OpenUtaus Ziel ist es eine quelloffene Bearbeitungsumgebung für die UTAU Community mit einer modernen Benutzererfahrung und intelligenter phonologischer Unterstützung zu sein. Besuchen Sie uns auf Github.</system:String>
-  <system:String x:Key="dialogs.exitsave.caption">OpenUtau schließen</system:String>
+NyaUTAUs Ziel ist es eine quelloffene Bearbeitungsumgebung für die UTAU Community mit einer modernen Benutzererfahrung und intelligenter phonologischer Unterstützung zu sein. Besuchen Sie uns auf Github.</system:String>
+  <system:String x:Key="dialogs.exitsave.caption">NyaUTAU schließen</system:String>
   <system:String x:Key="dialogs.exitsave.message">Das aktuelle Projekt beinhaltet nicht gespeicherte Änderungen. Möchten Sie es speichern?</system:String>
   <system:String x:Key="dialogs.export.caption">Exportieren</system:String>
   <system:String x:Key="dialogs.export.savefirst">Projekt Datei als erstes speichern</system:String>
@@ -314,7 +314,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="menu.file.saveas">Speichern als...</system:String>
   <system:String x:Key="menu.file.savetemplate">Vorlage... speichern</system:String>
   <system:String x:Key="menu.help">Hilfe</system:String>
-  <system:String x:Key="menu.help.about">Über OpenUtau</system:String>
+  <system:String x:Key="menu.help.about">Über NyaUTAU</system:String>
   <system:String x:Key="menu.help.checkupdate">Nach Updates suchen</system:String>
   <system:String x:Key="menu.help.logslocation">Log Speicherort öffnen</system:String>
   <system:String x:Key="menu.help.reportissue">Problem melden</system:String>
@@ -625,7 +625,7 @@ Warnung: Diese Option entfernt alle benutzerdefinierten Einstellungen.</system:S
   <!--<system:String x:Key="prefs.diffsinger">DiffSinger</system:String>-->
   <!--<system:String x:Key="prefs.editing">Editing</system:String>-->
   <!--<system:String x:Key="prefs.general">General</system:String>-->
-  <system:String x:Key="prefs.note.restart">Anmerkung: Bitte starten Sie OpenUtau neu nachdem Sie diese Einstellung verändert haben.</system:String>
+  <system:String x:Key="prefs.note.restart">Anmerkung: Bitte starten Sie NyaUTAU neu nachdem Sie diese Einstellung verändert haben.</system:String>
   <!--<system:String x:Key="prefs.otoeditor">Oto Editor</system:String>-->
   <system:String x:Key="prefs.otoeditor.select">Standard Oto Editor</system:String>
   <!--<system:String x:Key="prefs.otoeditor.setparampath">setParam Path</system:String>-->
@@ -671,9 +671,9 @@ Warnung: Diese Option entfernt alle benutzerdefinierten Einstellungen.</system:S
   1. Setze "resampler-compatibility" auf "on" in moreconfig.txt.
   2. Setze "auto-update-llsm-mrq" auf "off" in moreconfig.txt.
   3. Geduldig bis moresampler die fehlenden llsm Dateien generiert hat warten.</system:String>
-  <system:String x:Key="prefs.rendering.resampler.note">Anmerkung: Um externe resampler zu verwenden, fügen Sie bitte die DLL or EXE Datei des resamplers in den Resamplers Ordner im OpenUtau Installationspfad hinzu. Wählen Sie ihn anschließend in den Einstellungen aus.</system:String>
+  <system:String x:Key="prefs.rendering.resampler.note">Anmerkung: Um externe resampler zu verwenden, fügen Sie bitte die DLL or EXE Datei des resamplers in den Resamplers Ordner im NyaUTAU Installationspfad hinzu. Wählen Sie ihn anschließend in den Einstellungen aus.</system:String>
   <system:String x:Key="prefs.rendering.skipmuted">Stummgeschaltete Spuren überspringen</system:String>
-  <system:String x:Key="prefs.rendering.threads.cpuwarn">Warnung: Zu viele Render-Prozesse können OpenUtau verlangsamen.</system:String>
+  <system:String x:Key="prefs.rendering.threads.cpuwarn">Warnung: Zu viele Render-Prozesse können NyaUTAU verlangsamen.</system:String>
   <system:String x:Key="prefs.rendering.threads.numthreads">Maximale Render-Prozesse</system:String>
   <!--<system:String x:Key="prefs.rendering.wavtool">Wavtool</system:String>-->
   <!--<system:String x:Key="prefs.utau">UTAU</system:String>-->
@@ -857,7 +857,7 @@ Generell
   <!--<system:String x:Key="updater.update">Update</system:String>-->
 
   <system:String x:Key="warning">Warnung</system:String>
-  <system:String x:Key="warning.asciipath">Ihr OpenUtau home Pfad "{0}" beinhaltet nicht-ASCII Zeichen. Exe Resampler funktioneren wahrscheinlich nicht.</system:String>
+  <system:String x:Key="warning.asciipath">Ihr NyaUTAU home Pfad "{0}" beinhaltet nicht-ASCII Zeichen. Exe Resampler funktioneren wahrscheinlich nicht.</system:String>
   <system:String x:Key="warning.renderer">Keine Einstellungen für diesen renderer vorhanden.</system:String>
 
   <!--<system:String x:Key="welcome.new">New</system:String>-->

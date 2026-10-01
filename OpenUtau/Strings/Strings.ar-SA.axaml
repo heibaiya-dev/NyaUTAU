@@ -1,4 +1,4 @@
-<!--DO NOT modify this file. It is managed autometically.-->
+﻿<!--DO NOT modify this file. It is managed autometically.-->
 <!--To contribute to OpenUtau's localization, visit https://crowdin.com/project/oxygen-dioxideopenutau -->
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -103,7 +103,7 @@
 
   <!--<system:String x:Key="dialogs.about.caption">About OpenUTAU</system:String>-->
   <system:String x:Key="dialogs.about.message">
-يهدف OpenUtau إلى أن يكون بيئة تحرير مفتوحة المصدر لمجتمع UTAU، مع تجرِبة مستخدم حديثة ودعم صوتي ذكي. تفضلوا بزيارتنا على GitHub.</system:String>
+يهدف NyaUTAU إلى أن يكون بيئة تحرير مفتوحة المصدر لمجتمع UTAU، مع تجرِبة مستخدم حديثة ودعم صوتي ذكي. تفضلوا بزيارتنا على GitHub.</system:String>
   <system:String x:Key="dialogs.exitsave.caption">الخروج من البرنامَج</system:String>
   <system:String x:Key="dialogs.exitsave.message">المشروع الحالي يحتوي على تغيرات غير محفوظ. هل ترغب بحفظ التغيرات؟</system:String>
   <system:String x:Key="dialogs.export.caption">استخراج</system:String>

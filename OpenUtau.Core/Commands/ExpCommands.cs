@@ -295,6 +295,9 @@ namespace OpenUtau.Core {
         public override string ToString() => "Set pitch points";
         public override void Execute(){
             lock (Part) {
+                foreach (var partNote in Part.notes) {
+                    partNote.SkipSnapFirstValidation = true;
+                }
                 for (var i=0; i<Notes.Length; i++) {
                     Notes[i].pitch = newPitch.Clone();
                 }
@@ -302,6 +305,9 @@ namespace OpenUtau.Core {
         }
         public override void Unexecute() {
             lock (Part) {
+                foreach (var partNote in Part.notes) {
+                    partNote.SkipSnapFirstValidation = true;
+                }
                 for (var i = 0; i < Notes.Length; i++) {
                     Notes[i].pitch = oldPitch[i];
                 }

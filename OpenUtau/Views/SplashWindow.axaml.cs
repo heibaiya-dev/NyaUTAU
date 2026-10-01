@@ -55,17 +55,17 @@ namespace OpenUtau.App.Views {
             var mainThread = Thread.CurrentThread;
             var mainScheduler = TaskScheduler.FromCurrentSynchronizationContext();
             Task.Run(() => {
-                Log.Information("Initializing OpenUtau.");
+                Log.Information("Initializing NyaUTAU.");
                 ToolsManager.Inst.Initialize();
                 SingerManager.Inst.Initialize();
                 DocManager.Inst.Initialize(mainThread, mainScheduler);
                 DocManager.Inst.PostOnUIThread = action => Avalonia.Threading.Dispatcher.UIThread.Post(action);
-                Log.Information("Initialized OpenUtau.");
+                Log.Information("Initialized NyaUTAU.");
                 InitAudio();
             }).ContinueWith(t => {
                 if (t.IsFaulted) {
                     Log.Error(t.Exception?.Flatten(), "Failed to Start.");
-                    MessageBox.ShowError(this, t.Exception, "Failed to Start OpenUtau").ContinueWith(t1 => { Close(); });
+                    MessageBox.ShowError(this, t.Exception, "Failed to Start NyaUTAU").ContinueWith(t1 => { Close(); });
                     return;
                 }
                 if (App.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop) {

@@ -1,4 +1,4 @@
-<Application xmlns="https://github.com/avaloniaui"
+﻿<Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:OpenUtau.App"
              x:Class="OpenUtau.App.App" Name="OpenUtau">
@@ -40,6 +40,8 @@
     <StyleInclude Source="avares://Avalonia.Controls.ColorPicker/Themes/Fluent/Fluent.xaml" />
     <StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
     <StyleInclude Source="/Styles/Styles.axaml"/>
+    <StyleInclude Source="/Styles/MaterialStyles.axaml"/>
+    <StyleInclude Source="/Styles/MaterialToggleStyles.axaml"/>
   </Application.Styles>
   <NativeMenu.Menu>
     <NativeMenu/>

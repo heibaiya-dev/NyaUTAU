@@ -7,6 +7,7 @@ using Avalonia.Threading;
 using DynamicData.Binding;
 using OpenUtau.App.Views;
 using OpenUtau.Core;
+using OpenUtau.Core.Format;
 using OpenUtau.Core.Ustx;
 using OpenUtau.Core.Util;
 using ReactiveUI;
@@ -52,9 +53,11 @@ namespace OpenUtau.App.ViewModels {
         public double Height => Preferences.Default.MainWindowSize.Height;
 
         /// <summary>
-        ///0: welcome page, 1: tracks page
+        /// 0: welcome page, 1: tracks page, 2: first-launch quick start.
         /// </summary>
         [Reactive] public partial int Page { get; set; } = 0;
+        public bool ShowQuickStart => Page == 2;
+        public bool IsProjectPage => Page == 1;
         public ObservableCollectionExtended<RecentFileInfo> RecentFiles { get; } = new ObservableCollectionExtended<RecentFileInfo>();
         public ObservableCollectionExtended<RecentFileInfo> TemplateFiles { get; } = new ObservableCollectionExtended<RecentFileInfo>();
         [Reactive] public partial bool HasRecovery { get; set; } = false;
@@ -77,7 +80,7 @@ namespace OpenUtau.App.ViewModels {
                 Version? version = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version;
                 string suffix = Core.Util.ReleaseChannel.FromVersion(version) is { } channel
                     ? $" ({channel})" : string.Empty;
-                return $"OpenUtau v{version}{suffix}";
+                return $"NyaUTAU v{version}{suffix}";
             }
         }
         [Reactive] public partial double Progress { get; set; }
@@ -99,11 +102,19 @@ namespace OpenUtau.App.ViewModels {
             = new ObservableCollectionExtended<MenuItemViewModel>();
         private ObservableCollectionExtended<MenuItemViewModel> openTemplatesMenuItems
             = new ObservableCollectionExtended<MenuItemViewModel>();
+        private string[]? pendingStartupArgs;
+        private bool startupInitialized;
 
         // view will set this to the real AskIfSaveAndContinue implementation
         public Func<Task<bool>>? AskIfSaveAndContinue { get; set; }
+        public Func<UstxVersionException, Task<bool>>? ConfirmUstxConversion { get; set; }
 
         public MainWindowViewModel() {
+            Page = Preferences.Default.QuickStartCompleted ? 0 : 2;
+            this.WhenAnyValue(vm => vm.Page).Subscribe(_ => {
+                this.RaisePropertyChanged(nameof(ShowQuickStart));
+                this.RaisePropertyChanged(nameof(IsProjectPage));
+            });
             PlaybackViewModel = new PlaybackViewModel();
             TracksViewModel = new TracksViewModel();
             ClearCacheHeader = string.Empty;
@@ -166,7 +177,12 @@ namespace OpenUtau.App.ViewModels {
             }
         }
 
-        public void InitProject(MainWindow window) {
+        public void InitProject(MainWindow window, string[]? startupArgs = null) {
+            pendingStartupArgs ??= (startupArgs ?? Environment.GetCommandLineArgs()).ToArray();
+            if (ShowQuickStart || startupInitialized) {
+                return;
+            }
+            startupInitialized = true;
             var recPath = Preferences.Default.RecoveryPath;
             if (!string.IsNullOrWhiteSpace(recPath) && File.Exists(recPath)) {
                 /*
@@ -195,7 +211,7 @@ namespace OpenUtau.App.ViewModels {
                 return;
             }
           
-            var args = Environment.GetCommandLineArgs();
+            var args = pendingStartupArgs;
             if (args.Length == 2 && File.Exists(args[1])) {
                 try {
                     Core.Format.Formats.LoadProject(new string[] { args[1] });
@@ -203,10 +219,21 @@ namespace OpenUtau.App.ViewModels {
                     DocManager.Inst.ExecuteCmd(new VoiceColorRemappingNotification(-1, true));
                 } catch (Exception e) {
                     var customEx = new MessageCustomizableException($"Failed to open file {args[1]}", $"<translate:errors.failed.openfile>: {args[1]}", e);
-                    DocManager.Inst.ExecuteCmd(new ErrorMessageNotification(customEx));
+                    DocManager.Inst.ExecuteCmd(new ErrorMessageNotification(
+                    e is UstxVersionException ? e : customEx));
                 }
                 return;
             }
+        }
+
+        public void CompleteQuickStart(MainWindow window) {
+            if (!ShowQuickStart) {
+                return;
+            }
+            Preferences.Default.QuickStartCompleted = true;
+            Preferences.Save();
+            Page = 0;
+            InitProject(window);
         }
 
         public void NewProject() {
@@ -220,7 +247,8 @@ namespace OpenUtau.App.ViewModels {
                     return;
                 } catch (Exception e) {
                     var customEx = new MessageCustomizableException("Failed to load default template", "<translate:errors.failed.load>: default template", e);
-                    DocManager.Inst.ExecuteCmd(new ErrorMessageNotification(customEx));
+                    DocManager.Inst.ExecuteCmd(new ErrorMessageNotification(
+                    e is UstxVersionException ? e : customEx));
                 }
             }
             DocManager.Inst.ExecuteCmd(new LoadProjectNotification(Core.Format.Ustx.Create()));
@@ -245,13 +273,24 @@ namespace OpenUtau.App.ViewModels {
             DocManager.Inst.Recovered = false;
         }
 
+        public async Task<bool> TryRecoverUstxProject(UstxVersionException exception) {
+            if (ConfirmUstxConversion == null || !await ConfirmUstxConversion(exception)) {
+                return false;
+            }
+            var convertedPath = Core.Format.Ustx.ConvertToCurrentVersion(exception.FilePath);
+            OpenProject(new[] { convertedPath });
+            Page = 1;
+            return true;
+        }
+
         public void OpenRecent(string file) {
             try {
                 OpenProject(new string[] { file });
                 Page = 1;
             } catch (Exception e) {
                 var customEx = new MessageCustomizableException("Failed to open recent", "<translate:errors.failed.openfile>: recent project", e);
-                DocManager.Inst.ExecuteCmd(new ErrorMessageNotification(customEx));
+                DocManager.Inst.ExecuteCmd(new ErrorMessageNotification(
+                    e is UstxVersionException ? e : customEx));
             }
         }
 
@@ -264,7 +303,8 @@ namespace OpenUtau.App.ViewModels {
                 this.RaisePropertyChanged(nameof(Title));
             } catch (Exception e) {
                 var customEx = new MessageCustomizableException("Failed to open template", "<translate:errors.failed.openfile>: project template", e);
-                DocManager.Inst.ExecuteCmd(new ErrorMessageNotification(customEx));
+                DocManager.Inst.ExecuteCmd(new ErrorMessageNotification(
+                    e is UstxVersionException ? e : customEx));
             }
         }
 

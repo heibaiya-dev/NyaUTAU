@@ -1,4 +1,4 @@
-<!--DO NOT modify this file. It is managed autometically.-->
+﻿<!--DO NOT modify this file. It is managed autometically.-->
 <!--To contribute to OpenUtau's localization, visit https://crowdin.com/project/oxygen-dioxideopenutau -->
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -101,10 +101,10 @@
   <system:String x:Key="debug.copylog">Copiază log-ul</system:String>
   <system:String x:Key="debug.reverselogorder">Inversează Ordinea Logurilor</system:String>
 
-  <system:String x:Key="dialogs.about.caption">Despre OpenUTAU</system:String>
+  <system:String x:Key="dialogs.about.caption">Despre NyaUTAU</system:String>
   <system:String x:Key="dialogs.about.message">
-OpenUtau țintește să fie un mediu open-source de editare pentru comunitatea UTAU, cu o experiență modernă de folosință și suport fonologic inteligent. Vizitează-ne pe GitHub.</system:String>
-  <system:String x:Key="dialogs.exitsave.caption">Ieși din OpenUtau</system:String>
+NyaUTAU țintește să fie un mediu open-source de editare pentru comunitatea UTAU, cu o experiență modernă de folosință și suport fonologic inteligent. Vizitează-ne pe GitHub.</system:String>
+  <system:String x:Key="dialogs.exitsave.caption">Ieși din NyaUTAU</system:String>
   <system:String x:Key="dialogs.exitsave.message">Acest proiect conține schimbări ce nu au fost salvate. Dorești să îl salvezi?</system:String>
   <system:String x:Key="dialogs.export.caption">Exportă</system:String>
   <system:String x:Key="dialogs.export.savefirst">Salvează fișierul proiectului întâi</system:String>
@@ -125,7 +125,7 @@ OpenUtau țintește să fie un mediu open-source de editare pentru comunitatea U
   <system:String x:Key="dialogs.messagebox.copy">Copiază eroarea</system:String>
   <system:String x:Key="dialogs.noresampler.caption">Nu a fost găsit un resampler</system:String>
   <system:String x:Key="dialogs.noresampler.message">Niciun resampler nu a fost găsit! Puneți resampler-ul preferat exe sau dll în folderul Resamplers și alege-l în Preferințe!</system:String>
-  <system:String x:Key="dialogs.recovery">Data trecută, OpenUtau a fost închis anormal. Dați click aici pentru a recupera proiectul.</system:String>
+  <system:String x:Key="dialogs.recovery">Data trecută, NyaUTAU a fost închis anormal. Dați click aici pentru a recupera proiectul.</system:String>
   <system:String x:Key="dialogs.recovery.caption">Proiect de recuperare</system:String>
   <system:String x:Key="dialogs.remaptimeaxis.message">Această unealtă va schimba tempo-ul proiectului fără a modifica pozițiile actuale și durata (în secunde) a notelor.
   Noul tempo:</system:String>
@@ -187,7 +187,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="errors.failed.loadprefs">Încărcarea preferințelor a eșuat. Inițializează.</system:String>
   <system:String x:Key="errors.failed.openfile">Deschiderea a eșuat</system:String>
   <system:String x:Key="errors.failed.openlocation">Deschiderea locației a eșuat</system:String>
-  <system:String x:Key="errors.failed.opennewerproject">Versiunea proiectului este mai nouă decât programul! Actualizați OpenUtau!</system:String>
+  <system:String x:Key="errors.failed.opennewerproject">Versiunea proiectului este mai nouă decât programul! Actualizați NyaUTAU!</system:String>
   <!--<system:String x:Key="errors.failed.prerender">Failed to render in the background.</system:String>-->
   <system:String x:Key="errors.failed.render">Randarea a eșuat.</system:String>
   <system:String x:Key="errors.failed.runeditingmacro">Executarea macro-ului de editare a eșuat</system:String>
@@ -314,7 +314,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="menu.file.saveas">Salvează ca</system:String>
   <system:String x:Key="menu.file.savetemplate">Salvează șablon</system:String>
   <system:String x:Key="menu.help">Ajutor</system:String>
-  <system:String x:Key="menu.help.about">Despre OpenUTAU</system:String>
+  <system:String x:Key="menu.help.about">Despre NyaUTAU</system:String>
   <system:String x:Key="menu.help.checkupdate">Verifică actualizări</system:String>
   <system:String x:Key="menu.help.logslocation">Deschide locația jurnalului</system:String>
   <system:String x:Key="menu.help.reportissue">Raportează o problemă</system:String>
@@ -624,7 +624,7 @@ Avertisment: această opțiune va elimina presetările personalizate.</system:St
   <!--<system:String x:Key="prefs.diffsinger">DiffSinger</system:String>-->
   <system:String x:Key="prefs.editing">Editare</system:String>
   <!--<system:String x:Key="prefs.general">General</system:String>-->
-  <system:String x:Key="prefs.note.restart">Notiță: Vă rugăm să restartați OpenUtau după schimbarea acestei setări.</system:String>
+  <system:String x:Key="prefs.note.restart">Notiță: Vă rugăm să restartați NyaUTAU după schimbarea acestei setări.</system:String>
   <system:String x:Key="prefs.otoeditor">Editor Oto</system:String>
   <system:String x:Key="prefs.otoeditor.select">Editor Oto Implicit</system:String>
   <system:String x:Key="prefs.otoeditor.setparampath">Cale setParam</system:String>
@@ -670,9 +670,9 @@ Avertisment: această opțiune va elimina presetările personalizate.</system:St
   1. Setați ”resampler-compatibility” pe ”on” (pornit) în moreconfig.txt
   2. Setați ”auto-update-llsm-mrq” pe ”off” (oprit) în moreconfig.txt
   3. Așteptați răbdător ca moresampler să genereze fișierele llsm lipsă.</system:String>
-  <system:String x:Key="prefs.rendering.resampler.note">Notită: pentru a folosi resamplere externe, vă rugăm să adăugați fișierul DLL sau EXE în folderul Resamplers în calea de instalare OpenUtau și să îl alegeți în Preferințe</system:String>
+  <system:String x:Key="prefs.rendering.resampler.note">Notită: pentru a folosi resamplere externe, vă rugăm să adăugați fișierul DLL sau EXE în folderul Resamplers în calea de instalare NyaUTAU și să îl alegeți în Preferințe</system:String>
   <system:String x:Key="prefs.rendering.skipmuted">Sari peste track-urile amuțite</system:String>
-  <system:String x:Key="prefs.rendering.threads.cpuwarn">Avertisment: prea multe thread-uri de randare pot cauza ca OpenUtau să ruleze mai încet.</system:String>
+  <system:String x:Key="prefs.rendering.threads.cpuwarn">Avertisment: prea multe thread-uri de randare pot cauza ca NyaUTAU să ruleze mai încet.</system:String>
   <system:String x:Key="prefs.rendering.threads.numthreads">Thread-uri Maxime de Randare</system:String>
   <!--<system:String x:Key="prefs.rendering.wavtool">Wavtool</system:String>-->
   <!--<system:String x:Key="prefs.utau">UTAU</system:String>-->
@@ -856,7 +856,7 @@ General
   <system:String x:Key="updater.update">Actualizează</system:String>
 
   <system:String x:Key="warning">Avertisment</system:String>
-  <system:String x:Key="warning.asciipath">Calea implicită OpenUtau "{0}" conține caractere non-ASCII. Este posibil ca resamplerele exe să nu funcționeze.</system:String>
+  <system:String x:Key="warning.asciipath">Calea implicită NyaUTAU "{0}" conține caractere non-ASCII. Este posibil ca resamplerele exe să nu funcționeze.</system:String>
   <system:String x:Key="warning.renderer">Fără setări pentru acest randator.</system:String>
 
   <system:String x:Key="welcome.new">Nou</system:String>

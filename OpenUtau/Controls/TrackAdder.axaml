@@ -1,14 +1,20 @@
-<UserControl xmlns="https://github.com/avaloniaui"
+﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="64"
              x:Class="OpenUtau.App.Controls.TrackAdder" Width="300" Height="104">
   <Border>
-    <Button Classes="clear" VerticalAlignment="Center" HorizontalAlignment="Center"
-            Width="60" Height="30" CornerRadius="4" Click="ButtonClicked">
-      <Path Classes="filled" Width="24" Height="24" Data="M10.61,13.43H2.28V10.57H10.61V2H13.39V10.57H21.72V13.43H13.39V22H10.61Z" 
-            Fill="{DynamicResource NeutralAccentBrushSemi}"/>
+    <Button Classes="material-tonal" VerticalAlignment="Center" HorizontalAlignment="Center"
+            MinWidth="140" Height="36" Padding="16,0" CornerRadius="16" Click="ButtonClicked"
+            ToolTip.Tip="{DynamicResource tracks.add}">
+      <StackPanel Orientation="Horizontal" Spacing="10">
+        <Path Width="20" Height="20" Stretch="Uniform" VerticalAlignment="Center"
+              Data="M11 3H13V11H21V13H13V21H11V13H3V11H11Z"
+              Fill="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+        <TextBlock Text="{DynamicResource tracks.add}" VerticalAlignment="Center" FontWeight="Medium"
+                   Foreground="{DynamicResource MaterialOnPrimaryContainerBrush}"/>
+      </StackPanel>
     </Button>
   </Border>
 </UserControl>

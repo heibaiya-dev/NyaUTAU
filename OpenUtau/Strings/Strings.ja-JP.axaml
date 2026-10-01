@@ -1,4 +1,4 @@
-<!--DO NOT modify this file. It is managed autometically.-->
+﻿<!--DO NOT modify this file. It is managed autometically.-->
 <!--To contribute to OpenUtau's localization, visit https://crowdin.com/project/oxygen-dioxideopenutau -->
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -101,10 +101,10 @@
   <system:String x:Key="debug.copylog">ログをコピー</system:String>
   <system:String x:Key="debug.reverselogorder">古い順に並び変える</system:String>
 
-  <system:String x:Key="dialogs.about.caption">OpenUTAUについて</system:String>
+  <system:String x:Key="dialogs.about.caption">NyaUTAUについて</system:String>
   <system:String x:Key="dialogs.about.message">
-OpenUtauはUTAUコミュニティのためのオープンソースなエディタであり、モダンなユーザー体験とインテリジェントな発音変換サポートを目指しています。Githubを中心に開発中です。</system:String>
-  <system:String x:Key="dialogs.exitsave.caption">OpenUtauを終了</system:String>
+NyaUTAUはUTAUコミュニティのためのオープンソースなエディタであり、モダンなユーザー体験とインテリジェントな発音変換サポートを目指しています。Githubを中心に開発中です。</system:String>
+  <system:String x:Key="dialogs.exitsave.caption">NyaUTAUを終了</system:String>
   <system:String x:Key="dialogs.exitsave.message">保存されていない変更があります。保存しますか？</system:String>
   <system:String x:Key="dialogs.export.caption">エクスポート</system:String>
   <system:String x:Key="dialogs.export.savefirst">プロジェクトを保存してください。</system:String>
@@ -187,7 +187,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="errors.failed.loadprefs">環境設定の読み込みに失敗しました。設定を初期化します。</system:String>
   <system:String x:Key="errors.failed.openfile">読み込みに失敗しました</system:String>
   <system:String x:Key="errors.failed.openlocation">フォルダを開けませんでした</system:String>
-  <system:String x:Key="errors.failed.opennewerproject">プロジェクトファイルのバージョンが新しいため開けませんでした。OpenUtauをアップデートしてください！</system:String>
+  <system:String x:Key="errors.failed.opennewerproject">プロジェクトファイルのバージョンが新しいため開けませんでした。NyaUTAUをアップデートしてください！</system:String>
   <!--<system:String x:Key="errors.failed.prerender">Failed to render in the background.</system:String>-->
   <system:String x:Key="errors.failed.render">レンダリングに失敗しました。</system:String>
   <system:String x:Key="errors.failed.runeditingmacro">一括処理に失敗しました</system:String>
@@ -288,7 +288,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="menu.edit.selectall">全て選択</system:String>
   <system:String x:Key="menu.edit.undo">元に戻す</system:String>
   <system:String x:Key="menu.file">ファイル</system:String>
-  <system:String x:Key="menu.file.exit">OpenUtauを終了</system:String>
+  <system:String x:Key="menu.file.exit">NyaUTAUを終了</system:String>
   <system:String x:Key="menu.file.exportaudio">音声をエクスポート</system:String>
   <system:String x:Key="menu.file.exportds">DiffSinger Scriptsをエクスポート...</system:String>
   <system:String x:Key="menu.file.exportmidi">MIDIをエクスポート</system:String>
@@ -314,7 +314,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="menu.file.saveas">別名で保存...</system:String>
   <system:String x:Key="menu.file.savetemplate">テンプレートを保存...</system:String>
   <system:String x:Key="menu.help">ヘルプ</system:String>
-  <system:String x:Key="menu.help.about">OpenUtauについて</system:String>
+  <system:String x:Key="menu.help.about">NyaUTAUについて</system:String>
   <system:String x:Key="menu.help.checkupdate">アップデートを確認</system:String>
   <system:String x:Key="menu.help.logslocation">ログの場所を開く</system:String>
   <system:String x:Key="menu.help.reportissue">問題を報告</system:String>
@@ -461,7 +461,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="pianoroll.key">キー（スケール表示）</system:String>
   <system:String x:Key="pianoroll.menu.batch">一括編集</system:String>
   <system:String x:Key="pianoroll.menu.batch.running">一括編集を実行中</system:String>
-  <system:String x:Key="pianoroll.menu.external">OpenUtauプラグイン</system:String>
+  <system:String x:Key="pianoroll.menu.external">NyaUTAUプラグイン</system:String>
   <system:String x:Key="pianoroll.menu.lyrics">歌詞</system:String>
   <!--<system:String x:Key="pianoroll.menu.lyrics.addphonetichints">Add Phonetic Hint</system:String>-->
   <system:String x:Key="pianoroll.menu.lyrics.dashtoplus">"-" を "+" に置き換え</system:String>
@@ -625,7 +625,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <!--<system:String x:Key="prefs.diffsinger">DiffSinger</system:String>-->
   <system:String x:Key="prefs.editing">編集</system:String>
   <system:String x:Key="prefs.general">一般</system:String>
-  <system:String x:Key="prefs.note.restart">Note: この設定を変更した後は、OpenUtauを再起動してください。</system:String>
+  <system:String x:Key="prefs.note.restart">Note: この設定を変更した後は、NyaUTAUを再起動してください。</system:String>
   <system:String x:Key="prefs.otoeditor">原音設定</system:String>
   <system:String x:Key="prefs.otoeditor.select">デフォルトの原音設定エディタ</system:String>
   <system:String x:Key="prefs.otoeditor.setparampath">setParamの場所</system:String>
@@ -671,9 +671,9 @@ Do you want to continue by splitting at the nearest position after current playh
   1. moreconfig.txt で "resampler-compatibility" を "on" にします。
   2. moreconfig.txt で "auto-update-llsm-mrq" を "off" にします。
   3. moresampler が不足している llsm ファイルを生成するのを待ちます。</system:String>
-  <system:String x:Key="prefs.rendering.resampler.note">Note: エンジンを使用するには、使用したいエンジンのDLLまたはEXEファイルをOpenUTAUフォルダ内のResamplersフォルダに追加し、選択してください。</system:String>
+  <system:String x:Key="prefs.rendering.resampler.note">Note: エンジンを使用するには、使用したいエンジンのDLLまたはEXEファイルをNyaUTAUフォルダ内のResamplersフォルダに追加し、選択してください。</system:String>
   <system:String x:Key="prefs.rendering.skipmuted">ミュート中のトラックをレンダリングしない</system:String>
-  <system:String x:Key="prefs.rendering.threads.cpuwarn">警告：レンダースレッドが多すぎるとOpenUtauの動作が重くなる可能性があります。</system:String>
+  <system:String x:Key="prefs.rendering.threads.cpuwarn">警告：レンダースレッドが多すぎるとNyaUTAUの動作が重くなる可能性があります。</system:String>
   <system:String x:Key="prefs.rendering.threads.numthreads">最大レンダースレッド数</system:String>
   <!--<system:String x:Key="prefs.rendering.wavtool">Wavtool</system:String>-->
   <!--<system:String x:Key="prefs.utau">UTAU</system:String>-->
@@ -857,7 +857,7 @@ oto.iniに記載のファイル名：{0}
   <system:String x:Key="updater.update">アップデート</system:String>
 
   <system:String x:Key="warning">警告</system:String>
-  <system:String x:Key="warning.asciipath">OpenUtauのファイルパス "{0}" に非ASCII文字が含まれています。 EXE形式のエンジンが動作しない可能性があります。</system:String>
+  <system:String x:Key="warning.asciipath">NyaUTAUのファイルパス "{0}" に非ASCII文字が含まれています。 EXE形式のエンジンが動作しない可能性があります。</system:String>
   <system:String x:Key="warning.renderer">このレンダラーには設定項目がありません</system:String>
 
   <system:String x:Key="welcome.new">新規</system:String>

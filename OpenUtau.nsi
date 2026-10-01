@@ -3,10 +3,10 @@
 ManifestDPIAware true
 
 ; HM NIS Edit Wizard helper defines
-!define PRODUCT_NAME "OpenUtau"
+!define PRODUCT_NAME "NyaUTAU"
 !define PRODUCT_PUBLISHER "stakira"
 !define PRODUCT_WEB_SITE "https://www.openutau.com"
-!define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
+!define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenUtau"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
 ; MUI 1.8 compatible ------
@@ -63,8 +63,8 @@ Section "MainSection" SEC01
 SectionEnd
 
 Section -AdditionalIcons
-  CreateShortCut "$SMPROGRAMS\OpenUtau.lnk" "$INSTDIR\OpenUtau.exe"
-  CreateShortCut "$DESKTOP\OpenUtau.lnk" "$INSTDIR\OpenUtau.exe"
+  CreateShortCut "$SMPROGRAMS\NyaUTAU.lnk" "$INSTDIR\OpenUtau.exe"
+  CreateShortCut "$DESKTOP\NyaUTAU.lnk" "$INSTDIR\OpenUtau.exe"
 SectionEnd
 
 Section -Post
@@ -82,7 +82,7 @@ Section -Post
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
 
   WriteRegStr HKCR ".ustx" "" "OpenUtauFile"
-  WriteRegStr HKCR "OpenUtauFile" "" "OpenUtau Sequence File"
+  WriteRegStr HKCR "OpenUtauFile" "" "NyaUTAU Sequence File"
   WriteRegStr HKCR "OpenUtauFile\DefaultIcon" "" "$INSTDIR\OpenUtau.exe"
   WriteRegStr HKCR "OpenUtauFile\shell\open\command" "" '"$INSTDIR\OpenUtau.exe" "%1"'
 SectionEnd
@@ -110,7 +110,9 @@ Section Uninstall
   Delete "$INSTDIR\*"
   RMDir "$INSTDIR"
 
+  Delete "$SMPROGRAMS\NyaUTAU.lnk"
   Delete "$SMPROGRAMS\OpenUtau.lnk"
+  Delete "$DESKTOP\NyaUTAU.lnk"
   Delete "$DESKTOP\OpenUtau.lnk"
 
   DeleteRegKey HKCR ".ustx"

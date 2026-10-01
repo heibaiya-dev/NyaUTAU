@@ -1,4 +1,4 @@
-<!--DO NOT modify this file. It is managed autometically.-->
+﻿<!--DO NOT modify this file. It is managed autometically.-->
 <!--To contribute to OpenUtau's localization, visit https://crowdin.com/project/oxygen-dioxideopenutau -->
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -101,10 +101,10 @@
   <system:String x:Key="debug.copylog">Salin Log</system:String>
   <system:String x:Key="debug.reverselogorder">Balikkan Urutan Log</system:String>
 
-  <system:String x:Key="dialogs.about.caption">Tentang OpenUtau</system:String>
+  <system:String x:Key="dialogs.about.caption">Tentang NyaUTAU</system:String>
   <system:String x:Key="dialogs.about.message">
-OpenUtau bertujuan untuk menjadi lingkungan pengeditan sumber terbuka untuk komunitas UTAU, dengan pengalaman pengguna modern dan dukungan fonologis yang cerdas. Kunjungi kami di Github.</system:String>
-  <system:String x:Key="dialogs.exitsave.caption">Keluar dari OpenUtau</system:String>
+NyaUTAU bertujuan untuk menjadi lingkungan pengeditan sumber terbuka untuk komunitas UTAU, dengan pengalaman pengguna modern dan dukungan fonologis yang cerdas. Kunjungi kami di Github.</system:String>
+  <system:String x:Key="dialogs.exitsave.caption">Keluar dari NyaUTAU</system:String>
   <system:String x:Key="dialogs.exitsave.message">Proyek saat ini berisi perubahan yang belum disimpan. Apakah Anda ingin menyimpannya?</system:String>
   <system:String x:Key="dialogs.export.caption">Ekspor</system:String>
   <system:String x:Key="dialogs.export.savefirst">Simpan berkas proyek terlebih dahulu</system:String>
@@ -125,7 +125,7 @@ OpenUtau bertujuan untuk menjadi lingkungan pengeditan sumber terbuka untuk komu
   <system:String x:Key="dialogs.messagebox.copy">Gagal menyalin ke papan klip</system:String>
   <system:String x:Key="dialogs.noresampler.caption">Tidak ada resampler</system:String>
   <system:String x:Key="dialogs.noresampler.message">Tidak ada resampler! Letakkan resampler exe atau dll favorit Anda di folder Resamplers dan pilih di Preferensi!</system:String>
-  <system:String x:Key="dialogs.recovery">Sebelumnya, OpenUtau mengalami penghentian yang tidak normal. Klik di sini untuk memulihkan.</system:String>
+  <system:String x:Key="dialogs.recovery">Sebelumnya, NyaUTAU mengalami penghentian yang tidak normal. Klik di sini untuk memulihkan.</system:String>
   <system:String x:Key="dialogs.recovery.caption">Proyek cadangan</system:String>
   <system:String x:Key="dialogs.remaptimeaxis.message">Alat ini akan mengubah tempo proyek tanpa merubah posisi dan durasi (dalam detik) dari not-not.
   BPM baru:</system:String>
@@ -187,7 +187,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="errors.failed.loadprefs">Gagal memuat preferensi. Inisialisasikan.</system:String>
   <system:String x:Key="errors.failed.openfile">Gagal membuka</system:String>
   <system:String x:Key="errors.failed.openlocation">Gagal membuka lokasi</system:String>
-  <system:String x:Key="errors.failed.opennewerproject">Berkas proyek lebih baru dari pada perangkat lunak! Tingkatkan OpenUtau!</system:String>
+  <system:String x:Key="errors.failed.opennewerproject">Berkas proyek lebih baru dari pada perangkat lunak! Tingkatkan NyaUTAU!</system:String>
   <!--<system:String x:Key="errors.failed.prerender">Failed to render in the background.</system:String>-->
   <system:String x:Key="errors.failed.render">Gagal merender.</system:String>
   <system:String x:Key="errors.failed.runeditingmacro">Gagal untuk menjalankan penyuntingan makro</system:String>
@@ -314,7 +314,7 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="menu.file.saveas">Simpan Sebagai...</system:String>
   <system:String x:Key="menu.file.savetemplate">Simpan Templat...</system:String>
   <system:String x:Key="menu.help">Bantuan</system:String>
-  <system:String x:Key="menu.help.about">Tentang OpenUtau</system:String>
+  <system:String x:Key="menu.help.about">Tentang NyaUTAU</system:String>
   <system:String x:Key="menu.help.checkupdate">Periksa Pembaruan</system:String>
   <system:String x:Key="menu.help.logslocation">Buka Lokasi Logs</system:String>
   <system:String x:Key="menu.help.reportissue">Laporkan Masalah</system:String>
@@ -625,7 +625,7 @@ Peringatan: opsi ini akan menghapus prasetel khusus.</system:String>
   <!--<system:String x:Key="prefs.diffsinger">DiffSinger</system:String>-->
   <!--<system:String x:Key="prefs.editing">Editing</system:String>-->
   <!--<system:String x:Key="prefs.general">General</system:String>-->
-  <system:String x:Key="prefs.note.restart">Catatan: silakan restart OpenUtau setelah mengubah item ini.</system:String>
+  <system:String x:Key="prefs.note.restart">Catatan: silakan restart NyaUTAU setelah mengubah item ini.</system:String>
   <system:String x:Key="prefs.otoeditor">Penyunting Oto</system:String>
   <system:String x:Key="prefs.otoeditor.select">Penyunting Oto Bawaan</system:String>
   <system:String x:Key="prefs.otoeditor.setparampath">Jalur setParam</system:String>
@@ -671,9 +671,9 @@ Peringatan: opsi ini akan menghapus prasetel khusus.</system:String>
   1. Atur "resampler-compatibility" ke "on" di dalam moreconfig.txt.
   2. Atur "auto-update-llsm-mrq" ke "off" di dalam moreconfig.txt.
   3. Tunggu sampai moresampler menghasilkan berkas llsm yang hilang.</system:String>
-  <system:String x:Key="prefs.rendering.resampler.note">Catatan: untuk menggunakan resampler eksternal, silakan tambahkan berkas resampler DLL atau EXE di folder Resamplers di jalur instal OpenUtau dan pilih di Preferensi.</system:String>
+  <system:String x:Key="prefs.rendering.resampler.note">Catatan: untuk menggunakan resampler eksternal, silakan tambahkan berkas resampler DLL atau EXE di folder Resamplers di jalur instal NyaUTAU dan pilih di Preferensi.</system:String>
   <system:String x:Key="prefs.rendering.skipmuted">Lewatkan trek yang dibisukan</system:String>
-  <system:String x:Key="prefs.rendering.threads.cpuwarn">Peringatan: utasan render yang terlalu banyak dapat menyebabkan OpenUtau melambat.</system:String>
+  <system:String x:Key="prefs.rendering.threads.cpuwarn">Peringatan: utasan render yang terlalu banyak dapat menyebabkan NyaUTAU melambat.</system:String>
   <system:String x:Key="prefs.rendering.threads.numthreads">Maksimum Utasan Render</system:String>
   <!--<system:String x:Key="prefs.rendering.wavtool">Wavtool</system:String>-->
   <!--<system:String x:Key="prefs.utau">UTAU</system:String>-->
@@ -857,7 +857,7 @@ Umum
   <system:String x:Key="updater.update">Perbarui</system:String>
 
   <system:String x:Key="warning">Peringatan</system:String>
-  <system:String x:Key="warning.asciipath">Jalur beranda OpenUtau Anda "{0}" berisi karakter non-ASCII. Resampler exe mungkin tidak akan berfungsi.</system:String>
+  <system:String x:Key="warning.asciipath">Jalur beranda NyaUTAU Anda "{0}" berisi karakter non-ASCII. Resampler exe mungkin tidak akan berfungsi.</system:String>
   <system:String x:Key="warning.renderer">Tidak ada pengaturan untuk perender ini. Silakan pilih CLASSIC.</system:String>
 
   <system:String x:Key="welcome.new">Baru</system:String>

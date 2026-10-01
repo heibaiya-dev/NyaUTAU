@@ -119,7 +119,8 @@ namespace OpenUtau.App.Views {
             }
         }
 
-        public static Task<MessageBoxResult> Show(Window parent, string text, string title, MessageBoxButtons buttons, string? stackTrace = null) {
+        public static Task<MessageBoxResult> Show(Window parent, string text, string title,
+            MessageBoxButtons buttons, string? stackTrace = null, string? primaryButtonText = null) {
             var msgbox = new MessageBox() {
                 Title = title
             };
@@ -146,7 +147,8 @@ namespace OpenUtau.App.Views {
             }
 
             if (buttons == MessageBoxButtons.Ok || buttons == MessageBoxButtons.OkCancel || buttons == MessageBoxButtons.OkCopy)
-                AddButton(ThemeManager.GetString("button.ok"), MessageBoxResult.Ok, true);
+                AddButton(primaryButtonText ?? ThemeManager.GetString("button.ok"),
+                    MessageBoxResult.Ok, true);
             if (buttons == MessageBoxButtons.YesNo || buttons == MessageBoxButtons.YesNoCancel) {
                 AddButton(ThemeManager.GetString("button.yes"), MessageBoxResult.Yes);
                 AddButton(ThemeManager.GetString("button.no"), MessageBoxResult.No, true);
