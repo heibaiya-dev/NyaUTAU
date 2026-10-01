@@ -231,5 +231,40 @@ namespace OpenUtau.Core.Editing {
 
             Assert.Equal(firstResult, Points(note));
         }
+
+        [Fact]
+        public void HumanizedPitchUsesPhraseContextWithoutTouchingUnselectedNotes() {
+            var first = Note(0, tone: 60);
+            var middle = Note(480, tone: 62);
+            var last = Note(960, tone: 60);
+            var (project, part) = Project(first, middle, last);
+            var firstPoints = Points(first);
+            var lastPoints = Points(last);
+
+            var commands = SmartPitch.BuildHumanizedCommands(project, part, new[] { middle }, .9f);
+            Assert.Single(commands);
+            Execute(commands);
+
+            Assert.Equal(firstPoints, Points(first));
+            Assert.Equal(lastPoints, Points(last));
+            Assert.False(middle.pitch.snapFirst);
+            Assert.True(middle.pitch.data.Count >= 4);
+            Assert.Contains(middle.pitch.data.Skip(1).Take(middle.pitch.data.Count - 2),
+                point => Math.Abs(point.Y) > .01f);
+        }
+
+        [Fact]
+        public void HumanizedPitchTreatsRestsAsPhraseBoundaries() {
+            var first = Note(0, tone: 60);
+            var rest = Note(480, lyric: "R");
+            var next = Note(960, tone: 67);
+            var (project, part) = Project(first, rest, next);
+
+            Execute(SmartPitch.BuildHumanizedCommands(project, part, Array.Empty<UNote>(), 1f));
+
+            Assert.Equal(0f, next.pitch.data[0].Y, 1);
+            Assert.All(next.pitch.data, point =>
+                Assert.True(float.IsFinite(point.X) && float.IsFinite(point.Y)));
+        }
     }
 }

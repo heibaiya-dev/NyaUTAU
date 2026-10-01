@@ -281,22 +281,25 @@ namespace OpenUtau.Core {
         UPitch[] oldPitch;
         UNote[] Notes;
         UPitch newPitch;
+        readonly Dictionary<UNote, float> oldFirstPoints;
         public SetPitchPointsCommand(UVoicePart part, UNote note, UPitch pitch) : base(part) {
             Notes = new UNote[] { note };
             oldPitch = Notes.Select(note => note.pitch).ToArray();
             newPitch = pitch;
+            oldFirstPoints = SnapshotFirstPoints(part);
         }
 
         public SetPitchPointsCommand(UVoicePart part, IEnumerable<UNote> notes, UPitch pitch) : base(part) {
             Notes = notes.ToArray();
             oldPitch = Notes.Select(note => note.pitch).ToArray();
             newPitch = pitch;
+            oldFirstPoints = SnapshotFirstPoints(part);
         }
         public override string ToString() => "Set pitch points";
         public override void Execute(){
             lock (Part) {
                 foreach (var partNote in Part.notes) {
-                    partNote.SkipSnapFirstValidation = true;
+                    partNote.SkipSnapFirstValidationCount = 2;
                 }
                 for (var i=0; i<Notes.Length; i++) {
                     Notes[i].pitch = newPitch.Clone();
@@ -306,13 +309,22 @@ namespace OpenUtau.Core {
         public override void Unexecute() {
             lock (Part) {
                 foreach (var partNote in Part.notes) {
-                    partNote.SkipSnapFirstValidation = true;
+                    partNote.SkipSnapFirstValidationCount = 2;
                 }
                 for (var i = 0; i < Notes.Length; i++) {
                     Notes[i].pitch = oldPitch[i];
                 }
+                foreach (var pair in oldFirstPoints) {
+                    if (pair.Key.pitch.data.Count > 0) {
+                        pair.Key.pitch.data[0].Y = pair.Value;
+                    }
+                }
             }
         }
+
+        static Dictionary<UNote, float> SnapshotFirstPoints(UVoicePart part) => part.notes
+            .Where(note => note.pitch.data.Count > 0)
+            .ToDictionary(note => note, note => note.pitch.data[0].Y);
     }
 
     public class SetCurveCommand : ExpCommand {

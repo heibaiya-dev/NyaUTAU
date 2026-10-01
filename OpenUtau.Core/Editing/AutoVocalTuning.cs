@@ -146,14 +146,18 @@ namespace OpenUtau.Core.Editing {
             var notes = part.notes.Where(note => selected == null || selected.Contains(note))
                 .Where(SmartPitch.IsPitched).OrderBy(note => note.position).ToList();
             var result = new AutoVocalTuningResult { EligibleNoteCount = notes.Count };
+            var originalFirstPoints = part.notes
+                .Where(note => note.pitch.data.Count > 0)
+                .ToDictionary(note => note, note => (pitch: note.pitch, y: note.pitch.data[0].Y));
             var skipped = new List<AutoVocalTuningSkippedChannel>();
             var commands = new List<UCommand>();
             var track = part.trackNo >= 0 && part.trackNo < project.tracks.Count
                 ? project.tracks[part.trackNo] : null;
             var capabilities = GetCapabilities(project, part);
+            var phraseInfo = BuildPhraseInfo(part);
 
             if (options.Pitch && strength > 0) {
-                var pitchCommands = SmartPitch.BuildCommands(project, part,
+                var pitchCommands = SmartPitch.BuildHumanizedCommands(project, part,
                     notes, strength * preset.Pitch);
                 commands.AddRange(pitchCommands);
                 result.PitchNoteCount = pitchCommands.Count;
@@ -165,7 +169,7 @@ namespace OpenUtau.Core.Editing {
                         continue;
                     }
                     commands.Add(new SetVibratoCommand(part, note,
-                        MakeVibrato(durationMs, strength, preset.Vibrato)));
+                        MakeVibrato(durationMs, strength, preset.Vibrato, phraseInfo.TryGetValue(note, out var info) ? info.Progress : .5f)));
                     result.VibratoNoteCount++;
                 }
                 if (result.VibratoNoteCount == 0 && notes.Count > 0) {
@@ -249,10 +253,18 @@ namespace OpenUtau.Core.Editing {
                 // Validation derives snapFirst's first point. Preserve the exact
                 // pitch snapshots of unselected notes while this group commits.
                 foreach (var partNote in part.notes) {
-                    partNote.SkipSnapFirstValidation = true;
+                    partNote.SkipSnapFirstValidationCount = 2;
                 }
             } finally {
                 docManager.EndUndoGroup();
+                // Validation may derive snapFirst's first point for notes whose
+                // pitch object was untouched. Restore that user-authored point.
+                foreach (var pair in originalFirstPoints) {
+                    if (ReferenceEquals(pair.Key.pitch, pair.Value.pitch)
+                            && pair.Key.pitch.data.Count > 0) {
+                        pair.Key.pitch.data[0].Y = pair.Value.y;
+                    }
+                }
             }
         }
 
@@ -276,19 +288,62 @@ namespace OpenUtau.Core.Editing {
             return (float)Math.Max(0, end - start);
         }
 
-        static UVibrato MakeVibrato(float durationMs, float strength, float amount) {
-            var length = Math.Clamp(42 + durationMs / 38, 42, 72);
-            var period = Math.Clamp(durationMs / 4.2f, 120, 230);
+        static UVibrato MakeVibrato(float durationMs, float strength, float amount, float phraseProgress) {
+            // Vibrato arrives later on a sustained vowel and opens up towards the
+            // end of a phrase. A little phrase drift keeps every note from sounding
+            // like the same pasted preset.
+            phraseProgress = Math.Clamp(phraseProgress, 0, 1);
+            var length = Math.Clamp(34 + durationMs / 44 + phraseProgress * 12, 34, 72);
+            var period = Math.Clamp(durationMs / 4.0f, 125, 240);
+            var depth = (6 + 19 * strength * amount)
+                * (0.78f + 0.38f * phraseProgress);
             return new UVibrato {
                 length = length,
                 period = period,
-                depth = Math.Clamp(7 + 17 * strength * amount, 5, 70),
-                @in = 18,
-                @out = 22,
+                depth = Math.Clamp(depth, 5, 70),
+                @in = Math.Clamp(24 - phraseProgress * 7, 12, 30),
+                @out = Math.Clamp(18 + phraseProgress * 8, 16, 30),
                 shift = 0,
-                drift = 0,
-                volLink = 0,
+                drift = (phraseProgress - .5f) * 2.2f * strength,
+                volLink = Math.Clamp(8 + 18 * strength * amount, 0, 100),
             };
+        }
+
+        readonly struct PhraseNoteInfo {
+            public readonly int Index;
+            public readonly int Count;
+            public readonly float Progress;
+            public PhraseNoteInfo(int index, int count) {
+                Index = index;
+                Count = count;
+                Progress = count <= 1 ? .5f : (float)index / (count - 1);
+            }
+        }
+
+        static Dictionary<UNote, PhraseNoteInfo> BuildPhraseInfo(UVoicePart part) {
+            var result = new Dictionary<UNote, PhraseNoteInfo>();
+            var phrase = new List<UNote>();
+            UNote? previous = null;
+            void Flush() {
+                for (int i = 0; i < phrase.Count; i++) {
+                    result[phrase[i]] = new PhraseNoteInfo(i, phrase.Count);
+                }
+                phrase.Clear();
+            }
+            foreach (var note in part.notes.OrderBy(note => note.position)) {
+                if (!SmartPitch.IsPitched(note)) {
+                    Flush();
+                    previous = null;
+                    continue;
+                }
+                if (previous != null && previous.End != note.position) {
+                    Flush();
+                }
+                phrase.Add(note);
+                previous = note;
+            }
+            Flush();
+            return result;
         }
 
         static bool BreathinessModelAvailable(UTrack track) {
@@ -331,24 +386,89 @@ namespace OpenUtau.Core.Editing {
             var curve = part.curves.FirstOrDefault(c => c.abbr == abbr);
             var xs = curve?.xs.ToArray() ?? Array.Empty<int>();
             var ys = curve?.ys.ToArray() ?? Array.Empty<int>();
+            var phraseInfo = BuildPhraseInfo(part);
             foreach (var note in notes) {
                 int start = note.position;
                 int end = note.End;
                 int span = Math.Max(1, end - start);
                 int centre = start + span / 2;
-                int peak = velocity ? (int)Math.Round(100 - 15 * strength * amount)
-                    : (int)Math.Round((breathiness ? 18 : 22) * strength * amount);
-                if (!breathiness && !velocity) {
-                    peak += (note.position / 480 % 3 - 1) * 4;
+                var progress = phraseInfo.TryGetValue(note, out var info) ? info.Progress : .5f;
+                var phraseArc = (float)Math.Sin(Math.PI * progress);
+                int peak;
+                (int x, int y)[] points;
+                if (velocity) {
+                    // VELC is logarithmic in DiffSinger: values above 100 make the
+                    // consonant move faster. Put the emphasis on each phoneme onset,
+                    // then settle to the neutral value before the vowel body.
+                    var attack = (int)Math.Round(100 + (span <= 240 ? 24 : 12)
+                        * strength * amount * (.85f + .3f * (1 - progress)));
+                    peak = (int)Math.Round(100 + 4 * strength * amount * phraseArc);
+                    points = new[] {
+                        (start, attack), (start + Math.Max(UCurve.interval, span / 8), peak),
+                        (centre, peak), (Math.Max(start, end - UCurve.interval), 100)
+                    };
+                } else {
+                    var durationWeight = Math.Clamp(span / 720f, .55f, 1.35f);
+                    if (breathiness) {
+                        // Breath accumulates on sustained vowels and at phrase ends.
+                        peak = (int)Math.Round((5 + 18 * phraseArc)
+                            * strength * amount * durationWeight
+                            * (.8f + .35f * progress));
+                    } else {
+                        // Dynamics follow a phrase envelope instead of resetting to
+                        // zero at every note; this gives DiffSinger a connected line.
+                        peak = (int)Math.Round((4 + 20 * (.35f + .65f * phraseArc))
+                            * strength * amount * durationWeight);
+                    }
+                    var onset = breathiness ? 0 : (int)Math.Round(-4 * strength * amount);
+                    var release = (int)Math.Round(peak * (breathiness
+                        ? .22f + .28f * progress : .42f));
+                    points = new[] {
+                        (start, onset),
+                        (start + Math.Max(UCurve.interval, span / 7), (int)Math.Round(peak * .68f)),
+                        (centre, peak),
+                        (Math.Max(start, end - UCurve.interval), release)
+                    };
                 }
-                var points = new[] {
-                    (start, velocity ? 100 : 0), (centre, peak),
-                    (Math.Max(start, end - UCurve.interval),
-                        velocity ? 100 : (int)Math.Round(peak * .35))
-                };
                 (xs, ys) = UCurve.ReplaceRange(xs, ys, start, end, points, descriptor);
+                if (velocity) {
+                    AddConsonantPoints(part, note, points[0].y, points[2].y, span,
+                        ref xs, ref ys, descriptor);
+                }
             }
             return new SetCurveSnapshotCommand(project, part, abbr, descriptor, xs, ys);
+        }
+
+        static void AddConsonantPoints(UVoicePart part, UNote note, int attack, int body,
+                int span, ref int[] xs, ref int[] ys, UExpressionDescriptor descriptor) {
+            var phonemes = part.phonemes.Where(phoneme => phoneme.Parent == note)
+                .OrderBy(phoneme => phoneme.position).ToList();
+            if (phonemes.Count == 0) {
+                return;
+            }
+            foreach (var phoneme in phonemes) {
+                if (IsVowelLike(phoneme.phoneme)) {
+                    continue;
+                }
+                int x = Math.Clamp(phoneme.position, note.position, note.End);
+                int fall = Math.Min(note.End, x + Math.Max(UCurve.interval, span / 14));
+                var points = new[] { (x, attack), (fall, body) };
+                (xs, ys) = UCurve.ReplaceRange(xs, ys, x, fall, points, descriptor);
+            }
+        }
+
+        static bool IsVowelLike(string? phoneme) {
+            if (string.IsNullOrWhiteSpace(phoneme)) {
+                return true;
+            }
+            var value = phoneme.Trim().ToLowerInvariant();
+            // Most UTAU/DiffSinger phonemizers use latin vowel symbols. Treat kana
+            // and syllabic markers as vowel-bearing so they do not get a consonant
+            // burst when the phoneme inventory is not latin.
+            if (value.Any(ch => "aeiouəɪʊɑɔɛ".Contains(ch))) {
+                return true;
+            }
+            return value.Any(ch => ch >= '\u3040' && ch <= '\u30ff');
         }
     }
 

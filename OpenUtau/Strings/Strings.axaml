@@ -218,6 +218,14 @@ Do you want to continue by splitting at the nearest position after current playh
   <system:String x:Key="dialogs.transcribe.rmvpe">Extract pitch using RMVPE</system:String>
   <system:String x:Key="dialogs.transcribe.rmvpe.notfound">RMVPE is not installed. Install it from the Package Manager.</system:String>
   <system:String x:Key="dialogs.transcribe.some.notfound">SOME is not installed.</system:String>
+  <system:String x:Key="dialogs.smartspeech.caption">Smart speech generation</system:String>
+  <system:String x:Key="dialogs.smartspeech.description">Enter text or lyrics. NyaUTAU creates notes offline, splitting CJK characters and words, adding rests for punctuation, and sustaining the previous note for spaces.</system:String>
+  <system:String x:Key="dialogs.smartspeech.placeholder">Type or paste text here...</system:String>
+  <system:String x:Key="dialogs.smartspeech.tone">Base note</system:String>
+  <system:String x:Key="dialogs.smartspeech.duration">Beats per token</system:String>
+  <system:String x:Key="dialogs.smartspeech.duration.hint">Use 0.3 for a quick speech rhythm, or 0.6 for a slower line. Ctrl+Enter applies.</system:String>
+  <system:String x:Key="dialogs.smartspeech.replace">Replace selected notes</system:String>
+  <system:String x:Key="dialogs.smartspeech.fit">Fit generated notes to the selected range</system:String>
   <system:String x:Key="dialogs.unsupportedfile.caption">Unsupported file format</system:String>
   <system:String x:Key="dialogs.unsupportedfile.message">Unsupported file format: </system:String>
   <system:String x:Key="dialogs.voicecolorremapping">Voice color remapping</system:String>
@@ -1059,6 +1067,8 @@ General
   <system:String x:Key="welcome.template.empty">Save a project as a template to reuse it here.</system:String>
   <system:String x:Key="pianoroll.menu.notes.smartpitch">Smart pitch</system:String>
   <system:String x:Key="pianoroll.smartpitch.tip">Generate natural pitch curves for selected notes, or all notes in this part if none are selected. Replaces pitch control points; can be undone.</system:String>
+  <system:String x:Key="pianoroll.menu.smartspeech">Smart speech generation</system:String>
+  <system:String x:Key="pianoroll.smartspeech.tip">Generate notes and lyrics from text offline. Selected notes are replaced by default.</system:String>
   <system:String x:Key="autotuning.title">Automatic tuning</system:String>
   <system:String x:Key="pianoroll.menu.notes.autovocaltuning">Automatic tuning</system:String>
   <system:String x:Key="autotuning.tip">Tune pitch, vibrato, dynamics, breathiness and articulation with singer-aware controls.</system:String>

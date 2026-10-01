@@ -372,6 +372,7 @@
               <MenuItem Header="{DynamicResource pianoroll.menu.external}" ItemsSource="{Binding ExternalBatchEdits}" Classes="MenuItemWithSubMenu"/>
               <MenuItem Header="{DynamicResource pianoroll.menu.part.legacypluginexp}" ItemsSource="{Binding LegacyPlugins}" Name="PluginMenu" Classes="MenuItemWithSubMenu"/>
             </MenuItem>
+            <MenuItem Header="{DynamicResource pianoroll.menu.smartspeech}" Click="OnMenuSmartSpeech"/>
             <MenuItem Header="{DynamicResource pianoroll.menu.lyrics.edit}" Click="OnMenuEditLyrics"/>
             <MenuItem Header="{DynamicResource pianoroll.menu.notedefaults}" Click="OnMenuNoteDefaults"/>
           </Menu>
@@ -388,6 +389,11 @@
             <Button Name="SmartPitchButton" Classes="material-tonal" Height="32" Padding="12,0"
                     Content="{DynamicResource pianoroll.menu.notes.smartpitch}"
                     ToolTip.Tip="{DynamicResource pianoroll.smartpitch.tip}"
+                    IsEnabled="{Binding NotesViewModel.Part, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+            <Button Name="SmartSpeechButton" Classes="material-tonal" Height="32" Padding="12,0"
+                    Content="{DynamicResource pianoroll.menu.smartspeech}"
+                    ToolTip.Tip="{DynamicResource pianoroll.smartspeech.tip}"
+                    Click="OnMenuSmartSpeech"
                     IsEnabled="{Binding NotesViewModel.Part, Converter={x:Static ObjectConverters.IsNotNull}}"/>
             <Border Width="8"/>
             <ToggleButton Classes="toolbar" Margin="0" Padding="1" Height="32" Width="32" IsChecked="{Binding NotesViewModel.ShowTips}"

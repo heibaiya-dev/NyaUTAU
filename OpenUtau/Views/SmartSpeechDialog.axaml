@@ -1,0 +1,42 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="OpenUtau.App.Views.SmartSpeechDialog"
+        Icon="/Assets/open-utau.ico"
+        Title="{DynamicResource dialogs.smartspeech.caption}"
+        WindowStartupLocation="CenterOwner"
+        Width="520" MinWidth="420" SizeToContent="Height"
+        Background="{DynamicResource MaterialSurfaceContainerBrush}">
+  <Border Margin="{Binding $parent[Window].WindowDecorationMargin}" Padding="24">
+    <StackPanel Spacing="14">
+      <TextBlock Text="{DynamicResource dialogs.smartspeech.description}"
+                 TextWrapping="Wrap" Foreground="{DynamicResource MaterialOnSurfaceVariantBrush}"/>
+      <TextBox Name="InputBox" MinHeight="130" AcceptsReturn="True" TextWrapping="Wrap"
+               PlaceholderText="{DynamicResource dialogs.smartspeech.placeholder}"/>
+      <Grid ColumnDefinitions="Auto,100,Auto,100" RowDefinitions="Auto,Auto" RowSpacing="10" ColumnSpacing="10">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource dialogs.smartspeech.tone}"
+                   VerticalAlignment="Center"/>
+        <NumericUpDown Grid.Row="0" Grid.Column="1" Name="ToneBox" Minimum="24" Maximum="96"
+                       Increment="1" Value="45" FormatString="0"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="{DynamicResource dialogs.smartspeech.duration}"
+                   VerticalAlignment="Center"/>
+        <TextBox Grid.Row="0" Grid.Column="3" Name="DurationBox" Text="0.3"
+                 HorizontalContentAlignment="Right"/>
+        <TextBlock Grid.Row="1" Grid.ColumnSpan="4" Text="{DynamicResource dialogs.smartspeech.duration.hint}"
+                   FontSize="12" TextWrapping="Wrap" Foreground="{DynamicResource MaterialOnSurfaceVariantBrush}"/>
+      </Grid>
+      <CheckBox Name="ReplaceSelectionBox" IsChecked="True"
+                Content="{DynamicResource dialogs.smartspeech.replace}"/>
+      <CheckBox Name="FitSelectionBox" IsChecked="True"
+                Content="{DynamicResource dialogs.smartspeech.fit}"/>
+      <Grid ColumnDefinitions="*,12,*" Margin="0,4,0,0">
+        <Button Grid.Column="0" Classes="material-primary" Content="{DynamicResource button.ok}"
+                HorizontalAlignment="Stretch" Click="OnOkClicked"/>
+        <Button Grid.Column="2" Content="{DynamicResource button.cancel}"
+                HorizontalAlignment="Stretch" Click="OnCancelClicked"/>
+      </Grid>
+    </StackPanel>
+  </Border>
+</Window>

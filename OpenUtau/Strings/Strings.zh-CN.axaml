@@ -216,6 +216,14 @@ NyaUTAU 是一个开源项目, 旨在为 UTAU 用户社区提供现代的用户�
   <system:String x:Key="dialogs.transcribe.rmvpe">使用 RMVPE 提取音高</system:String>
   <system:String x:Key="dialogs.transcribe.rmvpe.notfound">未安装RMVPE。请从扩展包管理器中安装。</system:String>
   <system:String x:Key="dialogs.transcribe.some.notfound">未安装SOME。</system:String>
+  <system:String x:Key="dialogs.smartspeech.caption">智能说话生成</system:String>
+  <system:String x:Key="dialogs.smartspeech.description">输入文字或歌词，离线生成音符和歌词。中文、日文按字拆分，标点会自动加入休止，空格会拉长前一个音。</system:String>
+  <system:String x:Key="dialogs.smartspeech.placeholder">在此输入或粘贴文字……</system:String>
+  <system:String x:Key="dialogs.smartspeech.tone">基准音高</system:String>
+  <system:String x:Key="dialogs.smartspeech.duration">每个词的拍数</system:String>
+  <system:String x:Key="dialogs.smartspeech.duration.hint">0.3 适合快速说话节奏，0.6 适合较慢的句子。按 Ctrl+Enter 应用。</system:String>
+  <system:String x:Key="dialogs.smartspeech.replace">替换选中的音符</system:String>
+  <system:String x:Key="dialogs.smartspeech.fit">将生成的音符适配到选中范围</system:String>
   <system:String x:Key="dialogs.unsupportedfile.caption">不支持的文件格式</system:String>
   <system:String x:Key="dialogs.unsupportedfile.message">不支持的文件格式： </system:String>
   <system:String x:Key="dialogs.voicecolorremapping">音色重映射</system:String>
@@ -940,6 +948,8 @@ NyaUTAU 是一个开源项目, 旨在为 UTAU 用户社区提供现代的用户�
   <system:String x:Key="welcome.template.empty">将项目保存为模板，即可在这里重复使用。</system:String>
   <system:String x:Key="pianoroll.menu.notes.smartpitch">智能音高线</system:String>
   <system:String x:Key="pianoroll.smartpitch.tip">为选中的音符生成自然音高曲线；未选择时处理当前声部的全部音符。替换原有音高控制点，可撤销。</system:String>
+  <system:String x:Key="pianoroll.menu.smartspeech">智能说话生成</system:String>
+  <system:String x:Key="pianoroll.smartspeech.tip">离线根据文字生成音符和歌词，默认替换选中音符。</system:String>
   <system:String x:Key="autotuning.title">自动调教</system:String>
   <system:String x:Key="pianoroll.menu.notes.autovocaltuning">自动调教</system:String>
   <system:String x:Key="autotuning.tip">使用适配歌手的控制项调整音高、颤音、力度、气声和发音。</system:String>

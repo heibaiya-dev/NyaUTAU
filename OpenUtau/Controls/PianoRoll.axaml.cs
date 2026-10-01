@@ -548,6 +548,47 @@ namespace OpenUtau.App.Controls {
             EditLyrics();
         }
 
+        async void OnMenuSmartSpeech(object? sender, RoutedEventArgs e) {
+            await OpenSmartSpeechAsync();
+        }
+
+        async Task OpenSmartSpeechAsync() {
+            var notesVm = ViewModel.NotesViewModel;
+            var part = notesVm.Part;
+            if (part == null) {
+                return;
+            }
+            var project = notesVm.Project;
+            var dialog = new SmartSpeechDialog();
+            await dialog.ShowDialog(RootWindow);
+            if (!dialog.Confirmed || notesVm.Part != part || notesVm.Project != project) {
+                return;
+            }
+            try {
+                var options = new SmartSpeechGenerator.Options {
+                    BaseTone = dialog.BaseTone,
+                    BeatsPerToken = dialog.BeatsPerToken,
+                    ReplaceSelection = dialog.ReplaceSelection,
+                    FitSelection = dialog.FitSelection,
+                };
+                var selected = notesVm.Selection.Where(part.notes.Contains).ToList();
+                var generated = SmartSpeechGenerator.Apply(
+                    project, part, selected, dialog.InputText, options, DocManager.Inst);
+                if (generated.Count > 0) {
+                    notesVm.ShowPitch = true;
+                    notesVm.DeselectNotes();
+                    for (var i = 0; i < generated.Count; i++) {
+                        notesVm.SelectNote(generated[i], i == 0);
+                    }
+                    Focus();
+                }
+            } catch (Exception ex) {
+                var customEx = new MessageCustomizableException("Failed to generate speech notes",
+                    "<translate:errors.failed.runeditingmacro>", ex);
+                DocManager.Inst.ExecuteCmd(new ErrorMessageNotification(customEx));
+            }
+        }
+
         void EditLyrics() {
             if (ViewModel.NotesViewModel.Part == null) {
                 return;
