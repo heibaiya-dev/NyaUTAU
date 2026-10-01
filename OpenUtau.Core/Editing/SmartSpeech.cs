@@ -31,12 +31,14 @@ namespace OpenUtau.Core.Editing {
             public readonly int Weight;
             public readonly bool IsRest;
             public readonly BoundaryKind BoundaryAfter;
+            public readonly int MandarinTone;
             public SpeechToken(string lyric, int weight, bool isRest = false,
-                    BoundaryKind boundaryAfter = BoundaryKind.None) {
+                    BoundaryKind boundaryAfter = BoundaryKind.None, int mandarinTone = 0) {
                 Lyric = lyric;
                 Weight = weight;
                 IsRest = isRest;
                 BoundaryAfter = boundaryAfter;
+                MandarinTone = mandarinTone;
             }
             public SpeechToken WithBoundary(BoundaryKind boundary) {
                 return new SpeechToken(Lyric, Weight, IsRest,
@@ -46,10 +48,10 @@ namespace OpenUtau.Core.Editing {
                             ? BoundaryKind.Falling
                             : boundary == BoundaryKind.Soft || BoundaryAfter == BoundaryKind.Soft
                                 ? BoundaryKind.Soft
-                                : BoundaryKind.None);
+                                : BoundaryKind.None, MandarinTone);
             }
             public SpeechToken WithWeight(int weight) {
-                return new SpeechToken(Lyric, weight, IsRest, BoundaryAfter);
+                return new SpeechToken(Lyric, weight, IsRest, BoundaryAfter, MandarinTone);
             }
         }
 
@@ -111,11 +113,13 @@ namespace OpenUtau.Core.Editing {
                 }
                 var toneOffset = token.IsRest
                     ? 0
-                    : SpeechContour(toneIndex, phrasePosition, phraseLength, token.BoundaryAfter);
+                    : SpeechContour(toneIndex, phrasePosition, phraseLength,
+                        token.BoundaryAfter, token.MandarinTone);
                 var note = project.CreateNote(
                     Math.Clamp(options.BaseTone + toneOffset, 1, 127),
                     cursor, duration);
                 note.lyric = token.Lyric;
+                AddMandarinContour(project, part, note, token.MandarinTone);
                 generated.Add(note);
                 cursor += duration;
                 if (!token.IsRest) {
@@ -145,7 +149,7 @@ namespace OpenUtau.Core.Editing {
         }
 
         static int SpeechContour(int index, int phrasePosition, int phraseLength,
-                BoundaryKind boundary) {
+                BoundaryKind boundary, int mandarinTone) {
             // Keep phrases centered around the requested base note, with a gentle rise in
             // the middle and a clear fall at a sentence boundary. The variation is
             // deterministic so reopening a project produces the same score.
@@ -159,12 +163,56 @@ namespace OpenUtau.Core.Editing {
                 3 => -1,
                 _ => 0,
             };
+            // Preserve the main Mandarin tone contrast in the generated note sequence.
+            // The singer's renderer supplies the continuous movement inside each syllable.
+            offset += mandarinTone switch {
+                1 => 2,
+                2 => 1,
+                3 => -1,
+                4 => -2,
+                _ => 0,
+            };
             return boundary switch {
                 BoundaryKind.Falling => -2,
                 BoundaryKind.Rising => 2,
                 BoundaryKind.Soft => -1,
                 _ => offset,
             };
+        }
+
+        static void AddMandarinContour(UProject project, UVoicePart part, UNote note, int tone) {
+            if (tone is < 1 or > 4) {
+                return;
+            }
+            var startMs = project.timeAxis.TickPosToMsPos(part.position + note.position);
+            var endMs = project.timeAxis.TickPosToMsPos(part.position + note.End);
+            var durationMs = endMs - startMs;
+            if (durationMs <= 1) {
+                return;
+            }
+
+            // PitchPoint.Y is measured in tenths of a semitone. Keep the movement subtle:
+            // the singer and automatic tuning still control the final voice character.
+            var points = tone switch {
+                1 => new (double Position, float Pitch)[] {
+                    (0.00, 6), (0.55, 6), (1.00, 5),
+                },
+                2 => new (double Position, float Pitch)[] {
+                    (0.00, -5), (0.55, 1), (1.00, 7),
+                },
+                3 => new (double Position, float Pitch)[] {
+                    (0.00, 3), (0.45, -8), (0.72, -4), (1.00, 3),
+                },
+                _ => new (double Position, float Pitch)[] {
+                    (0.00, 7), (0.45, 1), (1.00, -7),
+                },
+            };
+            note.pitch.data.Clear();
+            note.pitch.snapFirst = true;
+            foreach (var point in points) {
+                note.pitch.AddPoint(new PitchPoint(
+                    (float)(durationMs * point.Position), point.Pitch, PitchPointShape.io));
+            }
         }
 
         static List<SpeechToken> Tokenize(string text) {
@@ -206,11 +254,13 @@ namespace OpenUtau.Core.Editing {
                 }
                 if (IsCjkOrKana(c)) {
                     FlushWord();
-                    var weight = EstimateCjkWeight(c, cjkIndex++);
+                    var mandarinTone = GetMandarinTone(c);
+                    var weight = EstimateCjkWeight(c, cjkIndex++, mandarinTone);
                     if (result.Count > 0 && result[^1].IsRest) {
                         weight = Math.Max(weight, 2);
                     }
-                    result.Add(new SpeechToken(c.ToString(), weight));
+                    result.Add(new SpeechToken(c.ToString(), weight,
+                        mandarinTone: mandarinTone));
                     continue;
                 }
                 if (char.IsPunctuation(c) || char.IsSymbol(c)) {
@@ -287,14 +337,30 @@ namespace OpenUtau.Core.Editing {
             return Math.Clamp(syllables, 1, 3);
         }
 
-        static int EstimateCjkWeight(char c, int index) {
+        static int EstimateCjkWeight(char c, int index, int mandarinTone) {
             // Function words are naturally shorter; every fourth content syllable gets a
             // slightly longer slot to avoid an artificial metronomic stream.
             const string light = "的了着过吗呢啊呀吧啦和与在是我你他她它这那不也都就还而";
             if (light.Contains(c)) {
                 return 1;
             }
-            return index % 4 == 2 ? 2 : 1;
+            var weight = index % 4 == 2 ? 2 : 1;
+            return mandarinTone == 3 ? Math.Min(3, weight + 1) : weight;
+        }
+
+        static int GetMandarinTone(char c) {
+            var lyric = c.ToString();
+            if (!Pinyin.Pinyin.Instance.IsHanzi(lyric)) {
+                return 0;
+            }
+            var pinyin = Pinyin.Pinyin.Instance
+                .GetDefaultPinyin(lyric, Pinyin.ManTone.Style.TONE3, false, false)
+                .FirstOrDefault();
+            if (string.IsNullOrEmpty(pinyin) || !char.IsDigit(pinyin[^1])) {
+                return 0;
+            }
+            var tone = pinyin[^1] - '0';
+            return tone is >= 1 and <= 4 ? tone : 0;
         }
 
         static bool IsPause(char c) => c is ',' or '，' or '、' or ';' or '；' or ':' or '：'

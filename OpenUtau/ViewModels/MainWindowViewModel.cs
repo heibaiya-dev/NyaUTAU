@@ -80,7 +80,7 @@ namespace OpenUtau.App.ViewModels {
                 Version? version = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version;
                 string suffix = Core.Util.ReleaseChannel.FromVersion(version) is { } channel
                     ? $" ({channel})" : string.Empty;
-                return $"NyaUTAU v{version}{suffix}";
+                return $"NyaUTAU v{version?.ToString(3) ?? "Unknown"}{suffix}";
             }
         }
         [Reactive] public partial double Progress { get; set; }

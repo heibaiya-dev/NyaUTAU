@@ -40,7 +40,7 @@ namespace OpenUtau.App.ViewModels {
                 Version? version = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version;
                 string suffix = Core.Util.ReleaseChannel.FromVersion(version) is { } channel
                     ? $" ({channel})" : string.Empty;
-                return $"v{version}{suffix}";
+                return $"v{version?.ToString(3) ?? "Unknown"}{suffix}";
             }
         }
         public bool IsDarkMode => ThemeManager.IsDarkMode;
